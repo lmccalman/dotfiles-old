@@ -1,0 +1,8 @@
+source /etc/Muttrc.gpg.dist
+set pgp_sign_as=0x089B45DE
+set pgp_timeout=1800
+set crypt_autosign
+set crypt_replysign
+set crypt_autoencrypt=no
+set crypt_replyencrypt=yes
+set crypt_verify_sig=yes

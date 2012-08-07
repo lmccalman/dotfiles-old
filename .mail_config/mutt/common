@@ -1,0 +1,41 @@
+set charset=UTF8
+set realname="Lachlan McCalman"
+
+set check_new = yes
+set beep_new = yes
+set mail_check = 60 
+set timeout = 30
+set use_from = yes # Required for msmtp to know which account to use
+                   # for emails
+set move=no
+
+set sort=reverse-threads
+set sort_aux=last-date-received
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set mailcap_path= ~/.mail_config/mutt/mailcap
+
+set editor="vim -c 'set tw=70 et' -c 'set spell' '+/^$' "
+set edit_headers # See the headers when editing
+# set implicit_autoview
+# auto_view text/html application/x-pgp-message
+# set include=yes
+
+hdr_order Date: From: User-Agent: X-Mailer \
+          To: Cc: Reply-To: Subject:
+ignore *
+unignore Date: From: User-Agent: X-Mailer: X-PGP-Key: \
+          To: Cc: Reply-To: Subject:
+
+set askcc
+set askbcc
+set fcc_attach
+unset reply_self
+set attribution="On %d, %n wrote:"
+set tilde
+set read_inc=1000
+set pager_context=6
+set smart_wrap

@@ -1,0 +1,31 @@
+[general]
+accounts = personal
+metadata=~/.offlineimap
+maxsyncaccounts = 1
+ui = basic
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
+[Account personal]
+localrepository = personallocal
+remoterepository = personalremote
+autorefresh = 5
+quick = 10
+
+[Repository personallocal]
+type = Maildir
+localfolders = ~/mail/personal
+
+[Repository personalremote]
+type = IMAP
+remotehost = mccalman.info
+remoteuser = lachlan
+remotepassfile = ~/.mail_config/personal.pass
+remoteport = 143
+

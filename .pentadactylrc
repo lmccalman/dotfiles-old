@@ -1,0 +1,46 @@
+set mapleader=","
+
+"{{{ Options
+set complete=l
+set autocomplete=
+set defsearch=sp
+set newtab=all
+set hintkeys='aoeusnth'
+set hinttimeout=400
+set hlfind
+set incfind
+"}}}
+
+"{{{ PassKeys
+"set passkeys+='mail\.google\.com':c/jkhnpouelxsfra#`[]z?*nrtgidIU+-=<Tab><Return>
+"set passkeys+='mail\.google\.com/tasks/canvas':<Tab><S-Tab><Return>
+"set passkeys+='google\.com/reader':jkvnpbumoaAXNOVPJK?gehtl<Return>
+"set passkeys+='www\.google\.com/calendar':dwmxajkcnqetp?<Del>s12345<Return>
+set passkeys+='duckduckgo\.com/':\!lo<C-Return>jkh<Esc>\'v/rs1<Return>
+"}}}
+
+"{{{ Shortcuts
+map <C-l> :noh<CR>
+"}}}
+
+"{{{ Navigation
+map -b j 5j
+map -b k 5k
+map K :tn<CR>
+map J :tp<CR>
+"}}}
+
+" Styling
+highlight Hint font-family: sans-serif; font-size: 13px; font-weight: normal; color: black; background-color: #fffcc8 !important; border: 1px solid black; padding: 2px; line-height: 13px; text-transform: none;
+highlight HintActive background-color: rgba(0,0,0,0) !important;
+highlight HintElem background-color: rgba(0,0,0,0) !important;
+
+
+"{{{ Site Specific
+" Don't focus on Reddit frame
+autocmd LocationChange 'reddit\.com/tb/' -js buffer.focusElement(buffer.allFrames()[2]);
+" Focus on the Android docs
+autocmd PageLoad 'developer\.android\.com/' -js buffer.followLink(document.getElementById("doc-content"));
+"}}}
+
+" vi:filetype=vim foldmethod=marker

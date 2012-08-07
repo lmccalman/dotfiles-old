@@ -1,0 +1,19 @@
+# move folders
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+#not sure what's going on here
+macro pager j <next-line>
+macro pager k <previous-line>
+macro pager <PageUp> <previous-undeleted>
+macro pager <PageDown> <next-undeleted>
+
+# highlight links with <ctrl><b>
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro index,pager A <tag-prefix><save-message>=.archive<enter><enter>
+
+#macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
+
+# vim: set ft=muttrc

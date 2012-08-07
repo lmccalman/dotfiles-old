@@ -1,0 +1,36 @@
+# See https://github.com/jasongraham/mail_conf_example
+# http://jason.the-graham.com/2011/01/10/email_with_mutt_offlineimap_imapfilter_msmtp_archivemail/
+#General
+set folder=~/mail
+source ~/.mail_config/mutt/mailboxes
+set spoolfile = +"personal/INBOX"
+
+source ~/.mail_config/mutt/common
+source ~/.mail_config/mutt/colors
+set query_command="lbdbq '%s'"
+source ~/.mail_config/mutt/gpg
+
+
+folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
+#folder-hook +work/.* "source ~/.mail_config/mutt/work"
+
+alternates lachlan@mccalman.info lachlan.mccalman@nicta.com.au fatbot@gmail.com
+
+source ~/.mail_config/mutt/macros
+
+
+# external programs
+# set query_command= "abook --mutt-query '%s'" 
+# set print_command="mutt-print %s"
+
+# Periodically check all my subfolders for new mail as well
+# mailboxes ! + `\
+ # for file in ~/Maildir/.*; do \
+   # box=$(basename "$file"); \
+   # if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+       # -a ! "$box" = '.subscriptions' ]; then \
+     # echo -n "\"+$box\" "; \
+   # fi; \
+ # done`
+
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+xrdb  $HOME/.Xresources
+nvidia-settings --load-config-only
+$HOME/environ/scripts/wallpaper.sh &
+cairo-compmgr &
+SpiderOak &
+exec xmonad

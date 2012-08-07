@@ -1,0 +1,8 @@
+set record="+personal/.Sent"
+set postponed="+personal/.Drafts"
+set signature=~/.mail_config/sig_personal.sig
+set sendmail="/usr/bin/msmtp -a personal"
+
+set from="lachlan@mccalman.info"
+
+# vim: set ft=muttrc

@@ -1,0 +1,9 @@
+[user]
+	name = Lachlan McCalman\n
+	email = lachlan.mccalman@nicta.com.au
+[diff]
+  tool = gvimdiff
+[merge]
+  tool = gvimdiff
+[difftool]
+  prompt = false

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Custom
+Comment=Run my custom wm script
+Exec=/usr/local/bin/startwm
+Icon=
+Type=Application
