@@ -1,0 +1,8 @@
+set record="+nicta/.Sent"
+set postponed="+nicta/.Drafts"
+set signature=~/.mail_config/sig_nicta.sig
+set sendmail="/usr/bin/msmtp -a nicta"
+
+set from="lachlan.mccalman@nicta.com.au"
+
+# vim: set ft=muttrc

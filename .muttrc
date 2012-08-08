@@ -12,7 +12,7 @@ source ~/.mail_config/mutt/gpg
 
 
 folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
-#folder-hook +work/.* "source ~/.mail_config/mutt/work"
+folder-hook +nicta/.* "source ~/.mail_config/mutt/nicta"
 
 alternates lachlan@mccalman.info lachlan.mccalman@nicta.com.au fatbot@gmail.com
 

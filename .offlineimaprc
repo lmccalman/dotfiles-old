@@ -1,12 +1,12 @@
 [general]
-accounts = personal
+accounts = personal, nicta
 metadata=~/.offlineimap
 maxsyncaccounts = 1
 ui = basic
 
 [mbnames]
 enabled = yes
-filename = ~/.mutt/mailboxes
+filename = ~/.mail_config/mutt/mailboxes
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
@@ -18,9 +18,19 @@ remoterepository = personalremote
 autorefresh = 5
 quick = 10
 
+[Account nicta]
+localrepository = nictalocal
+remoterepository = nictaremote
+autorefresh = 5
+quick = 10
+
 [Repository personallocal]
 type = Maildir
 localfolders = ~/mail/personal
+
+[Repository nictalocal]
+type = Maildir
+localfolders = ~/mail/nicta
 
 [Repository personalremote]
 type = IMAP
@@ -28,4 +38,12 @@ remotehost = mccalman.info
 remoteuser = lachlan
 remotepassfile = ~/.mail_config/personal.pass
 remoteport = 143
+
+[Repository nictaremote]
+type = IMAP
+remotehost = imap.nicta.com.au
+remoteuser = lmccalman
+remotepassfile = ~/.mail_config/nicta.pass
+remoteport = 993
+ssl = yes
 
