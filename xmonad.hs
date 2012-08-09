@@ -3,6 +3,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog     -- for xmobar
 import XMonad.Hooks.ManageDocks    -- for trayer?
 import XMonad.Layout.NoBorders     -- (7)  get rid of borders sometimes
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.Named
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
@@ -15,14 +16,14 @@ import System.IO
 
 myTerminal = "urxvtcd"
 myWorkspaces = ["1","2","3","4","5"]
-myLayoutHook = smartBorders ( tiled ||| htiled ||| golden ||| four ||| Full  )
+myLayoutHook = avoidStruts ( tiled ||| htiled ||| four ) ||| fullscreen  
     where 
-      tiled = Tall nmaster delta ratio
-      htiled = Mirror $ Tall nmaster delta ratio
-      golden = named "Golden" $ Tall 1 (3/100) (1000/1618   )
-      four   = named "Grid" $ Tall 2 (3/100) (1/2)
+      tiled = smartBorders ( Tall nmaster delta ratio )
+      htiled = smartBorders ( Mirror $ Tall nmaster delta ratio )
+      four   = smartBorders ( named "Grid" $ Tall 2 delta ratio )
+      fullscreen = noBorders ( fullscreenFull Full )
       nmaster = 1
-      delta = 3/100
+      delta = 5/100
       ratio = 1/2
 
 -- for class and resource name run "xprop WM_CLASS" at terminal then click
@@ -42,11 +43,11 @@ main = do
     xmonad $ ewmh defaultConfig 
         { terminal = myTerminal
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-		, layoutHook = avoidStruts $ myLayoutHook
+		, layoutHook = myLayoutHook
 		, borderWidth         = 1
-        , workspaces          = myWorkspaces
-		, normalBorderColor   = "#cccccc"
-		, focusedBorderColor  = "#cd8b00"
+    , workspaces          = myWorkspaces
+		, normalBorderColor   = "#262626"
+		, focusedBorderColor  = "#efefaf"
 		, modMask             = mod4Mask
         } `additionalKeys`
         [ ((mod4Mask, xK_f), spawn "firefox")
