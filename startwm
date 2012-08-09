@@ -1,7 +1,6 @@
 #!/bin/bash
 xrdb  $HOME/.Xresources
-nvidia-settings --load-config-only
-$HOME/environ/scripts/wallpaper.sh &
-cairo-compmgr &
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+rotatingwallpaper &
 SpiderOak &
 exec xmonad
