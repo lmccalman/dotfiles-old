@@ -1,5 +1,5 @@
 [general]
-accounts = personal, nicta
+accounts = nicta, personal
 metadata=~/.offlineimap
 maxsyncaccounts = 1
 ui = basic
