@@ -47,7 +47,7 @@ main = do
 		, borderWidth         = 1
     , workspaces          = myWorkspaces
 		, normalBorderColor   = "#262626"
-		, focusedBorderColor  = "#efefaf"
+		, focusedBorderColor  = "#729470"
 		, modMask             = mod4Mask
         } `additionalKeys`
         [ ((mod4Mask, xK_f), spawn "firefox")
