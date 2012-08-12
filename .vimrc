@@ -31,7 +31,6 @@ Bundle 'mako.vim--Torborg'
 
 " Visual
 " ------
-Bundle 'Solarized'
 Bundle 'Zenburn'
 
 " HTML
@@ -41,6 +40,7 @@ Bundle 'ragtag.vim'
 
 " On the Bench
 " ------------
+"  python-mode
 " Bundle 'LustyExplorer'         
 " Bundle 'LaTeX-Box'              
 " Bundle 'EasyMotion'
@@ -105,6 +105,7 @@ augroup ft_python
     au FileType python setlocal tabstop=4
     au FileType python setlocal shiftwidth=4
     au FileType python setlocal softtabstop=4
+    au FileType python let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 augroup END
 
 " Wrap at 65 for mail
@@ -162,7 +163,6 @@ set showmatch
 set hlsearch
 
 "80 char warning
-set colorcolumn=80
 set wrap
 set linebreak
 
