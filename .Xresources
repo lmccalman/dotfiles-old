@@ -13,6 +13,7 @@ URxvt.letterSpace: -1
 URxvt.inputMethod: ibus
 URxvt.preeditType: OnTheSpot,None
 URxvt.depth: 32
+URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/konsole.svg
 /*URxvt.background: rgba:0000/0000/0200/c800 */
 
 urxvt*background:  #3f3f3f
