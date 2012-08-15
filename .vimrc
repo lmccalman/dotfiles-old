@@ -130,6 +130,10 @@ nnoremap <leader>P P
 nnoremap p p'[v']=
 nnoremap P P'[v']=
 
+" :R grep foo #
+" will grep current buffer for foo, paste results into new buffer
+command! -nargs=* R belowright 15new | r ! <args> 
+
 " Misc 
 set grepprg=grep\ -nH\ $*
 set scrolloff=20
@@ -202,7 +206,11 @@ nnoremap ` '
 " some craziness to try
 nnoremap <Space> :
 "pasting properly
-set pastetoggle=<F2>
+map  <F2> :set paste<CR>i
+imap <F2> <ESC>:set paste<CR>i<Right>
+au InsertLeave * set nopaste
+" Insert new line after the cursor with shift+enter
+nmap <CR> i<Enter><Esc>l
 
 " Surround.vim
 " ------------
