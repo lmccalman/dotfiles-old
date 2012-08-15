@@ -1,5 +1,5 @@
 [general]
-accounts = nicta, personal
+accounts = personal, nicta
 metadata=~/.offlineimap
 maxsyncaccounts = 1
 ui = basic
@@ -46,4 +46,5 @@ remoteuser = lmccalman
 remotepassfile = ~/.mail_config/nicta.pass
 remoteport = 993
 ssl = yes
+cert_fingerprint=e8136b63fb4cf9e3fbec935fa52bfccbbe70017e
 
