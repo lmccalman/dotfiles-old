@@ -3,7 +3,7 @@
 # GPL v2.0 applies
 
 # Set terminal
-Terminal = urxvt
+Terminal = eval urxvt
 TermExec = ${Terminal} -e
 AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
 
