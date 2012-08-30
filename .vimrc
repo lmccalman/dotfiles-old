@@ -113,12 +113,7 @@ au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
 au BufNewFile,BufRead *.mako set filetype=mako
 
 " let current working directory be that of current buffer
-function! CHANGE_CURR_DIR()
-    let _dir = expand("%:p:h")
-    exec "cd " . _dir
-    unlet _dir
-endfunction
-autocmd BufEnter * call CHANGE_CURR_DIR()
+set autochdir
 
 " Change indent continuously
 vmap < <gv
