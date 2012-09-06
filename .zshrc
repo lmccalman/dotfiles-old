@@ -134,7 +134,7 @@ echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
 
 
 
-export PYTHONPATH=$PYTHONPATH:$HOME/geotherml/lib
+export PYTHONPATH=$PYTHONPATH:$HOME/geotherml/lib:$HOME/phd/repo/reverend
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
