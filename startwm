@@ -10,4 +10,5 @@ export GNOME_KEYRING_PID
 
 rotatingwallpaper &
 SpiderOak &
+xscreensaver &
 exec xmonad
