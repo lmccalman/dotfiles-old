@@ -28,6 +28,8 @@ Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
+Bundle 'sontek/rope-vim'
+Bundle 'SuperTab-continued'
 
 " Visual
 " ------
@@ -35,7 +37,6 @@ Bundle 'Zenburn'
 
 " HTML
 " ----
-Bundle 'Better-CSS-Syntax-for-Vim' 
 Bundle 'ragtag.vim'
 
 " On the Bench
