@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 " General
 " -------
-Bundle 'ctrlp.vim'
+Bundle 'LustyExplorer'         
 Bundle 'surround.vim'           
 Bundle 'repeat.vim'
 Bundle 'Gundo'                
@@ -41,12 +41,12 @@ Bundle 'ragtag.vim'
 " On the Bench
 " ------------
 "  python-mode
-" Bundle 'LustyExplorer'         
 " Bundle 'LaTeX-Box'              
 " Bundle 'EasyMotion'
 " Bundle 'pydoc.vim'             
 " Bundle 'pyflakes.vim'          
 " Bundle 'pep8'                  
+" Bundle 'ctrlp.vim'
 
 
 filetype plugin indent on     " required!
@@ -220,22 +220,22 @@ let g:gundo_close_on_revert = 1
 
 " CtrlP
 " -----
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPBuffer'
-nnoremap <Leader>lb :CtrlPBuffer<CR>
-nnoremap <Leader>lf :CtrlPMixed<CR>
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlPBuffer'
+" nnoremap <Leader>lb :CtrlPBuffer<CR>
+" nnoremap <Leader>lf :CtrlPMixed<CR>
 
 
 " LustyBufferExplorer
 " -------------------
-" let g:LustyExplorerDefaultMappings = 0
-" nnoremap <Leader>lb :LustyBufferExplorer<CR>
+let g:LustyExplorerDefaultMappings = 0
+nnoremap <Leader>lb :LustyBufferExplorer<CR>
 
 
 " NerdCommenter
 " -------------
 let g:NERDSpaceDelims = 1
-let g:NERDDefaultNesting = 0
+let g:NERDDefaultNesting = 1
 
 
 "CSApprox
