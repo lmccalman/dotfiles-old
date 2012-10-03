@@ -32,9 +32,10 @@ ZSH_THEME="lb"
 plugins=(git python taskwarrior)
 
 source $ZSH/oh-my-zsh.sh
-
-
 #Customize!
+setopt extended_glob
+
+#Aliases
 alias aoeu='setxkbmap us'
 alias asdf='setxkbmap dvorak'
 alias cp="rsync -az --progress"
