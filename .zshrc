@@ -1,52 +1,47 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt autocd extendedglob
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-autoload -Uz zsh-newuser-install;
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
 
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="lb"
 
-zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' max-errors 2
-zstyle ':completion:*' prompt 'Errors: %e'
-zstyle :compinstall filename '/home/fatbot/.zshrc'
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-fpath=(/usr/share/zsh/functions $fpath)
+# Comment this out to disable weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# For pre-done prompts
-autoload -U promptinit
-promptinit
-#prompt adam1
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-autoload -U colors
-colors
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-setopt completealiases
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git python taskwarrior)
+
+source $ZSH/oh-my-zsh.sh
 
 
-#aliases
+#Customize!
 alias aoeu='setxkbmap us'
 alias asdf='setxkbmap dvorak'
 alias cp="rsync -az --progress"
-alias torrent=su torrentuser -c ktorrent
 alias shutdown="sudo shutdown -P -h now"
-export GREP_COLOR="1;33"           # light yellow?
+export GREP_COLOR="1;33"                        #light yellow?
 alias grep="grep --color=auto"
-#alias pacman="pacman-color"
-#alias more="less"
-export LESS="-R"   		   #for colour
+export LESS="-R"   		                          #for colour
 alias df="df -h"
 alias du="du -c -h"
 alias mkdir="mkdir -p"
@@ -54,12 +49,10 @@ alias nano="nano -w"
 alias ping="ping -c 5"
 alias ..="cd .."
 alias feh="feh -."
-
 #new commands
 alias openports="netstat --all --numeric --programs --inet --inet6"
 alias ison="ps -Af | grep $1"
 alias fnts="fc-list | sed 's,:.*,,' | sort -u"
-
 # ls
 alias ls="ls -hF --color=auto"
 alias lr="ls -R"                    # recursive ls
@@ -69,7 +62,6 @@ alias lx="ll -BX"                   # sort by extension
 alias lz="ll -rS"                   # sort by size
 alias lt="ll -rt"                   # sort by date
 alias lm="la | more"
-
 # pacman/pacaur
 alias pacall="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2 | column -t"
 alias pacupg='pacaur -Syu'        # Synchronize with repositories before upgrading packages that are out of date on the local system.
@@ -86,71 +78,46 @@ alias pacupd='sudo pacman -Sy'     # Update and refresh the local package and AB
 alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dependencies of another package
 alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
-
 zle-keymap-select () {
   case $KEYMAP in
     vicmd) print -rn -- $terminfo[cvvis];; # block cursor
-    viins) print -rn -- $terminfo[cnorm];; # less visible cursor
-  esac
+  viins) print -rn -- $terminfo[cnorm];; # less visible cursor
+esac
 }
-
-
-
-
-
-PROMPT="%F{${1:-magenta}}%n%f@%F{${1:-cyan}}%m%f% ${VIMODE}# "
-RPROMPT="%F{${1:-green}}%~%f"
-
-
-#pretty colours from .Xdefaults when in virtual console
-
-if [ "$TERM" = "linux" ]; then
-    _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
-    for i in $(sed -n "$_SEDCMD" $HOME/.Xdefaults | \
-               awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
-        echo -en "$i"
-    done
-    clear
-fi
 
 # coloured output for less
 man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-			man "$@"
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
 }
 
 #Set the title of the window
 precmd()
 {
-echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
+  echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
 }
-
-
 
 export PYTHONPATH=$PYTHONPATH:$HOME/geotherml/lib:$HOME/phd/repo/:$HOME/progs/pyXGPR/src
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
 export PATH=$PATH:/home/lb/.gem/ruby/1.9.1/bin
-
-
 #Japanese input
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-
 #python virtualenvwrapper
 export WORKON_HOME=~/.virtualenvs
 source virtualenvwrapper.sh
 
+
 fortune -a -e
 echo "\n"
 task list
-
