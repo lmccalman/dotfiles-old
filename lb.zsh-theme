@@ -49,11 +49,18 @@ if [[ -n $SSH_CONNECTION ]]; then
 fi
 }
 
+function holyday() {
+HOLYDAY=$(ddate +%H)
+if [[ -n ${HOLYDAY} ]]; then
+  echo "-${blue_op}${HOLYDAY}${blue_cp}"
+fi
+}
+
 function my_time() {
 echo "${blue_op}`date +%s | sed -e ':a' -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'`${blue_cp}"
 }
 
-PROMPT=$'\n╭${user_host}-$(ssh_connection)$(my_git_prompt)$(my_time)
+PROMPT=$'\n╭${user_host}-$(ssh_connection)$(my_git_prompt)$(my_time)$(holyday)
 ╰${hist_no}-${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"
