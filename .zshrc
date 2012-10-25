@@ -119,6 +119,6 @@ export WORKON_HOME=~/.virtualenvs
 source virtualenvwrapper.sh
 
 
-fortune -a -e
+fortune -e
 echo "\n"
 task list
