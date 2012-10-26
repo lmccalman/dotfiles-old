@@ -1,9 +1,6 @@
-set mapleader=","
-
 "{{{ Options
 set complete=l
 set autocomplete=
-set defsearch=sp
 set newtab=all
 set hintkeys='aoeusnth'
 set hinttimeout=400
