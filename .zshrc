@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -114,11 +114,8 @@ export PATH=$PATH:/home/lb/.gem/ruby/1.9.1/bin
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-#python virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-source virtualenvwrapper.sh
 
 
 fortune -e
-echo "\n"
-task list
+#echo "\n"
+#task list
