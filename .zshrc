@@ -52,7 +52,7 @@ alias ..="cd .."
 alias feh="feh -."
 #new commands
 alias openports="netstat --all --numeric --programs --inet --inet6"
-alias ison="ps -Af | grep $1"
+alias ison="ps -A | grep $1"
 alias fnts="fc-list | sed 's,:.*,,' | sort -u"
 # ls
 alias ls="ls -hF --color=auto"
