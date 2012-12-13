@@ -1,5 +1,5 @@
-source /etc/Muttrc.gpg.dist
-set pgp_sign_as=0x089B45DE
+source ~/.mail_config/mutt/gpg.rc
+set pgp_sign_as=0xAADE29B0
 set pgp_timeout=1800
 set crypt_autosign
 set crypt_replysign

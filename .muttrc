@@ -3,13 +3,15 @@
 #General
 set folder=~/mail
 source ~/.mail_config/mutt/mailboxes
-set spoolfile = +"personal/INBOX"
+set spoolfile = +"personal/inbox"
 
 source ~/.mail_config/mutt/common
 source ~/.mail_config/mutt/colors
-set query_command="lbdbq '%s'"
-source ~/.mail_config/mutt/gpg
 
+set query_command="goobook query '%s'"
+bind editor \t complete-query ## tab completion for contacts :)
+
+source ~/.mail_config/mutt/gpg
 
 folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
 folder-hook +nicta/.* "source ~/.mail_config/mutt/nicta"

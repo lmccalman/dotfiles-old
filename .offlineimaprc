@@ -33,11 +33,15 @@ type = Maildir
 localfolders = ~/mail/nicta
 
 [Repository personalremote]
-type = IMAP
-remotehost = mccalman.info
-remoteuser = lachlan
+type = Gmail
+remoteuser = lachlan@mccalman.info
 remotepassfile = ~/.mail_config/personal.pass
-remoteport = 143
+nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+                               re.sub ('sent_mail', 'sent',
+                               re.sub ('starred', 'flagged',
+                               re.sub (' ', '_', foldername.lower()))))
+folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Repository nictaremote]
 type = IMAP

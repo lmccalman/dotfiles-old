@@ -1,3 +1,4 @@
+# vim: set ft=muttrc
 # move folders
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
@@ -14,6 +15,7 @@ macro pager <PageDown> <next-undeleted>
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 macro index,pager A <tag-prefix><save-message>=.archive<enter><enter>
 
-#macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
+#Goobook
+macro index,pager a "goobook add" "add the sender address to Google contacts"
+macro index,pager gr "!goobook reload\n" "Goobook reload"
 
-# vim: set ft=muttrc
