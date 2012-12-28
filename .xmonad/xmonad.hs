@@ -12,8 +12,6 @@ import XMonad.Hooks.EwmhDesktops  -- tell panels about desktops
 import System.IO
 
 
-
-
 myTerminal = "urxvtcd"
 myWorkspaces = ["1","2","3","4","5"]
 myLayoutHook = avoidStruts ( tiled ||| htiled ||| four ) ||| fullscreen  
@@ -44,7 +42,7 @@ main = do
         { terminal = myTerminal
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
 		, layoutHook = myLayoutHook
-		, borderWidth         = 1
+		, borderWidth         = 2
     , workspaces          = myWorkspaces
 		, normalBorderColor   = "#262626"
 		, focusedBorderColor  = "#729470"
