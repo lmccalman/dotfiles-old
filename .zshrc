@@ -119,3 +119,6 @@ export QT_IM_MODULE=ibus
 fortune -e
 #echo "\n"
 #task list
+
+alias aoeu='setxkbmap us'
+alias asdf='setxkbmap dvorak'
