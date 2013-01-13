@@ -33,6 +33,8 @@ myManageHook = composeAll
     , appName   =? "Download"       --> doFloat
     , appName   =? "anki"           --> doFloat
     , title =? "Transferring"       --> doFloat
+    , title =? "Steam"              --> doFloat
+    , className =? "Steam"          --> doFloat
     ]
  
 -- Run XMonad
