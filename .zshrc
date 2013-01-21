@@ -47,7 +47,7 @@ alias df="df -h"
 alias du="du -c -h"
 alias mkdir="mkdir -p"
 alias nano="nano -w"
-alias ping="ping -c 5"
+alias ping="ping -c 3"
 alias ..="cd .."
 alias feh="feh -."
 #new commands
