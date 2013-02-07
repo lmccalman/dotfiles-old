@@ -29,7 +29,6 @@ Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
 Bundle 'sontek/rope-vim'
-Bundle 'SuperTab-continued'
 
 " Visual
 " ------
