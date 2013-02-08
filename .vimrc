@@ -28,7 +28,8 @@ Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
-Bundle 'sontek/rope-vim'
+" Bundle 'SuperTab-continued.'
+" Bundle 'rygwdn/rope-omni'
 
 " Visual
 " ------
@@ -99,6 +100,7 @@ augroup END
 
 augroup ft_python
     au!
+    au FileType python setlocal omnifunc=RopeCompleteFunc
     au FileType python setlocal formatoptions=cqr 
     au FileType python setlocal textwidth=79
     au FileType python setlocal wildignore+=*.py[co]
