@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 " General
 " -------
+Bundle 'Lokaltog/powerline'
 Bundle 'LustyExplorer'         
 Bundle 'surround.vim'           
 Bundle 'repeat.vim'
@@ -52,6 +53,12 @@ Bundle 'ragtag.vim'
 
 filetype plugin indent on     " required!
 " end of vundle stuff
+
+" Powerline stuff
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set laststatus=2
+set noshowmode
+
 
 set backupdir=~/.tmp,~/tmp,/var/tmp,/tmp
 set undodir=~/.tmp,~/tmp,/var/tmp,/tmp
@@ -136,7 +143,6 @@ set grepprg=grep\ -nH\ $*
 set scrolloff=20
 set autoread
 set encoding=utf-8
-set showmode
 set showcmd
 set hidden
 set wildmenu
