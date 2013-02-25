@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-# export _JAVA_AWT_WM_NONREPARENTING=1 
 #Increase 2D pixmap performance for firefox
 nvidia-settings -a InitialPixmapPlacement=2
 xrdb  $HOME/.Xresources
