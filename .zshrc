@@ -51,6 +51,8 @@ alias ping="ping -c 3"
 alias ..="cd .."
 alias feh="feh -."
 #new commands
+alias aoeu='setxkbmap us'
+alias asdf='setxkbmap dvorak'
 alias openports="netstat --all --numeric --programs --inet --inet6"
 alias ison="ps -A | grep $1"
 alias fnts="fc-list | sed 's,:.*,,' | sort -u"
@@ -105,7 +107,7 @@ precmd()
   echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
 }
 
-export PYTHONPATH=$PYTHONPATH:$HOME/geotherml/lib:$HOME/phd/repo/:$HOME/progs/pyXGPR/src:/usr/lib
+export PYTHONPATH=$PYTHONPATH:$HOME/code/geotherml/lib:$HOME/phd/repo/
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
@@ -115,10 +117,6 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-
 fortune -e
 #echo "\n"
 #task list
-
-alias aoeu='setxkbmap us'
-alias asdf='setxkbmap dvorak'

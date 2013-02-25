@@ -29,8 +29,9 @@ Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
-" Bundle 'SuperTab-continued.'
-" Bundle 'rygwdn/rope-omni'
+" Bundle 'sontek/rope-vim'
+Bundle 'vim-ipython'
+Bundle 'SuperTab-continued.'
 
 " Visual
 " ------
@@ -91,6 +92,11 @@ let g:tex_flavor='latex'
 "Default Formatting (ie python)
 set textwidth=79
 set formatoptions=cq
+
+"Folds Rule(?)
+set foldmethod=syntax
+set foldlevel=99
+
 
 " Filetype specific changes
 augroup ft_tex
