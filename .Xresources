@@ -7,8 +7,8 @@ Xft*dpi: 96
 Xft*rgba: rgb
 
 URxvt.scrollBar: false
-URxvt.font: xft:Inconsolata:Medium:size=18
-URxvt.boldFont: xft:Inconsolata:Medium:size=18
+URxvt.font: xft:Inconsolata:Medium:size=13
+URxvt.boldFont: xft:Inconsolata:Medium:size=13
 URxvt.letterSpace: -1
 URxvt.inputMethod: ibus
 URxvt.preeditType: OnTheSpot,None
