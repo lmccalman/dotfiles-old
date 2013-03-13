@@ -42,6 +42,7 @@ main = do
     xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc"
     xmonad $ ewmh defaultConfig 
         { terminal = myTerminal
+        , startupHook = setWMName "LG3D"
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
 		, layoutHook = myLayoutHook
 		, borderWidth         = 2
