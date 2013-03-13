@@ -2,6 +2,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog     -- for xmobar
 import XMonad.Hooks.ManageDocks    -- for trayer?
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders     -- (7)  get rid of borders sometimes
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Named
