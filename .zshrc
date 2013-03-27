@@ -107,7 +107,7 @@ precmd()
   echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
 }
 
-export PYTHONPATH=$PYTHONPATH:$HOME/code/geotherml/lib:$HOME/phd/repo/
+export PYTHONPATH=$PYTHONPATH:$HOME/code/geotherml/lib:$HOME/phd/
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
