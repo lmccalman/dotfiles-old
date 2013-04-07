@@ -29,9 +29,9 @@ Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
-" Bundle 'sontek/rope-vim'
 Bundle 'vim-ipython'
 Bundle 'SuperTab-continued.'
+Bundle 'LaTeX-Box'              
 
 " Visual
 " ------
@@ -43,8 +43,9 @@ Bundle 'ragtag.vim'
 
 " On the Bench
 " ------------
+" Bundle 'sontek/rope-vim'
+" Bundle 'tpope/vim-dispach'
 "  python-mode
-" Bundle 'LaTeX-Box'              
 " Bundle 'EasyMotion'
 " Bundle 'pydoc.vim'             
 " Bundle 'pyflakes.vim'          
