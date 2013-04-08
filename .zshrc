@@ -66,10 +66,10 @@ alias lm="la | more"
 # pacman/pacaur
 alias pacall="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2 | column -t"
 
-alias pacupg='sudo powerpill -Syu && aura -Akua'
-alias aurupg='aura -Axkua'
+alias pacupg='sudo powerpill -Syu && sudo aura -Akua'
+alias aurupg='sudo aura -Axkua'
 alias pacin='sudo powerpill -S'           # Install specific package(s) from the repositories
-alias aurin='aura -Aax'
+alias aurin='sudo aura -Aax'
 alias pacrem='sudo pacman -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
 alias pacinf='pacman -Si'              # Display information about a given package in the repositories
 alias pacs='pacman -Ss'             # Search for package(s) in the repositories
