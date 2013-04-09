@@ -1,38 +1,56 @@
 # See https://github.com/jasongraham/mail_conf_example
 # http://jason.the-graham.com/2011/01/10/email_with_mutt_offlineimap_imapfilter_msmtp_archivemail/
 #General
-set folder=~/mail
-source ~/.mail_config/mutt/mailboxes
-set spoolfile = +"personal/inbox"
+# set folder=~/mail
+# source ~/.mail_config/mutt/mailboxes
+# set spoolfile = +"personal/inbox"
 
-source ~/.mail_config/mutt/common
+# source ~/.mail_config/mutt/common
 source ~/.mail_config/mutt/colors
 
-set query_command="goobook query '%s'"
-bind editor \t complete-query ## tab completion for contacts :)
+# set query_command="goobook query '%s'"
+# bind editor \t complete-query ## tab completion for contacts :)
 
-source ~/.mail_config/mutt/gpg
+# source ~/.mail_config/mutt/gpg
 
-folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
-folder-hook +nicta/.* "source ~/.mail_config/mutt/nicta"
+# folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
+# folder-hook +nicta/.* "source ~/.mail_config/mutt/nicta"
 
-alternates lachlan@mccalman.info lachlan.mccalman@nicta.com.au fatbot@gmail.com
+# alternates lachlan@mccalman.info lachlan.mccalman@nicta.com.au fatbot@gmail.com
 
-source ~/.mail_config/mutt/macros
-
-
-# external programs
-# set query_command= "abook --mutt-query '%s'" 
-# set print_command="mutt-print %s"
-
-# Periodically check all my subfolders for new mail as well
-# mailboxes ! + `\
- # for file in ~/Maildir/.*; do \
-   # box=$(basename "$file"); \
-   # if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
-       # -a ! "$box" = '.subscriptions' ]; then \
-     # echo -n "\"+$box\" "; \
-   # fi; \
- # done`
+# source ~/.mail_config/mutt/macros
 
 
+set nm_default_uri="notmuch:///home/lb/mail"
+set virtual_spoolfile	= yes
+
+# normal folders
+set mbox_type=Maildir
+set folder="~/mail"
+mailboxes =personal =nicta
+
+# sidebar
+set sidebar_width	= 35
+set sidebar_visible	= yes
+color sidebar_new yellow default
+bind index <left> sidebar-prev
+bind index <right> sidebar-next
+bind index <space> sidebar-open
+bind index <Esc>S sidebar-toggle
+
+    # virtual folders
+virtual-mailboxes \
+ "inbox    [personal]"                "notmuch://?query=tag:inbox and tag:personal and NOT tag:archive" \
+ "inbox    [NICTA]"                "notmuch://?query=tag:inbox and tag:nicta and NOT tag:archive" \
+\
+ "archive  [personal]" "notmuch://?query=tag:personal and tag:archive" \
+ "archive  [NICTA]" "notmuch://?query=tag:nicta and tag:archive" \
+
+macro index A "<modify-labels-then-hide>+archive -inbox\n<sync-mailbox>"
+macro index I "<modify-labels-then-hide>-inbox\n<sync-mailbox>"
+
+# # mark emails for git-am
+# # (e.g. "git am -i -3 $(notmuch search --output=files tag:PATCH)"
+# #
+# macro index P "<modify-labels>PATCH\n"
+# macro index <Esc>P "<modify-labels>-PATCH\n"

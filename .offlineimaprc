@@ -1,54 +1,99 @@
 [general]
 accounts = personal, nicta
 metadata=~/.offlineimap
-maxsyncaccounts = 1
+maxsyncaccounts = 2
+pythonfile = ~/.mail_config/offlineimap.py
 ui = basic
-
-[mbnames]
-enabled = yes
-filename = ~/.mail_config/mutt/mailboxes
-header = "mailboxes "
-peritem = "+%(accountname)s/%(foldername)s"
-sep = " "
-footer = "\n"
+fsync = false
 
 [Account personal]
 localrepository = personallocal
 remoterepository = personalremote
+status_backend = sqlite
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
 autorefresh = 5
 quick = 10
 
 [Account nicta]
 localrepository = nictalocal
 remoterepository = nictaremote
+status_backend = sqlite
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
 autorefresh = 5
 quick = 10
 
 [Repository personallocal]
 type = Maildir
 localfolders = ~/mail/personal
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
 
 [Repository nictalocal]
 type = Maildir
 localfolders = ~/mail/nicta
+nametrans = lambda folder: {'inbox': 'INBOX',
+  'archive': 'INBOX/Archive',
+  'sent': 'Sent Items',
+  'trash': 'Trash',
+  'drafts': 'Drafts',
+  'spam': 'Junk E-Mail',}.get(folder, folder)
 
 [Repository personalremote]
 type = Gmail
 remoteuser = lachlan@mccalman.info
-remotepassfile = ~/.mail_config/personal.pass
-nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
-                               re.sub ('sent_mail', 'sent',
-                               re.sub ('starred', 'flagged',
-                               re.sub (' ', '_', foldername.lower()))))
-folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
+remotepasseval = get_keychain_pass(account="lachlan@mccalman.info", server="imap.gmail.com")
+realdelete = no
+maxconnections = 1
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            '[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            '[Gmail]/Spam': 'spam',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Bin',
+                                             '[Gmail]/Trash',
+                                             '[Gmail]/Important',
+                                             'Ads',
+                                             'IEEE',
+                                             'Misc',
+                                             'Priority',
+                                             'Follow up'
+                                             ]
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+keepalive = 60
+holdconnectionopen = yes
 
 [Repository nictaremote]
 type = IMAP
 remotehost = imap.nicta.com.au
 remoteuser = lmccalman
-remotepassfile = ~/.mail_config/nicta.pass
+remotepass = AllTh@tM@tter$
 remoteport = 993
 ssl = yes
-cert_fingerprint=e8136b63fb4cf9e3fbec935fa52bfccbbe70017e
+cert_fingerprint=91bb0a45f17cbf9286453d4e57b06cb683a1e323
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            'INBOX/Archive': 'archive',
+                            'Sent Items': 'sent',
+                            'Drafts': 'drafts',
+                            'Trash':     'trash',
+                            'Junk E-Mail': 'spam',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['Deleted Items',
+                                             'Notes',
+                                             'Tasks',
+                                             'Calendar',
+                                             'Contacts',
+                                             'Journal',
+                                             'Outbox',
+                                             'RSS Feeds',
+                                             'Suggested Contacts']
+keepalive = 60
+holdconnectionopen = yes
 

@@ -29,9 +29,9 @@ Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
-" Bundle 'sontek/rope-vim'
 Bundle 'vim-ipython'
 Bundle 'SuperTab-continued.'
+Bundle 'LaTeX-Box'              
 
 " Visual
 " ------
@@ -44,7 +44,7 @@ Bundle 'ragtag.vim'
 " On the Bench
 " ------------
 "  python-mode
-" Bundle 'LaTeX-Box'              
+" Bundle 'sontek/rope-vim'
 " Bundle 'EasyMotion'
 " Bundle 'pydoc.vim'             
 " Bundle 'pyflakes.vim'          
@@ -268,7 +268,7 @@ nnoremap TT :TagbarToggle<CR>
 " LaTeX Forward Sync
 
 
-"let g:LatexBox_viewer = 'okular'
-"let g:LatexBox_latexmk_options = '-pv'
+let g:LatexBox_viewer = 'okular'
+let g:LatexBox_latexmk_options = '-pv'
 
 

@@ -12,10 +12,6 @@ set move=no
 set sort=reverse-threads
 set sort_aux=last-date-received
 
-set header_cache=~/.mutt/cache/headers
-set message_cachedir=~/.mutt/cache/bodies
-set certificate_file=~/.mutt/certificates
-
 set mailcap_path= ~/.mail_config/mutt/mailcap
 
 set editor="vim -c 'set tw=70 et' -c 'set spell' '+/^$' "
