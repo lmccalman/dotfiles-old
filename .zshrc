@@ -36,8 +36,6 @@ source $ZSH/oh-my-zsh.sh
 setopt extended_glob
 
 #Aliases
-alias aoeu='setxkbmap us'
-alias asdf='setxkbmap dvorak'
 alias cp="rsync -az --progress"
 alias shutdown="sudo shutdown -P -h now"
 export GREP_COLOR="1;33"                        #light yellow?
@@ -55,7 +53,7 @@ alias aoeu='setxkbmap us'
 alias asdf='setxkbmap dvorak'
 alias openports="netstat --all --numeric --programs --inet --inet6"
 alias ison="ps -A | grep $1"
-alias fnts="fc-list | sed 's,:.*,,' | sort -u"
+alias listfonts="fc-list | sed 's,:.*,,' | sort -u"
 # ls
 alias ls="ls -hF --color=auto"
 alias lr="ls -R"                    # recursive ls
@@ -67,19 +65,19 @@ alias lt="ll -rt"                   # sort by date
 alias lm="la | more"
 # pacman/pacaur
 alias pacall="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2 | column -t"
-alias pacupg='pacaur -Syu'        # Synchronize with repositories before upgrading packages that are out of date on the local system.
-alias pacin='pacaur -S'           # Install specific package(s) from the repositories
-alias pacins='sudo pacman -U'          # Install specific package not from the repositories but from a file 
-alias pacre='pacaur -R'           # Remove the specified package(s), retaining its configuration(s) and required dependencies
-alias pacrem='pacaur -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
-alias pacinf='pacaur -Si'              # Display information about a given package in the repositories
-alias pacs='pacaur -Ss'             # Search for package(s) in the repositories
-alias pacloc='pacaur -Qi'              # Display information about a given package in the local database
-alias pacfiles='pacaur -Ql'            # list the files from a certain pacagke
-alias paclocs='pacaur -Qs'             # Search for package(s) in the local database
-alias pacupd='sudo pacman -Sy'     # Update and refresh the local package and ABS databases against repositories
-alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dependencies of another package
-alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
+
+alias pacupg='sudo powerpill -Syu && sudo aura -Akua'
+alias aurupg='sudo aura -Axkua'
+alias pacin='sudo powerpill -S'           # Install specific package(s) from the repositories
+alias aurin='sudo aura -Aax'
+alias pacrem='sudo pacman -Rns'        # Remove the specified package(s), its configuration(s) and unneeded dependencies
+alias pacinf='pacman -Si'              # Display information about a given package in the repositories
+alias pacs='pacman -Ss'             # Search for package(s) in the repositories
+alias aurs='aura -As'             # Search for package(s) in the repositories
+alias pacloc='pacman -Qi'              # Display information about a given package in the local database
+alias pacfiles='pacman -Ql'            # list the files from a certain pacagke
+alias paclocs='pacman -Qs'             # Search for package(s) in the local database
+
 
 zle-keymap-select () {
   case $KEYMAP in

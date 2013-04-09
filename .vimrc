@@ -43,8 +43,9 @@ Bundle 'ragtag.vim'
 
 " On the Bench
 " ------------
-"  python-mode
 " Bundle 'sontek/rope-vim'
+" Bundle 'tpope/vim-dispach'
+"  python-mode
 " Bundle 'EasyMotion'
 " Bundle 'pydoc.vim'             
 " Bundle 'pyflakes.vim'          
