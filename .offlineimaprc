@@ -1,7 +1,7 @@
 [general]
 accounts = personal, nicta
 metadata=~/.offlineimap
-maxsyncaccounts = 2
+maxsyncaccounts = 1
 pythonfile = ~/.mail_config/offlineimap.py
 ui = basic
 fsync = false

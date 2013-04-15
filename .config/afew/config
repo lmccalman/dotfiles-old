@@ -1,21 +1,23 @@
+[global]
 
 #[MailMover]
 #folders = INBOX Junk
 #max_age = 15
 
-# rules
-INBOX = 'tag:spam':Junk 'NOT tag:inbox':Archive
-Junk = 'NOT tag:spam AND tag:inbox':INBOX 'NOT tag:spam':Archive
+# [rules
+# INBOX = 'tag:spam':Junk 'NOT tag:inbox':Archive
+# Junk = 'NOT tag:spam AND tag:inbox':INBOX 'NOT tag:spam':Archive
 
 # This is the default filter chain
 [SpamFilter]
-[ClassifyingFilter]
+#[ClassifyingFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
 [ArchiveSentMailsFilter]
-# [Filter.1]
-# query = from:boss@office.com
-# tag = +office
 [InboxFilter]
-
-
+[Filter.1]
+query = folder:nicta
+tag = +nicta
+[Filter.2]
+query = folder:personal/Uni
+tag = +uni
