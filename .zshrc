@@ -54,6 +54,7 @@ alias asdf='setxkbmap dvorak'
 alias openports="netstat --all --numeric --programs --inet --inet6"
 alias ison="ps -A | grep $1"
 alias listfonts="fc-list | sed 's,:.*,,' | sort -u"
+alias fontinfo="otfinfo -f"
 # ls
 alias ls="ls -hF --color=auto"
 alias lr="ls -R"                    # recursive ls
