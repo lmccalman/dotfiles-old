@@ -10,6 +10,7 @@ call vundle#rc()
 "Let Vundle manage itself (required)
 Bundle 'gmarik/vundle'
 
+
 " General
 " -------
 Bundle 'Lokaltog/powerline'
@@ -18,6 +19,8 @@ Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'Gundo'                
 Bundle 'ack.vim'
+Bundle 'mhinz/vim-signify'
+
 
 " Coding
 " ------
