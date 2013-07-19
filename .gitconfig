@@ -2,11 +2,14 @@
 	name = Lachlan McCalman\n
 	email = lachlan.mccalman@nicta.com.au
 [diff]
-  tool = gvimdiff
+  tool = meld
 [merge]
-  tool = gvimdiff
+tool = mymeld
+conflictstyle = diff3
+[mergetool "mymeld"]
+cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE $MERGED
 [difftool]
-  prompt = false
+  tool = meld
 [push]
   #default = simple
 [push]
