@@ -1,20 +1,5 @@
 ### MATPLOTLIBRC FORMAT
 
-# This is a sample matplotlib configuration file - you can find a copy
-# of it on your system in
-# site-packages/matplotlib/mpl-data/matplotlibrc.  If you edit it
-# there, please note that it will be overwritten in your next install.
-# If you want to keep a permanent local copy that will not be
-# overwritten, place it in HOME/.matplotlib/matplotlibrc (unix/linux
-# like systems) and C:\Documents and Settings\yourname\.matplotlib
-# (win32 systems).
-#
-# This file is best viewed in a editor which supports python mode
-# syntax highlighting. Blank lines, or lines starting with a comment
-# symbol, are ignored, as are trailing comments.  Other lines must
-# have the format
-#    key : val # optional comment
-#
 # Colors: for the color values below, you can either use - a
 # matplotlib color string, such as r, k, or b - an rgb tuple, such as
 # (1.0, 0.5, 0.0) - a hex string, such as ff00ff or #ff00ff - a scalar
@@ -29,12 +14,12 @@
 # You can also deploy your own backend outside of matplotlib by
 # referring to the module name (which must be in the PYTHONPATH) as
 # 'module://my_backend'
-backend      : GTKAgg
+backend      : Qt4Agg
 
 # If you are using the Qt4Agg backend, you can choose here
 # to use the PyQt4 bindings or the newer PySide bindings to
 # the underlying Qt4 toolkit.
-#backend.qt4 : PyQt4        # PyQt4 | PySide
+backend.qt4 : PySide        # PyQt4 | PySide
 
 # Note that this can be overridden by the environment variable
 # QT_API used by Enthought Tool Suite (ETS); valid values are
@@ -44,7 +29,7 @@ backend      : GTKAgg
 # if you are running pyplot inside a GUI and your backend choice
 # conflicts, we will automatically try to find a compatible one for
 # you if backend_fallback is True
-#backend_fallback: True
+backend_fallback: True
 
 #interactive  : False
 #toolbar      : toolbar2   # None | toolbar2  ("classic" is deprecated)
@@ -79,6 +64,11 @@ backend      : GTKAgg
 #patch.facecolor        : blue
 #patch.edgecolor        : black
 #patch.antialiased      : True    # render patches in antialised (no jaggies)
+
+# pgf.rcfonts   : False    # don't setup fonts from rc parameters
+# pgf.texsystem : xelatex
+# pgf.preamble: ["\usepackage{amsmath}","\usepackage{amssymb}", "\usepackage[math-style=TeX, bold-style=TeX]{unicode-math}", "\usepackage{xltxtra}","\setmainfont[Numbers={OldStyle,Proportional}]{Garamond Premier Pro}", "\setsansfont{Source Sans Pro}", "\setmonofont{Inconsolata}", "\setmathfont{Asana Math}"]
+
 
 ### FONT
 #
@@ -115,22 +105,8 @@ backend      : GTKAgg
 # The font.size property is the default font size for text, given in pts.
 # 12pt is the standard value.
 #
-#font.family         : sans-serif
-#font.style          : normal
-#font.variant        : normal
-#font.weight         : medium
-#font.stretch        : normal
-# note that font.size controls default text sizes.  To configure
-# special text sizes tick labels, axes, labels, title, etc, see the rc
-# settings for axes and ticks. Special text sizes can be defined
-# relative to font.size, using the following values: xx-small, x-small,
-# small, medium, large, x-large, xx-large, larger, or smaller
-#font.size           : 12.0
-#font.serif          : Bitstream Vera Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
-#font.sans-serif     : Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
-#font.cursive        : Apple Chancery, Textile, Zapf Chancery, Sand, cursive
-#font.fantasy        : Comic Sans MS, Chicago, Charcoal, Impact, Western, fantasy
-#font.monospace      : Bitstream Vera Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
+font.family         : serif
+font.size           : 8.0
 
 ### TEXT
 # text properties used by text.Text.  See
@@ -140,35 +116,7 @@ backend      : GTKAgg
 #text.color          : black
 
 ### LaTeX customizations. See http://www.scipy.org/Wiki/Cookbook/Matplotlib/UsingTex
-#text.usetex         : False  # use latex for all text handling. The following fonts
-                              # are supported through the usual rc parameter settings:
-                              # new century schoolbook, bookman, times, palatino,
-                              # zapf chancery, charter, serif, sans-serif, helvetica,
-                              # avant garde, courier, monospace, computer modern roman,
-                              # computer modern sans serif, computer modern typewriter
-                              # If another font is desired which can loaded using the
-                              # LaTeX \usepackage command, please inquire at the
-                              # matplotlib mailing list
-#text.latex.unicode : False # use "ucs" and "inputenc" LaTeX packages for handling
-                            # unicode strings.
-#text.latex.preamble :  # IMPROPER USE OF THIS FEATURE WILL LEAD TO LATEX FAILURES
-                            # AND IS THEREFORE UNSUPPORTED. PLEASE DO NOT ASK FOR HELP
-                            # IF THIS FEATURE DOES NOT DO WHAT YOU EXPECT IT TO.
-                            # preamble is a comma separated list of LaTeX statements
-                            # that are included in the LaTeX document preamble.
-                            # An example:
-                            # text.latex.preamble : \usepackage{bm},\usepackage{euler}
-                            # The following packages are always loaded with usetex, so
-                            # beware of package collisions: color, geometry, graphicx,
-                            # type1cm, textcomp. Adobe Postscript (PSSNFS) font packages
-                            # may also be loaded, depending on your font settings
-
-#text.dvipnghack : None      # some versions of dvipng don't handle alpha
-                             # channel properly.  Use True to correct
-                             # and flush ~/.matplotlib/tex.cache
-                             # before testing and False to force
-                             # correction off.  None will try and
-                             # guess based on your dvipng version
+text.usetex         : True    # use latex for all text handling. The following fonts
 
 #text.hinting : 'auto' # May be one of the following:
                        #   'none': Perform no hinting
@@ -186,28 +134,6 @@ text.hinting_factor : 8 # Specifies the amount of softness for hinting in the
 
 #text.antialiased : True # If True (default), the text will be antialiased.
                          # This only affects the Agg backend.
-
-# The following settings allow you to select the fonts in math mode.
-# They map from a TeX font name to a fontconfig font pattern.
-# These settings are only used if mathtext.fontset is 'custom'.
-# Note that this "custom" mode is unsupported and may go away in the
-# future.
-#mathtext.cal : cursive
-#mathtext.rm  : serif
-#mathtext.tt  : monospace
-#mathtext.it  : serif:italic
-#mathtext.bf  : serif:bold
-#mathtext.sf  : sans
-#mathtext.fontset : cm # Should be 'cm' (Computer Modern), 'stix',
-                       # 'stixsans' or 'custom'
-#mathtext.fallback_to_cm : True  # When True, use symbols from the Computer Modern
-                                 # fonts when a symbol can not be found in one of
-                                 # the custom math fonts.
-
-#mathtext.default : it # The default font to use for math.
-                       # Can be any of the LaTeX font names, including
-                       # the special name "regular" for the same font
-                       # used in regular text.
 
 ### AXES
 # default face and edge color, default tick sizes,
@@ -299,7 +225,7 @@ text.hinting_factor : 8 # Specifies the amount of softness for hinting in the
 ### FIGURE
 # See http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure
 #figure.figsize   : 8, 6    # figure size in inches
-#figure.dpi       : 80      # figure dots per inch
+# figure.dpi       : 80      # figure dots per inch
 #figure.facecolor : 0.75    # figure facecolor; 0.75 is scalar gray
 #figure.edgecolor : white   # figure edgecolor
 #figure.autolayout : False  # When True, automatically adjust subplot
@@ -319,7 +245,7 @@ text.hinting_factor : 8 # Specifies the amount of softness for hinting in the
 #image.interpolation  : bilinear  # see help(imshow) for options
 #image.cmap   : jet               # gray | jet etc...
 #image.lut    : 256               # the size of the colormap lookup table
-#image.origin : upper             # lower | upper
+image.origin : lower             # lower | upper
 #image.resample  : False
 
 ### CONTOUR PLOTS
@@ -349,12 +275,12 @@ text.hinting_factor : 8 # Specifies the amount of softness for hinting in the
 # the default savefig params can be different from the display params
 # Eg, you may want a higher resolution, or to make the figure
 # background white
-#savefig.dpi        : 100      # figure dots per inch
-#savefig.facecolor  : white    # figure facecolor when saving
-#savefig.edgecolor  : white    # figure edgecolor when saving
-#savefig.format     : png      # png, ps, pdf, svg
-#savefig.bbox       : standard # 'tight' or 'standard'.
-#savefig.pad_inches : 0.1      # Padding to be used when bbox is set to 'tight'
+savefig.dpi        : 200      # figure dots per inch
+savefig.facecolor  : white    # figure facecolor when saving
+savefig.edgecolor  : white    # figure edgecolor when saving
+savefig.format     : png      # png, ps, pdf, svg
+savefig.bbox       : tight # 'tight' or 'standard'.
+savefig.pad_inches : 0.1      # Padding to be used when bbox is set to 'tight'
 
 # tk backend params
 #tk.window_focus   : False    # Maintain shell focus for TkAgg
