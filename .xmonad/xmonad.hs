@@ -40,12 +40,17 @@ myManageHook = composeAll
  
 -- Run XMonad
 main = do
-    xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc"
+    {- xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc" -}
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/lb/.xmobarrc"
     xmonad $ ewmh defaultConfig 
         { terminal = myTerminal
         , startupHook = setWMName "LG3D"
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
 		, layoutHook = myLayoutHook
+    , logHook = dynamicLogWithPP xmobarPP
+                        { ppOutput = hPutStrLn xmproc
+                        , ppTitle = xmobarColor "green" "" . shorten 50
+                        }
 		, borderWidth         = 2
     , workspaces          = myWorkspaces
 		, normalBorderColor   = "#262626"

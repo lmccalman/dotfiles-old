@@ -189,7 +189,7 @@ nnoremap k gk
 
 " Visual Appearance
 "
-set guifont=Inconsolata\ Medium\ 13
+set guifont=Inconsolata\ Medium\ 15
 colorscheme zenburn
 syntax on
 "set background=dark
