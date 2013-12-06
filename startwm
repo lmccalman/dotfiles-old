@@ -2,6 +2,7 @@
 
 #Increase 2D pixmap performance for firefox
 nvidia-settings -a InitialPixmapPlacement=2
+xsetroot -cursor_name left_ptr
 xrdb  $HOME/.Xresources
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # Start GNOME Keyring
