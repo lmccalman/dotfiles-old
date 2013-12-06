@@ -40,8 +40,7 @@ myManageHook = composeAll
  
 -- Run XMonad
 main = do
-    {- xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc" -}
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/lb/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc"
     xmonad $ ewmh defaultConfig 
         { terminal = myTerminal
         , startupHook = setWMName "LG3D"
