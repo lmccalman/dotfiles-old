@@ -15,6 +15,6 @@ export GNOME_KEYRING_PID
 rotatingwallpaper &
 SpiderOak &
 xscreensaver -no-splash &
-xcompmgr -f -F -D4 &
+# xcompmgr -f -F -D4 &
 nm-applet &
 exec xmonad

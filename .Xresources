@@ -6,6 +6,8 @@ Xft*antialias: 1
 Xft*dpi: 96
 Xft*rgba: rgb
 
+Xcursor.theme: oxy-terra
+
 URxvt.scrollBar: false
 URxvt.font: xft:Inconsolata:Medium:size=13
 URxvt.boldFont: xft:Inconsolata:Medium:size=13

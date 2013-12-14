@@ -113,7 +113,8 @@ export PYTHONPATH=$PYTHONPATH:$HOME/code/geotherml/lib
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
-export PATH=$PATH:/home/lb/.gem/ruby/1.9.1/bin
+export PATH=$PATH:/home/lb/.gem/ruby/2.0.0/bin
+#
 #Japanese input
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
