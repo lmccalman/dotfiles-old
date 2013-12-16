@@ -1,6 +1,5 @@
 -- Import statements
 import XMonad
-import XMonad.Hooks.DynamicLog     -- for xmobar
 import XMonad.Hooks.ManageDocks    -- for trayer?
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders     -- (7)  get rid of borders sometimes
@@ -46,10 +45,6 @@ main = do
         , startupHook = setWMName "LG3D"
         , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
 		, layoutHook = myLayoutHook
-    , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 50
-                        }
 		, borderWidth         = 2
     , workspaces          = myWorkspaces
 		, normalBorderColor   = "#262626"
