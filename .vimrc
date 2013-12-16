@@ -19,8 +19,6 @@ Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'Gundo'                
 Bundle 'ack.vim'
-Bundle 'mhinz/vim-signify'
-
 
 " Coding
 " ------
