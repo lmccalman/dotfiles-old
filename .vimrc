@@ -13,7 +13,7 @@ Bundle 'gmarik/vundle'
 
 " General
 " -------
-" Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'LustyExplorer'         
 Bundle 'surround.vim'           
 Bundle 'repeat.vim'
