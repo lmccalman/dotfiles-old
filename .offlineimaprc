@@ -74,7 +74,7 @@ holdconnectionopen = yes
 type = IMAP
 remotehost = imap.nicta.com.au
 remoteuser = lmccalman
-remotepass = AllTh@tM@tter$
+remotepasseval = get_keychain_pass(account="lachlan@mccalman.info", server="imap.gmail.com")
 remoteport = 993
 ssl = yes
 cert_fingerprint=91bb0a45f17cbf9286453d4e57b06cb683a1e323
