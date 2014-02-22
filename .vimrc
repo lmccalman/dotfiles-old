@@ -234,6 +234,11 @@ au InsertLeave * set nopaste
 " Insert new line after the cursor with shift+enter
 nmap <CR> i<Enter><Esc>l
 
+" Dates
+:nnoremap <F5> "=strftime("%d_%b_%Y")<CR>P
+:inoremap <F5> <C-R>=strftime("%d_%b_%Y")<CR>
+
+
 " Surround.vim
 " ------------
 let g:surround_indent = 1 "auto re-indent
