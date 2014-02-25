@@ -12,7 +12,7 @@ import XMonad.Hooks.EwmhDesktops  -- tell panels about desktops
 import System.IO
 
 
-myTerminal = "urxvtcd"
+myTerminal = "urxvtc"
 myWorkspaces = ["1","2","3","4","5"]
 myLayoutHook = avoidStruts ( tiled ||| htiled ||| four ) ||| fullscreen  
     where 
@@ -53,5 +53,6 @@ main = do
         } `additionalKeys`
         [ ((mod4Mask, xK_f), spawn "firefox")
          ,((mod4Mask, xK_d), spawn "dolphin")
+         ,((mod4Mask, xK_v), spawn "gvim")
          ,((mod4Mask, xK_g), goToSelected defaultGSConfig) 
         ]
