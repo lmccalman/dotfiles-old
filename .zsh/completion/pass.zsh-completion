@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+<title>password-store - Simple password manager using gpg and ordinary unix directories.</title>
+<meta name='generator' content='cgit v0.10-17-gceb9'/>
+<meta name='robots' content='index, nofollow'/>
+<link rel='stylesheet' type='text/css' href='/cgit.css'/>
+<link rel='shortcut icon' href='/favicon.ico'/>
+<link rel='alternate' title='Atom feed' href='http://git.zx2c4.com/password-store/atom/contrib/pass.zsh-completion?h=master' type='application/atom+xml'/>
+</head>
+<body>
+<div id='cgit'><table id='header'>
+<tr>
+<td class='logo' rowspan='2'><a href='http://www.zx2c4.com/'><img src='/cgit.png' alt='cgit logo'/></a></td>
+<td class='main'><a href='/'>index</a> : <a title='password-store' href='/password-store/'>password-store</a></td><td class='form'><form method='get' action=''>
+<select name='h' onchange='this.form.submit();'>
+<option value='master' selected='selected'>master</option>
+</select> <input type='submit' name='' value='switch'/></form></td></tr>
+<tr><td class='sub'>Simple password manager using gpg and ordinary unix directories.</td><td class='sub right'>Jason A. Donenfeld</td></tr></table>
+<table class='tabs'><tr><td>
+<a href='/password-store/about/'>about</a><a href='/password-store/'>summary</a><a href='/password-store/refs/'>refs</a><a href='/password-store/log/contrib/pass.zsh-completion'>log</a><a class='active' href='/password-store/tree/contrib/pass.zsh-completion'>tree</a><a href='/password-store/commit/contrib/pass.zsh-completion'>commit</a><a href='/password-store/diff/contrib/pass.zsh-completion'>diff</a><a href='/password-store/stats/contrib/pass.zsh-completion'>stats</a></td><td class='form'><form class='right' method='get' action='/password-store/log/contrib/pass.zsh-completion'>
+<select name='qt'>
+<option value='grep'>log msg</option>
+<option value='author'>author</option>
+<option value='committer'>committer</option>
+<option value='range'>range</option>
+</select>
+<input class='txt' type='text' size='10' name='q' value=''/>
+<input type='submit' value='search'/>
+</form>
+</td></tr></table>
+<div class='path'>path: <a href='/password-store/tree/'>root</a>/<a href='/password-store/tree/contrib'>contrib</a>/<a href='/password-store/tree/contrib/pass.zsh-completion'>pass.zsh-completion</a></div><div class='content'>blob: 848bc67d8959ff8b5e00ca3175ed4c01360a9d7b (<a href='/password-store/plain/contrib/pass.zsh-completion'>plain</a>)
+<table summary='blob content' class='blob'>
+<tr><td class='linenumbers'><pre><a id='n1' href='#n1'>1</a>
+<a id='n2' href='#n2'>2</a>
+<a id='n3' href='#n3'>3</a>
+<a id='n4' href='#n4'>4</a>
+<a id='n5' href='#n5'>5</a>
+<a id='n6' href='#n6'>6</a>
+<a id='n7' href='#n7'>7</a>
+<a id='n8' href='#n8'>8</a>
+<a id='n9' href='#n9'>9</a>
+<a id='n10' href='#n10'>10</a>
+<a id='n11' href='#n11'>11</a>
+<a id='n12' href='#n12'>12</a>
+<a id='n13' href='#n13'>13</a>
+<a id='n14' href='#n14'>14</a>
+<a id='n15' href='#n15'>15</a>
+<a id='n16' href='#n16'>16</a>
+<a id='n17' href='#n17'>17</a>
+<a id='n18' href='#n18'>18</a>
+<a id='n19' href='#n19'>19</a>
+<a id='n20' href='#n20'>20</a>
+<a id='n21' href='#n21'>21</a>
+<a id='n22' href='#n22'>22</a>
+<a id='n23' href='#n23'>23</a>
+<a id='n24' href='#n24'>24</a>
+<a id='n25' href='#n25'>25</a>
+<a id='n26' href='#n26'>26</a>
+<a id='n27' href='#n27'>27</a>
+<a id='n28' href='#n28'>28</a>
+<a id='n29' href='#n29'>29</a>
+<a id='n30' href='#n30'>30</a>
+<a id='n31' href='#n31'>31</a>
+<a id='n32' href='#n32'>32</a>
+<a id='n33' href='#n33'>33</a>
+<a id='n34' href='#n34'>34</a>
+<a id='n35' href='#n35'>35</a>
+<a id='n36' href='#n36'>36</a>
+<a id='n37' href='#n37'>37</a>
+<a id='n38' href='#n38'>38</a>
+<a id='n39' href='#n39'>39</a>
+<a id='n40' href='#n40'>40</a>
+<a id='n41' href='#n41'>41</a>
+<a id='n42' href='#n42'>42</a>
+<a id='n43' href='#n43'>43</a>
+<a id='n44' href='#n44'>44</a>
+<a id='n45' href='#n45'>45</a>
+<a id='n46' href='#n46'>46</a>
+<a id='n47' href='#n47'>47</a>
+<a id='n48' href='#n48'>48</a>
+<a id='n49' href='#n49'>49</a>
+<a id='n50' href='#n50'>50</a>
+<a id='n51' href='#n51'>51</a>
+<a id='n52' href='#n52'>52</a>
+<a id='n53' href='#n53'>53</a>
+<a id='n54' href='#n54'>54</a>
+<a id='n55' href='#n55'>55</a>
+<a id='n56' href='#n56'>56</a>
+<a id='n57' href='#n57'>57</a>
+<a id='n58' href='#n58'>58</a>
+<a id='n59' href='#n59'>59</a>
+<a id='n60' href='#n60'>60</a>
+<a id='n61' href='#n61'>61</a>
+<a id='n62' href='#n62'>62</a>
+<a id='n63' href='#n63'>63</a>
+<a id='n64' href='#n64'>64</a>
+<a id='n65' href='#n65'>65</a>
+<a id='n66' href='#n66'>66</a>
+<a id='n67' href='#n67'>67</a>
+<a id='n68' href='#n68'>68</a>
+<a id='n69' href='#n69'>69</a>
+<a id='n70' href='#n70'>70</a>
+<a id='n71' href='#n71'>71</a>
+<a id='n72' href='#n72'>72</a>
+<a id='n73' href='#n73'>73</a>
+<a id='n74' href='#n74'>74</a>
+<a id='n75' href='#n75'>75</a>
+<a id='n76' href='#n76'>76</a>
+<a id='n77' href='#n77'>77</a>
+<a id='n78' href='#n78'>78</a>
+<a id='n79' href='#n79'>79</a>
+<a id='n80' href='#n80'>80</a>
+<a id='n81' href='#n81'>81</a>
+<a id='n82' href='#n82'>82</a>
+<a id='n83' href='#n83'>83</a>
+<a id='n84' href='#n84'>84</a>
+<a id='n85' href='#n85'>85</a>
+<a id='n86' href='#n86'>86</a>
+<a id='n87' href='#n87'>87</a>
+<a id='n88' href='#n88'>88</a>
+<a id='n89' href='#n89'>89</a>
+<a id='n90' href='#n90'>90</a>
+<a id='n91' href='#n91'>91</a>
+<a id='n92' href='#n92'>92</a>
+<a id='n93' href='#n93'>93</a>
+<a id='n94' href='#n94'>94</a>
+<a id='n95' href='#n95'>95</a>
+<a id='n96' href='#n96'>96</a>
+<a id='n97' href='#n97'>97</a>
+<a id='n98' href='#n98'>98</a>
+<a id='n99' href='#n99'>99</a>
+<a id='n100' href='#n100'>100</a>
+<a id='n101' href='#n101'>101</a>
+<a id='n102' href='#n102'>102</a>
+<a id='n103' href='#n103'>103</a>
+<a id='n104' href='#n104'>104</a>
+<a id='n105' href='#n105'>105</a>
+<a id='n106' href='#n106'>106</a>
+<a id='n107' href='#n107'>107</a>
+<a id='n108' href='#n108'>108</a>
+<a id='n109' href='#n109'>109</a>
+<a id='n110' href='#n110'>110</a>
+<a id='n111' href='#n111'>111</a>
+<a id='n112' href='#n112'>112</a>
+<a id='n113' href='#n113'>113</a>
+<a id='n114' href='#n114'>114</a>
+<a id='n115' href='#n115'>115</a>
+<a id='n116' href='#n116'>116</a>
+</pre></td>
+<td class='lines'><pre><code><style>.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #ffffff; }
+.highlight .c { color: #888888 } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { color: #008800; font-weight: bold } /* Keyword */
+.highlight .cm { color: #888888 } /* Comment.Multiline */
+.highlight .cp { color: #cc0000; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #888888 } /* Comment.Single */
+.highlight .cs { color: #cc0000; font-weight: bold; background-color: #fff0f0 } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #333333 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #666666 } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { color: #008800; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008800; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008800; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008800 } /* Keyword.Pseudo */
+.highlight .kr { color: #008800; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #888888; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #0000DD; font-weight: bold } /* Literal.Number */
+.highlight .s { color: #dd2200; background-color: #fff0f0 } /* Literal.String */
+.highlight .na { color: #336699 } /* Name.Attribute */
+.highlight .nb { color: #003388 } /* Name.Builtin */
+.highlight .nc { color: #bb0066; font-weight: bold } /* Name.Class */
+.highlight .no { color: #003366; font-weight: bold } /* Name.Constant */
+.highlight .nd { color: #555555 } /* Name.Decorator */
+.highlight .ne { color: #bb0066; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0066bb; font-weight: bold } /* Name.Function */
+.highlight .nl { color: #336699; font-style: italic } /* Name.Label */
+.highlight .nn { color: #bb0066; font-weight: bold } /* Name.Namespace */
+.highlight .py { color: #336699; font-weight: bold } /* Name.Property */
+.highlight .nt { color: #bb0066; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #336699 } /* Name.Variable */
+.highlight .ow { color: #008800 } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #0000DD; font-weight: bold } /* Literal.Number.Float */
+.highlight .mh { color: #0000DD; font-weight: bold } /* Literal.Number.Hex */
+.highlight .mi { color: #0000DD; font-weight: bold } /* Literal.Number.Integer */
+.highlight .mo { color: #0000DD; font-weight: bold } /* Literal.Number.Oct */
+.highlight .sb { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Backtick */
+.highlight .sc { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Char */
+.highlight .sd { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Doc */
+.highlight .s2 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Double */
+.highlight .se { color: #0044dd; background-color: #fff0f0 } /* Literal.String.Escape */
+.highlight .sh { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Heredoc */
+.highlight .si { color: #3333bb; background-color: #fff0f0 } /* Literal.String.Interpol */
+.highlight .sx { color: #22bb22; background-color: #f0fff0 } /* Literal.String.Other */
+.highlight .sr { color: #008800; background-color: #fff0ff } /* Literal.String.Regex */
+.highlight .s1 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Single */
+.highlight .ss { color: #aa6600; background-color: #fff0f0 } /* Literal.String.Symbol */
+.highlight .bp { color: #003388 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #336699 } /* Name.Variable.Class */
+.highlight .vg { color: #dd7700 } /* Name.Variable.Global */
+.highlight .vi { color: #3333bb } /* Name.Variable.Instance */
+.highlight .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre>#compdef pass
+
+# Copyright (C) 2012:
+#    Johan Venant &lt;jvenant@invicem.pro&gt;
+#    Brian Mattern &lt;rephorm@rephorm.com&gt;
+#    Jason A. Donenfeld &lt;Jason@zx2c4.com&gt;.
+# All Rights Reserved.
+# This file is licensed under the GPLv2+. Please see COPYING for more information.
+
+_pass () {
+	local cmd
+	if (( CURRENT &gt; 2)); then
+		cmd=${words[2]}
+		# Set the context for the subcommand.
+		curcontext=&quot;${curcontext%:*:*}:pass-$cmd&quot;
+		# Narrow the range of words we are looking at to exclude `pass&#39;
+		(( CURRENT-- ))
+		shift words
+		# Run the completion for the subcommand
+		case &quot;${cmd}&quot; in
+			init)
+				_arguments : \
+					&quot;-r[re-encrypt existing passwords]&quot; \
+					&quot;--reencrypt[re-encrypt existing passwords]&quot;
+				_pass_complete_keys
+				;;
+			ls|list|edit)
+				_pass_complete_entries_with_subdirs
+				;;
+			insert)
+				_arguments : \
+					&quot;-e[echo password to console]&quot; \
+					&quot;--echo[echo password to console]&quot; \
+					&quot;-m[multiline]&quot; \
+					&quot;--multiline[multiline]&quot;
+				_pass_complete_entries_with_subdirs
+				;;
+			generate)
+				_arguments : \
+					&quot;-n[don&#39;t include symbols in password]&quot; \
+					&quot;--no-symbols[don&#39;t include symbols in password]&quot; \
+					&quot;-c[copy password to the clipboard]&quot; \
+					&quot;--clip[copy password to the clipboard]&quot;
+				_pass_complete_entries_with_subdirs
+				;;
+			rm)
+				_arguments : \
+					&quot;-f[force deletion]&quot; \
+					&quot;--force[force deletion]&quot; \
+					&quot;-r[recursively delete]&quot; \
+					&quot;--recursive[recursively delete]&quot;
+					_pass_complete_entries_with_subdirs
+				;;
+			git)
+				local -a subcommands
+				subcommands=(
+					&quot;init:Initialize git repository&quot;
+					&quot;push:Push to remote repository&quot;
+					&quot;pull:Pull from remote repository&quot;
+					&quot;config:Show git config&quot;
+					&quot;log:Show git log&quot;
+					&quot;reflog:Show git reflog&quot;
+				)
+				_describe -t commands &#39;pass git&#39; subcommands
+				;;
+			show|*)
+				_pass_cmd_show
+				;;
+		esac
+	else
+		local -a subcommands
+		subcommands=(
+			&quot;init:Initialize new password storage&quot;
+			&quot;ls:List passwords&quot;
+			&quot;show:Decrypt and print a password&quot;
+			&quot;insert:Insert a new password&quot;
+			&quot;generate:Generate a new password using pwgen&quot;
+			&quot;edit:Edit a password with \$EDITOR&quot;
+			&quot;rm:Remove the password&quot;
+			&quot;git:Call git on the password store&quot;
+			&quot;version:Output version information&quot;
+			&quot;help:Output help message&quot;
+		)
+		_describe -t commands &#39;pass&#39; subcommands
+		_arguments : \
+			&quot;--version[Output version information]&quot; \
+			&quot;--help[Output help message]&quot;
+		_pass_cmd_show
+	fi
+}
+
+_pass_cmd_show () {
+	_arguments : \
+		&quot;-c[put it on the clipboard]&quot; \
+		&quot;--clip[put it on the clipboard]&quot;
+	_pass_complete_entries
+}
+_pass_complete_entries_helper () {
+	local IFS=$&#39;\n&#39;
+	local prefix=&quot;${PASSWORD_STORE_DIR:-$HOME/.password-store}&quot;
+	_values -C &#39;passwords&#39; $(find &quot;$prefix&quot; \( -name .git -o -name .gpg-id \) -prune -o $@ -print | sed -e &quot;s#${prefix}.##&quot; -e &#39;s#\.gpg##&#39; | sort)
+}
+
+_pass_complete_entries_with_subdirs () {
+	_pass_complete_entries_helper
+}
+
+_pass_complete_entries () {
+	_pass_complete_entries_helper -type f
+}
+
+_pass_complete_keys () {
+	local IFS=$&#39;\n&#39;
+	# Extract names and email addresses from gpg --list-keys
+	_values &#39;gpg keys&#39; $(gpg2 --list-secret-keys --with-colons | cut -d : -f 10 | sort -u | sed &#39;/^$/d&#39;)
+}
+</pre></div>
+</code></pre></td></tr></table>
+</div> <!-- class=content -->
+<div class='footer'>Copyright &copy; 2000 &ndash; 2014 Jason A. Donenfeld. All Rights Reserved.</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-135234-5']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</div> <!-- id=cgit -->
+</body>
+</html>

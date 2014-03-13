@@ -1,3 +1,6 @@
+# Add my custom completion directory
+fpath=(~/.zsh/completion $fpath)
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -6,6 +9,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="lb"
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
