@@ -286,8 +286,9 @@ nnoremap TT :TagbarToggle<CR>
 " LaTeX Forward Sync
 
 " vimwiki
-let g:vimwiki_list = [{'path': '~/wiki/',
-      \ 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/wiki/personal', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
+      \   {'path': '~/wiki/joint', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
+      \                {'path': '~/wiki/public', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'}]
 
 let g:LatexBox_viewer = 'okular'
 let g:LatexBox_latexmk_options = '-pv'
