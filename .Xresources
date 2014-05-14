@@ -9,8 +9,8 @@ Xft*rgba: rgb
 Xcursor.theme: oxy-terra
 
 URxvt.scrollBar: false
-URxvt.font: xft:Inconsolata:Medium:size=13
-URxvt.boldFont: xft:Inconsolata:Medium:size=13
+URxvt.font: xft:Inconsolata:Medium:size=13,xft:Terminus
+URxvt.boldFont: xft:Inconsolata:Medium:size=13,xft:Terminus
 URxvt.letterSpace: -1
 URxvt.inputMethod: ibus
 URxvt.preeditType: OnTheSpot,None
