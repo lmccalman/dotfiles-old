@@ -57,10 +57,23 @@ fi
 }
 
 function my_time() {
-echo "${blue_op}`date +%s | sed -e ':a' -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'`${blue_cp}"
+echo "-${blue_op}`date +%s | sed -e ':a' -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'`${blue_cp}"
 }
 
-PROMPT=$'\n╭${user_host}-$(ssh_connection)$(my_git_prompt)$(my_time)$(holyday)
+function cabal_sandbox_info() {
+    cabal_files=(*.cabal(N))
+    if [ $#cabal_files -gt 0 ]; then
+        if [ -f cabal.sandbox.config ]; then
+          echo "-${blue_op}%{$fg[green]%}sandboxed%{$reset_color%}${blue_cp}"
+        else
+          echo "-${blue_op}%{$fg[red]%}not sandboxed%{$reset_color%}${blue_cp}"
+        fi
+    fi
+}
+
+
+
+PROMPT=$'\n╭${user_host}-$(ssh_connection)$(my_git_prompt)$(cabal_sandbox_info)$(my_time)$(holyday)
 ╰${hist_no}-${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"
@@ -72,7 +85,7 @@ ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●"
 ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[red]%}●"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[white]%}●"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[red]%}✕"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}${blue_cp}-"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}${blue_cp}"
 
 local path_p="${blue_op}%~${blue_cp}"
 local user_host="${blue_op}%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[cyan]%}%m${blue_cp}"
