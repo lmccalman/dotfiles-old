@@ -141,6 +141,17 @@ augroup ft_python
     au FileType python let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 augroup END
 
+" Haskell
+" REQUIRED: sudo cabal install hoogle ghc-mod hdevtools hlint pointfree
+" Reload
+map <silent> tu :call GHC_BrowseAll()<CR>
+" Type Lookup
+map <silent> tw :call GHC_ShowType(1)<CR>
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+
+
 " Wrap at 65 for mail
 au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
 au BufNewFile,BufRead *.mako set filetype=mako
@@ -243,6 +254,8 @@ nmap <CR> i<Enter><Esc>l
 :nnoremap <F5> "=strftime("%d_%b_%Y")<CR>P
 :inoremap <F5> <C-R>=strftime("%d_%b_%Y")<CR>
 
+" Syntastic
+let g:syntastic_auto_loc_list=0
 
 " Surround.vim
 " ------------
