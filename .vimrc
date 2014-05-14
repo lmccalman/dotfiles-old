@@ -20,6 +20,7 @@ Bundle 'repeat.vim'
 Bundle 'Gundo'                
 Bundle 'ack.vim'
 Bundle 'vimwiki'
+Bundle 'ini-syntax-definition'
 
 " Coding
 " ------
@@ -112,6 +113,10 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " Filetype specific changes
+" ini files
+au BufRead,BufNewFile *.gdf setfiletype ini
+au BufRead,BufNewFile *.conf setfiletype ini
+
 augroup ft_tex
     au!
     au FileType tex setlocal formatoptions=tcqr 
