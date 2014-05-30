@@ -32,4 +32,5 @@ $HOME/environ/rotatingwallpaper &
 SpiderOak &
 nm-applet &
 xscreensaver -no-splash &
+xflux -l 33 -g 151
 exec xmonad
