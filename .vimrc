@@ -33,8 +33,8 @@ Bundle 'Syntastic'
 Bundle 'mako.vim'
 Bundle 'mako.vim--Torborg'
 Bundle 'vim-ipython'
-Bundle 'SuperTab-continued.'
 Bundle 'LaTeX-Box'              
+Bundle 'Valloric/YouCompleteMe'
 
 " Visual
 " ------
