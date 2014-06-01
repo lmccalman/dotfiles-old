@@ -2,6 +2,7 @@
 import XMonad
 import XMonad.Hooks.ManageDocks    -- for trayer?
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders     -- (7)  get rid of borders sometimes
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Named
@@ -39,7 +40,8 @@ myManageHook = composeAll
  
 -- Run XMonad
 main = do
-    xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc"
+    -- xmproc <- spawnPipe "/usr/bin/tint2 -c /home/lb/.tint2rc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/lb/.xmobarrc"
     xmonad $ ewmh defaultConfig 
         { terminal = myTerminal
         , startupHook = setWMName "LG3D"
@@ -49,6 +51,10 @@ main = do
     , workspaces          = myWorkspaces
 		, normalBorderColor   = "#262626"
 		, focusedBorderColor  = "#729470"
+    , logHook             = dynamicLogWithPP xmobarPP
+                            { ppOutput = hPutStrLn xmproc
+                            , ppTitle = xmobarColor "green" "" . shorten 50
+                            }
 		, modMask             = mod4Mask
         } `additionalKeys`
         [ ((mod4Mask, xK_f), spawn "firefox")
