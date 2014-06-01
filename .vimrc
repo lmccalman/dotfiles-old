@@ -25,7 +25,6 @@ NeoBundle 'godlygeek/tabular'
 "Haskell
 "-------
 NeoBundle 'travitch/hasksyn'
-NeoBundle 'Twinside/vim-haskellConceal'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'Twinside/vim-hoogle'
@@ -98,11 +97,6 @@ set formatoptions=cq
 set foldenable
 set foldmethod=syntax
 set foldlevel=99
-
-if has('conceal')
-    set conceallevel=1
-    set listchars+=conceal:Δ
-endif
 
 " Automatically open, but do not go to (if there are errors) the quickfix /
 " location list window, or close it when is has become empty.
