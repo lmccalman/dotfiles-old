@@ -72,9 +72,8 @@ function cabal_sandbox_info() {
 }
 
 
-
-PROMPT=$'\n╭${user_host}-$(ssh_connection)$(my_git_prompt)$(cabal_sandbox_info)$(my_time)$(holyday)
-╰${hist_no}-${blue_op}${smiley}${blue_cp}-> '
+PROMPT=$'\n┌${user_host}-$(ssh_connection)$(my_git_prompt)$(cabal_sandbox_info)$(my_time)$(holyday)
+└${hist_no}-${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"
 
