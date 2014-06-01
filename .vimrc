@@ -1,69 +1,67 @@
-" The Following addons need to be installed
-" Vundle http://github.com/gmarik/vundle
-
-" Sets up vundle stuff
-set nocompatible
-filetype off  " required!
-
-se rtp+=~/.vim/bundle/vundle/ 
-call vundle#rc()
-"Let Vundle manage itself (required)
-Bundle 'gmarik/vundle'
-
+" NeoBundle Initialisation
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " General
 " -------
-Bundle 'bling/vim-airline'
-Bundle 'LustyExplorer'         
-Bundle 'surround.vim'           
-Bundle 'repeat.vim'
-Bundle 'Gundo'                
-Bundle 'ack.vim'
-Bundle 'vimwiki'
-Bundle 'ini-syntax-definition'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'tpope/vim-vinegar'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'mbbill/undotree'                
+NeoBundle 'vim-scripts/vimwiki'
+NeoBundle 'godlygeek/tabular'
+
+"Haskell
+"-------
+NeoBundle 'travitch/hasksyn'
+NeoBundle 'Twinside/vim-haskellConceal'
+NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'eagletmt/neco-ghc'
+NeoBundle 'Twinside/vim-hoogle'
 
 " Coding
 " ------
-Bundle 'The-NERD-Commenter'    
-Bundle 'fugitive.vim'          
-Bundle 'argtextobj.vim'        
-Bundle 'UltiSnips'
-Bundle 'Tagbar'                
-Bundle 'Syntastic'
-Bundle 'mako.vim'
-Bundle 'mako.vim--Torborg'
-Bundle 'vim-ipython'
-Bundle 'LaTeX-Box'              
-Bundle 'Valloric/YouCompleteMe'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-fugitive'          
+NeoBundle 'int3/vim-extradite'
+NeoBundle 'vim-scripts/argtextobj.vim'        
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'majutsushi/tagbar'                
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box'              
+NeoBundle 'vim-scripts/ini-syntax-definition'
 
 " Visual
 " ------
-Bundle 'Zenburn'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'lsdr/monokai'
 
 " HTML
 " ----
-Bundle 'ragtag.vim'
+NeoBundle 'vim-scripts/ragtag.vim'
 
 " On the Bench
 " ------------
-" Bundle 'sontek/rope-vim'
-" Bundle 'tpope/vim-dispach'
-"  python-mode
-" Bundle 'EasyMotion'
-" Bundle 'pydoc.vim'             
-" Bundle 'pyflakes.vim'          
-" Bundle 'pep8'                  
-" Bundle 'ctrlp.vim'
+" NeoBundle 'jdaddy.vim' for json!
+" NeoBundle 'The-NERD-Commenter'    
+" NeoBundle 'tpope/vim-dispach'
 
-
-filetype plugin indent on     " required!
-" end of vundle stuff
-
-" Powerline stuff
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2
-set noshowmode
-
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
+" end of NeoBundle stuff
 
 set backupdir=~/.tmp,~/tmp,/var/tmp,/tmp
 set undodir=~/.tmp,~/tmp,/var/tmp,/tmp
@@ -92,14 +90,19 @@ set smarttab "tab width determined by shiftwidth
 " Ensures latex not plaintex chosen when opening a blank .tex file
 let g:tex_flavor='latex'
 
-
 "Default Formatting (ie python)
 set textwidth=79
 set formatoptions=cq
 
 "Folds Rule(?)
+set foldenable
 set foldmethod=syntax
 set foldlevel=99
+
+if has('conceal')
+    set conceallevel=1
+    set listchars+=conceal:Δ
+endif
 
 " Automatically open, but do not go to (if there are errors) the quickfix /
 " location list window, or close it when is has become empty.
@@ -131,7 +134,6 @@ augroup END
 
 augroup ft_python
     au!
-    au FileType python setlocal omnifunc=RopeCompleteFunc
     au FileType python setlocal formatoptions=cqr 
     au FileType python setlocal textwidth=79
     au FileType python setlocal wildignore+=*.py[co]
@@ -141,20 +143,29 @@ augroup ft_python
     au FileType python let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 augroup END
 
-" Haskell
-" REQUIRED: sudo cabal install hoogle ghc-mod hdevtools hlint pointfree
-" Reload
-map <silent> tu :call GHC_BrowseAll()<CR>
-" Type Lookup
-map <silent> tw :call GHC_ShowType(1)<CR>
-au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+augroup ft_haskell
+  au!
+  au FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
 
+" Pretty unicode haskell symbols
+let g:haskell_conceal_wide = 1
+let g:haskell_conceal_enumerations = 1
 
 " Wrap at 65 for mail
 au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
 au BufNewFile,BufRead *.mako set filetype=mako
+
+" Return to last edit position when opening files (You want this!)
+augroup last_edit
+  autocmd!
+  autocmd BufReadPost *
+       \ if line("'\"") > 0 && line("'\"") <= line("$") |
+       \ exe "normal! g`\"" |
+       \ endif
+augroup END
+" Remember info about open buffers on close
+set viminfo^=%
 
 " let current working directory be that of current buffer
 set autochdir
@@ -168,13 +179,11 @@ nnoremap <leader>p p
 nnoremap <leader>P P
 nnoremap p p'[v']=
 nnoremap P P'[v']=
-
-" :R grep foo #
-" will grep current buffer for foo, paste results into new buffer
-command! -nargs=* R belowright 15new | r ! <args> 
+" Use par for prettier line formatting
+" :set formatprg=par\ -w60
+set formatprg="PARINIT='rTbgqR B=.,?_A_a Q=_s>|' par\ -w79"
 
 " Misc 
-set grepprg=grep\ -nH\ $*
 set scrolloff=20
 set autoread
 set encoding=utf-8
@@ -193,10 +202,26 @@ set undofile
 set lazyredraw "don't redraw whilst running macros
 set hidden "can change buffers without sawing
 
-
 " uses sane regex syntax not vim specific
+set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+set grepformat=%f:%l:%c:%m
+
 nnoremap / /\v
 vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+nnoremap :s/ :s/\v
+
+ " folds {{{
+    nnoremap zr zr:echo &foldlevel<cr>
+    nnoremap zm zm:echo &foldlevel<cr>
+    nnoremap zR zR:echo &foldlevel<cr>
+    nnoremap zM zM:echo &foldlevel<cr>
+" }}}
+
+ " make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
 set ignorecase
 set smartcase
 set gdefault "this means I don't have to type g in a replace
@@ -214,8 +239,15 @@ nnoremap k gk
 
 " Visual Appearance
 "
-set guifont=Inconsolata\ Medium\ 15
-colorscheme zenburn
+" set guifont=Inconsolata\ Medium\ 15
+set guifont=Anonymous\ Pro\ for\ Powerline\ 16
+" set guifont=Anonymous\ Pro\ 15
+" set guifont=Droid\ Sans\ Mono\ 15
+" set guifont=Source\ Code\ Pro\ Medium\ 14
+
+" colorscheme zenburn
+set t_Co=256
+colorscheme monokai
 syntax on
 "set background=dark
 "colorscheme solarized
@@ -237,78 +269,142 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
-noremap! jj <Esc>
+noremap! jk <Esc>
 inoremap <Esc> <NOP>
-nnoremap ' `
-nnoremap ` '
 " some craziness to try
-nnoremap <Space> :
+" nnoremap <Space> :
+" nnoremap : <NOP>
+nnoremap <Leader>w :w<CR>
 "pasting properly
 map  <F2> :set paste<CR>i
 imap <F2> <ESC>:set paste<CR>i<Right>
 au InsertLeave * set nopaste
-" Insert new line after the cursor with shift+enter
-nmap <CR> i<Enter><Esc>l
 
 " Dates
 :nnoremap <F5> "=strftime("%d_%b_%Y")<CR>P
 :inoremap <F5> <C-R>=strftime("%d_%b_%Y")<CR>
 
 " Syntastic
+" ---------
 let g:syntastic_auto_loc_list=0
 
 " Surround.vim
 " ------------
 let g:surround_indent = 1 "auto re-indent
 
-
-" Gundo
+" Unite.vim
 " -----
-nnoremap <F4> :GundoToggle<CR>
-let g:gundo_preview_bottom = 1 "let the preview span the bottom
-let g:gundo_close_on_revert = 1
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" try -quick-match and auto-preview
+nnoremap <leader>b :<C-u>Unite -start-insert -buffer-name=buffers -no-split buffer<cr>
+nnoremap <leader>d :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/git<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>/ :UniteWithProjectDir grep:.<cr>
+" nnoremap <leader>/ :Unite grep:.<cr>
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_recursive_opt=''
 
-" CtrlP
-" -----
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlPBuffer'
-" nnoremap <Leader>lb :CtrlPBuffer<CR>
-" nnoremap <Leader>lf :CtrlPMixed<CR>
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+" Overwrite settings.
+imap <buffer> jk <Plug>(unite_insert_leave)
+imap <buffer><expr> j unite#smart_map('j', '')
+imap <buffer> <TAB> <Plug>(unite_select_next_line)
+nmap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
+let unite = unite#get_current_unite()
+if unite.profile_name ==# 'search'
+nnoremap <silent><buffer><expr> r unite#do_action('replace')
+else
+nnoremap <silent><buffer><expr> r unite#do_action('rename')
+endif
+nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+endfunction"}}}
 
-
-" LustyBufferExplorer
-" -------------------
-let g:LustyExplorerDefaultMappings = 0
-nnoremap <Leader>lb :LustyBufferExplorer<CR>
-
-
-" NerdCommenter
-" -------------
-let g:NERDSpaceDelims = 1
-let g:NERDDefaultNesting = 1
-
-
-"CSApprox
-"
-set t_Co=256
-"let g:CSApprox_konsole=1
-
-"Pyflakes
-"let g:pyflakes_use_quickfix = 0
 
 " Tagbar
-"let g:tagbar_autoclose = 1
+" ------
+let g:tagbar_autoclose = 1
 let g:tagbar_left = 1
-"autocmd VimEnter * nested TagbarOpen
 nnoremap TT :TagbarToggle<CR>
-" LaTeX Forward Sync
 
 " vimwiki
+" -------
 let g:vimwiki_list = [{'path': '~/wiki/personal', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
       \   {'path': '~/wiki/joint', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
       \                {'path': '~/wiki/public', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'}]
 
+" LaTeX-Box
+" ---------
 let g:LatexBox_viewer = 'okular'
 let g:LatexBox_latexmk_options = '-pv'
 
+" Airline
+" -------
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_powerline_fonts = 1
+
+" YouCompleteMe
+" -------------
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" NeoGHC
+" ------
+let g:necoghc_enable_detailed_browse = 1
+let g:necoghc_debug = 0
+
+
+" vim-align
+" =========
+" Stop Align plugin from forcing its mappings on us
+let g:loaded_AlignMapsPlugin=1
+" Align on equal signs
+map <Leader>a= :Align =<CR>
+" Align on commas
+map <Leader>a, :Align ,<CR>
+" Align on pipes
+map <Leader>a<bar> :Align <bar><CR>
+" Prompt for align character
+map <leader>ap :Align
+
+" Enable some tabular presets for Haskell
+let g:haskell_tabular = 1
+
+" Type of expression under cursor
+nmap <silent> <leader>ht :GhcModType<CR>
+" Insert type of expression under cursor
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" GHC errors and warnings
+nmap <silent> <leader>hc :GhcModCheckAsync<CR>
+" Haskell Lint
+nmap <silent> <leader>hl :GhcModLintAsync<CR>
+
+" Hoogle the word under the cursor
+nnoremap <silent> <leader>hh :Hoogle<CR>
+
+" Hoogle and prompt for input
+nnoremap <leader>hH :Hoogle
+
+" Hoogle for detailed documentation (e.g. "Functor")
+nnoremap <silent> <leader>hi :HoogleInfo<CR>
+
+" Hoogle for detailed documentation and prompt for input
+nnoremap <leader>hI :HoogleInfo
+
+" Hoogle, close the Hoogle window
+nnoremap <silent> <leader>hz :HoogleClose<CR>
+function! Pointfree()
+  call setline('.', split(system('pointfree '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
+endfunction
+vnoremap <silent> <leader>h. :call Pointfree()<CR>
+
+function! Pointful()
+  call setline('.', split(system('pointful '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
+endfunction
+vnoremap <silent> <leader>h> :call Pointful()<CR>
 
