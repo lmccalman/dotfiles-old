@@ -291,6 +291,9 @@ let g:surround_indent = 1 "auto re-indent
 
 " Unite.vim
 " -----
+let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 0
+let g:unite_winheight = 20
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_start_insert = 1
 " let g:unite_enable_short_source_names = 1
@@ -308,12 +311,17 @@ call unite#custom#source('file_rec', 'filters',
 \ ['converter_relative_word', 'matcher_fuzzy',
 \ 'sorter_rank', 'converter_relative_abbr'])
 
+
+" call unite#custom#source('grep', 'filters',
+"       \ ['converter_relative_word','converter_relative_abbr'])
+" call unite#custom#source('file_rec/async','sorters','sorter_rank')
+
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
       \ '\.git/'], '\|'))
 
 
-" try -quick-match and auto-preview -auto-highlight -unique
+" try -quick-match and auto-preview -auto-highlight -unique -no-split
 "list currently open buffers
 nnoremap <leader>lb :<C-u>Unite -no-split -immediately -buffer-name=buffers buffer<cr>
 "list files in current working directory
