@@ -8,10 +8,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " General
 " -------
+" to get -- matchit.vim?
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'osyo-manga/unite-quickfix'
+"NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-vinegar'
@@ -312,6 +314,11 @@ call unite#custom#source('file_rec', 'filters',
 \ 'sorter_rank', 'converter_relative_abbr'])
 
 
+" Execute help.
+nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+" Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
+
 " call unite#custom#source('grep', 'filters',
 "       \ ['converter_relative_word','converter_relative_abbr'])
 " call unite#custom#source('file_rec/async','sorters','sorter_rank')
@@ -323,33 +330,39 @@ call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
 
 " try -quick-match and auto-preview -auto-highlight -unique -no-split
 "list currently open buffers
-nnoremap <leader>lb :<C-u>Unite -no-split -immediately -buffer-name=buffers buffer<cr>
+nnoremap <leader>lb :<C-u>Unite -no-split -immediately -buffer-name=buffers buffer file_mru<cr>
 "list files in current working directory
 nnoremap <leader>ld :<C-u>Unite -no-split -buffer-name=files file<cr>
 "recursive list from current working direcory or project directory
 nnoremap <leader>lf :<C-u>Unite -no-split -buffer-name=files file_rec/async:!<cr>
 nnoremap <leader>lg :<C-u>Unite -no-split -buffer-name=files file_rec/git<cr>
 nnoremap <leader>lr :<C-u>Unite -no-split -buffer-name=mru file_mru<cr>
-" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline outline<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline outline<cr>
 nnoremap <leader>ly :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
 nnoremap <leader>/ :Unite -no-split -buffer-name=grep -auto-preview grep:!<cr>
 
 
 autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-" Overwrite settings.
-imap <buffer> jk <Plug>(unite_insert_leave)
-imap <buffer><expr> j unite#smart_map('j', '')
-imap <buffer> <TAB> <Plug>(unite_select_next_line)
-nmap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
-let unite = unite#get_current_unite()
-if unite.profile_name ==# 'search'
-nnoremap <silent><buffer><expr> r unite#do_action('replace')
-else
-nnoremap <silent><buffer><expr> r unite#do_action('rename')
-endif
-nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
-endfunction"}}}
+function! s:unite_my_settings()
+  " Overwrite settings.
+  imap <buffer> jk <Plug>(unite_insert_leave)
+  imap <buffer><expr> j unite#smart_map('j', '')
+  imap <buffer> <TAB> <Plug>(unite_select_next_line)
+  nmap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
+  let unite = unite#get_current_unite()
+  if unite.profile_name ==# 'search'
+    nnoremap <silent><buffer><expr> r unite#do_action('replace')
+  else
+    nnoremap <silent><buffer><expr> r unite#do_action('rename')
+  endif
+  nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+endfunction
+
+
+" Paste from system clipboard
+noremap <leader>p <esc>o<esc>"+]p
+" Yank to system clipboard
+noremap <leader>y "+y
 
 
 " Tagbar
