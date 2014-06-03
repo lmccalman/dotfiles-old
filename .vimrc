@@ -10,6 +10,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " -------
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-vinegar'
@@ -290,20 +292,40 @@ let g:surround_indent = 1 "auto re-indent
 " Unite.vim
 " -----
 let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" try -quick-match and auto-preview
-nnoremap <leader>b :<C-u>Unite -start-insert -buffer-name=buffers -no-split buffer<cr>
-nnoremap <leader>d :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>s :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/git<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>/ :UniteWithProjectDir grep:.<cr>
-" nnoremap <leader>/ :Unite grep:.<cr>
+let g:unite_enable_start_insert = 1
+" let g:unite_enable_short_source_names = 1
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_source_rec_max_cache_files=5000
 let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_default_opts =
+\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+\ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 let g:unite_source_grep_recursive_opt=''
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_rec', 'filters',
+\ ['converter_relative_word', 'matcher_fuzzy',
+\ 'sorter_rank', 'converter_relative_abbr'])
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/'], '\|'))
+
+
+" try -quick-match and auto-preview -auto-highlight -unique
+"list currently open buffers
+nnoremap <leader>lb :<C-u>Unite -no-split -immediately -buffer-name=buffers buffer<cr>
+"list files in current working directory
+nnoremap <leader>ld :<C-u>Unite -no-split -buffer-name=files file<cr>
+"recursive list from current working direcory or project directory
+nnoremap <leader>lf :<C-u>Unite -no-split -buffer-name=files file_rec/async:!<cr>
+nnoremap <leader>lg :<C-u>Unite -no-split -buffer-name=files file_rec/git<cr>
+nnoremap <leader>lr :<C-u>Unite -no-split -buffer-name=mru file_mru<cr>
+" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline outline<cr>
+nnoremap <leader>ly :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
+nnoremap <leader>/ :Unite -no-split -buffer-name=grep -auto-preview grep:!<cr>
+
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
