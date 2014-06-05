@@ -147,6 +147,12 @@ augroup ft_haskell
   au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
 
+
+augroup ft_cpp
+  au!
+  au FileType cpp setlocal commentstring=//\ %s
+augroup END
+
 " Pretty unicode haskell symbols
 let g:haskell_conceal_wide = 1
 let g:haskell_conceal_enumerations = 1
