@@ -51,7 +51,7 @@ NeoBundle 'lambdatoast/elm.vim'
 " Visual
 " ------
 NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'lsdr/monokai'
+NeoBundle 'nanotech/jellybeans.vim'
 
 " HTML
 " ----
@@ -253,10 +253,8 @@ set guifont=Anonymous\ Pro\ for\ Powerline\ 15
 
 " colorscheme zenburn
 set t_Co=256
-colorscheme monokai
+colorscheme jellybeans
 syntax on
-"set background=dark
-"colorscheme solarized
 
 if has('gui_running')
     set guioptions-=T   " Get rid of toolbar "

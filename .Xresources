@@ -18,54 +18,30 @@ URxvt.inputMethod: ibus
 URxvt.preeditType: OnTheSpot,None
 URxvt.depth: 32
 URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/konsole.svg
-/*URxvt.background: rgba:0000/0000/0200/c800 *1/ */
 
-/* urxvt*background:  #3f3f3f */
-/* urxvt*foreground:  #dcdccc */
-/* ! black + red */
-/* !urxvt*color0:     #3f3f3f */
-/* urxvt*color0:      #1E2320 */
-/* urxvt*color1:      #705050 */
-/* ! green + yellow */
-/* urxvt*color2:      #60b48a */
-/* urxvt*color3:      #dfaf8f */
-/* ! blue + purple */
-/* urxvt*color4:      #506070 */
-/* urxvt*color5:      #dc8cc3 */
-/* ! cyan + white */
-/* urxvt*color6:      #8cd0d3 */
-/* urxvt*color7:      #dcdccc */
-/* ! bright-black + bright-red */
-/* urxvt*color8:      #709080 */
-/* urxvt*color9:      #dca3a3 */
-/* ! bright-green + bright-yellow */
-/* urxvt*color10:     #c3bf9f */
-/* urxvt*color11:     #f0dfaf */
-/* ! bright-blue + bright-purple */
-/* urxvt*color12:     #94bff3 */
-/* urxvt*color13:     #ec93d3 */
-/* ! bright-cyan + bright-white */
-/* urxvt*color14:     #93e0e3 */
-/* urxvt*color15:     #ffffff */
-
-! Molokai theme
-/* URxvt*background: #101010 */
-URxvt*background: #272822
-URxvt*foreground: #d0d0d0
-URxvt*color0: #101010
-URxvt*color1: #960050
-URxvt*color2: #66aa11
-URxvt*color3: #c47f2c
-URxvt*color4: #30309b
-URxvt*color5: #7e40a5
-URxvt*color6: #3579a8
-URxvt*color7: #9999aa
-URxvt*color8: #303030
-URxvt*color9: #ff0090
-URxvt*color10: #80ff00
-URxvt*color11: #ffba68
-URxvt*color12: #5f5fee
-URxvt*color13: #bb88dd
-URxvt*color14: #4eb4fa
-URxvt*color15: #d0d0d0
-
+*background: #151515
+*foreground: #888888
+! black
+*color0: #1C1C1C
+*color8: #404040
+! red
+*color1: #B85335
+*color9: #CF6A4C
+! green
+*color2: #799D6A
+*color10: #99AD6A
+! yellow
+*color3: #FFB964
+*color11: #FAD07A
+! blue
+*color4: #667899
+*color12: #8197BF
+! magenta
+*color5: #8787AF
+*color13: #C6B6EE
+! cyan
+*color6: #668799
+*color14: #8FBFDC
+! white
+*color7: #888888
+*color15: #E8E8D3
