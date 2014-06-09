@@ -46,6 +46,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'              
 NeoBundle 'vim-scripts/ini-syntax-definition'
+NeoBundle 'lambdatoast/elm.vim'
 
 " Visual
 " ------
