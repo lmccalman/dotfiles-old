@@ -148,6 +148,11 @@ augroup ft_haskell
   au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
 
+augroup ft_markdown
+  au!
+  au FileType markdown setlocal commentstring=[//]\:\ \#\ (%s)
+augroup END
+
 
 augroup ft_cpp
   au!
