@@ -142,3 +142,6 @@ export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 fortune -e
 #echo "\n"
 #task list
+
+# OPAM configuration
+. /home/lb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

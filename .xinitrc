@@ -19,7 +19,8 @@ eval $(gpg-agent --daemon) &
 # export GNOME_KEYRING_PID
 
 #Increase 2D pixmap performance for firefox
-nvidia-settings -a InitialPixmapPlacement=2
+# compton -bfzcCG --backend glx --vsync opengl-swc --paint-on-overlay -D5 -r6 -l-8 -t-8
+compton --config $HOME/.compton.conf -b
 xrdb  $HOME/.Xresources
 wmname LG3D
 xsetroot -cursor_name left_ptr &
