@@ -29,7 +29,8 @@ unclutter -grab -noevents -root &
 urxvtd &
 
 
-$HOME/environ/rotatingwallpaper &
+#$HOME/environ/rotatingwallpaper &
+feh --bg-fill $HOME/images/wallpapers/vim-shortcuts.png
 SpiderOak &
 nm-applet &
 xscreensaver -no-splash &

@@ -9,6 +9,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " General
 " -------
 " to get -- matchit.vim?
+NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'takac/vim-hardtime'
+NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -47,6 +50,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'              
 NeoBundle 'vim-scripts/ini-syntax-definition'
 NeoBundle 'lambdatoast/elm.vim'
+NeoBundle 'AndrewRadev/splitjoin.vim'
 
 " Visual
 " ------
@@ -209,6 +213,7 @@ set backspace=indent,eol,start "Try not to use backspace!
 set laststatus=2
 set cmdheight=2 "what is this?
 set relativenumber
+set number
 set undofile
 set lazyredraw "don't redraw whilst running macros
 set hidden "can change buffers without sawing
@@ -238,7 +243,7 @@ set smartcase
 set gdefault "this means I don't have to type g in a replace
 set incsearch
 set showmatch
-set hlsearch
+"set hlsearch
 
 "80 char warning
 set wrap
@@ -278,13 +283,9 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
-noremap h <NOP>
-noremap j <NOP>
-noremap k <NOP>
-noremap l <NOP>
-
 noremap! jk <Esc>
 inoremap <Esc> <NOP>
+
 " some craziness to try
 " nnoremap <Space> :
 " nnoremap : <NOP>
@@ -461,3 +462,13 @@ function! Pointful()
 endfunction
 vnoremap <silent> <leader>h> :call Pointful()<CR>
 
+" Vim Hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_allow_different_key = 1
+nnoremap <leader>h :HardTimeToggle
+
+"Splitjoin
+"use jS and gJ
+
+
+let g:sneak#streak = 1
