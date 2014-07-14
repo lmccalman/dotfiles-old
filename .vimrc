@@ -11,6 +11,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " to get -- matchit.vim?
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'takac/vim-hardtime'
+NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
@@ -27,8 +28,11 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-obsession'
 NeoBundle 'mbbill/undotree'                
-NeoBundle 'vim-scripts/vimwiki'
+" NeoBundle 'vim-scripts/vimwiki'
 NeoBundle 'godlygeek/tabular'
+
+"Simplenote
+"----------
 
 "Haskell
 "-------
@@ -389,9 +393,9 @@ nnoremap TT :TagbarToggle<CR>
 
 " vimwiki
 " -------
-let g:vimwiki_list = [{'path': '~/wiki/personal', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
-      \   {'path': '~/wiki/joint', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
-      \                {'path': '~/wiki/public', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/wiki/personal', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
+"       \   {'path': '~/wiki/joint', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'},
+"       \                {'path': '~/wiki/public', 'syntax': 'markdown', 'index': 'Home', 'ext': '.md'}]
 
 " LaTeX-Box
 " ---------
@@ -471,4 +475,24 @@ nnoremap <leader>h :HardTimeToggle
 "use jS and gJ
 
 
+" Sneak
+"replace 'f' with inclusive 1-char Sneak
+nmap f <Plug>Sneak_f
+nmap f <plug>sneak_F
+xmap f <plug>sneak_f
+xmap f <plug>sneak_F
+omap f <plug>sneak_f
+omap f <plug>sneak_F
+"replace 't' with exclusive 1-char Sneak
+nmap t <plug>sneak_t
+nmap t <plug>sneak_T
+xmap t <plug>sneak_t
+xmap t <plug>sneak_T
+omap t <plug>sneak_t
+omap T <Plug>Sneak_T
 let g:sneak#streak = 1
+
+" Simplenote
+source ~/.simplenoterc
+
+let g:metarw_simplenote_email = "lachlan@mccalman.info"
