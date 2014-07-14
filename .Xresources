@@ -10,8 +10,11 @@ Xcursor.theme: oxy-terra
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
-URxvt.perl-ext:   default,url-select,vtwheel,clipboard
+URxvt.perl-ext:   default,url-select,vtwheel,clipboard,keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.C-i: perl:url-select:select_next
+URxvt.altSendsEscape: true
 
 URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
 URxvt.url-select.underline: true
@@ -26,7 +29,7 @@ URxvt.preeditType: OnTheSpot,None
 URxvt.depth: 32
 URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/konsole.svg
 
-*background: [90]#151515
+URxvt*background: [90]#151515
 *foreground: #888888
 ! black
 *color0: #1C1C1C
