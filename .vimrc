@@ -496,3 +496,5 @@ let g:sneak#streak = 1
 source ~/.simplenoterc
 
 let g:metarw_simplenote_email = "lachlan@mccalman.info"
+
+let g:netrw_browsex_viewer= "xdg-open"
