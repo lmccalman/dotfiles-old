@@ -1,23 +1,18 @@
 [global]
 
-#[MailMover]
-#folders = INBOX Junk
-#max_age = 15
+[MailMover]
+folders = gmail/INBOX
+gmail/INBOX = 'NOT tag:inbox':gmail/AllMail
 
-# [rules
-# INBOX = 'tag:spam':Junk 'NOT tag:inbox':Archive
-# Junk = 'NOT tag:spam AND tag:inbox':INBOX 'NOT tag:spam':Archive
-
-# This is the default filter chain
-[SpamFilter]
-#[ClassifyingFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
-[ArchiveSentMailsFilter]
-[InboxFilter]
 [Filter.1]
-query = folder:nicta
-tag = +nicta
+query = folder:gmail/Sent
+tags = +sent;-inbox
 [Filter.2]
-query = folder:personal/Uni
-tag = +uni
+query = folder:gmail/Drafts
+tags = +draft
+[Filter.3]
+query = folder:gmail/AllMail
+tags = -inbox
+[InboxFilter]
