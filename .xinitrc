@@ -32,6 +32,7 @@ urxvtd &
 #$HOME/environ/rotatingwallpaper &
 feh --bg-fill $HOME/images/wallpapers/vim-shortcuts.png
 SpiderOak &
+dropboxd &
 nm-applet &
 xscreensaver -no-splash &
 xflux -l 33 -g 151
