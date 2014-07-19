@@ -16,7 +16,7 @@ tags = +nicta;+sent;-new
 [Filter.3]
 query = folder:gmail/Drafts
 tags = +gmail;+draft;-new
-[Filter 4]
+[Filter.4]
 query = folder:nicta/Drafts
 tags = +gmail;+draft;-new
 [Filter.5]

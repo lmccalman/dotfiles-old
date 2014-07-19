@@ -7,19 +7,19 @@ maxsyncaccounts = 1
 localrepository = gmail-local
 remoterepository = gmail-remote
 status_backend = sqlite
-#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
-#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
-autorefresh = 5
-quick = 10
+presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+autorefresh = 1
+quick = 5
 
 [Account nicta]
 localrepository = nicta-local
 remoterepository = nicta-remote
 status_backend = sqlite
-#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
-#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
-autorefresh = 5
-quick = 10
+presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+autorefresh = 1
+quick = 5
 
 [Repository gmail-local]
 type = Maildir
