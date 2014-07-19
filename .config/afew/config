@@ -1,18 +1,36 @@
 [global]
 
 [MailMover]
-folders = gmail/INBOX
+folders = gmail/INBOX nicta/INBOX
 gmail/INBOX = 'NOT tag:inbox':gmail/AllMail
+nicta/INBOX = 'NOT tag:inbox':nicta/Archive
 
 [KillThreadsFilter]
 [ListMailsFilter]
 [Filter.1]
 query = folder:gmail/Sent
-tags = +sent;-inbox
+tags = +gmail;+sent;-new
 [Filter.2]
-query = folder:gmail/Drafts
-tags = +draft
+query = folder:nicta/Sent
+tags = +nicta;+sent;-new
 [Filter.3]
-query = folder:gmail/AllMail
-tags = -inbox
-[InboxFilter]
+query = folder:gmail/Drafts
+tags = +gmail;+draft;-new
+[Filter 4]
+query = folder:nicta/Drafts
+tags = +gmail;+draft;-new
+[Filter.5]
+query = 'folder:gmail/AllMail AND NOT folder:gmail/INBOX'
+tags = +gmail;-new
+[Filter.6]
+query = folder:nicta/Archive
+tags = +nicta;-new
+[Filter.7]
+query = folder:gmail/Chats
+tags = +gmail;+chat;-new
+[Filter.8]
+query = folder:nicta/INBOX
+tags = +nicta;+inbox;-new
+[Filter.9]
+query = folder:gmail/INBOX
+tags = +gmail;+inbox;-new

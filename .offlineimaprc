@@ -1,32 +1,71 @@
 [general]
-accounts = gmail
+accounts = gmail, nicta
 pythonfile = ~/.offlineimap.py
+maxsyncaccounts = 1
 
 [Account gmail]
 localrepository = gmail-local
 remoterepository = gmail-remote
 status_backend = sqlite
-presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
-postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
+#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+autorefresh = 5
+quick = 10
+
+[Account nicta]
+localrepository = nicta-local
+remoterepository = nicta-remote
+status_backend = sqlite
+#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
+#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+autorefresh = 5
+quick = 10
 
 [Repository gmail-local]
 type = Maildir
 localfolders = ~/mail/gmail
 nametrans = lambda folder: {'AllMail': '[Gmail]/All Mail',
                             'Sent': '[Gmail]/Sent Mail',
-                            'Drafts': '[Gmail]/Drafts'
+                            'Drafts': '[Gmail]/Drafts',
+                            'Chats': '[Gmail]/Chats'
                             }.get(folder, folder)
+
+[Repository nicta-local]
+type = Maildir
+localfolders = ~/mail/nicta
+nametrans = lambda folder: {'Sent': 'Sent Items',
+                            'Archive': 'INBOX/Archive'}.get(folder, folder)
 
 [Repository gmail-remote]
 type = Gmail
 remoteuser = lachlan@mccalman.info
-remotepass = get_password("google")
+remotepasseval = get_password("google")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 nametrans = lambda folder: {'[Gmail]/All Mail': 'AllMail',
                             '[Gmail]/Sent Mail': 'Sent',
-                            '[Gmail]/Drafts': 'Drafts'
+                            '[Gmail]/Drafts': 'Drafts',
+                            '[Gmail]/Chats': 'Chats'
                             }.get(folder, folder)
 folderfilter = lambda folder: folder in {'[Gmail]/All Mail', 
                                          'INBOX',
                                          '[Gmail]/Sent Mail',
-                                         '[Gmail]/Drafts'}
+                                         '[Gmail]/Drafts',
+                                         '[Gmail]/Chats'}
+keepalive = 60
+holdconnectionopen = yes
+maxconnections = 3
+
+[Repository nicta-remote]
+type = IMAP
+remotehost = imap.nicta.com.au
+remoteuser = lmccalman
+remotepasseval = get_password("nicta")
+remoteport = 993
+ssl = yes
+cert_fingerprint=bb8bf2c794f37467bd74266ec63ae3daba012734
+nametrans = lambda folder: {'Sent Items': 'Sent',
+ 'INBOX/Archive': 'Archive'}.get(folder, folder)
+folderfilter = lambda folder: folder in {'Sent Items','INBOX','INBOX/Archive', 'Drafts'}
+keepalive = 60
+holdconnectionopen = yes
+maxconnections = 3
