@@ -1,0 +1,12 @@
+background yes
+out_to_x no
+out_to_console yes
+update_interval 1
+total_run_times 0
+use_spacer none
+
+TEXT
+^fg(\#888888)cpu:${cpu cpu0}%^fg()  \
+^fg(\#666666)mem:${mem}^fg()  \
+^fg(\#888888)bat:${battery_percent BAT0}%^fg()  \
+^fg(\#aaaaaa)${time %a %d %b %H:%M}^fg()

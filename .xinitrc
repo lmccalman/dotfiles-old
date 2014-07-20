@@ -14,6 +14,7 @@ eval $(gpg-agent --daemon) &
 #Increase 2D pixmap performance for firefox
 # compton -bfzcCG --backend glx --vsync opengl-swc --paint-on-overlay -D5 -r6 -l-8 -t-8
 compton --config $HOME/.compton.conf -b
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x222222 --height 16 &
 xrdb  $HOME/.Xresources
 wmname LG3D
 xsetroot -cursor_name left_ptr &
@@ -27,6 +28,6 @@ SpiderOak &
 dropboxd &
 nm-applet &
 xscreensaver -no-splash &
-xflux -l 33 -g 151
+xflux -l 33 -g 151 -k 2700
 offlineimap > $HOME/mail/offlineimap.log 2>&1 &
 exec xmonad

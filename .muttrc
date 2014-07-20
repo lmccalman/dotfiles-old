@@ -1,28 +1,12 @@
-# See https://github.com/jasongraham/mail_conf_example
-# http://jason.the-graham.com/2011/01/10/email_with_mutt_offlineimap_imapfilter_msmtp_archivemail/
-#General
-# set folder=~/mail
-# source ~/.mail_config/mutt/mailboxes
-# set spoolfile = +"personal/inbox"
-
-# source ~/.mail_config/mutt/common
 source ~/.mail_config/mutt/colors
-
-# set query_command="goobook query '%s'"
-# bind editor \t complete-query ## tab completion for contacts :)
-
-# source ~/.mail_config/mutt/gpg
-
-# folder-hook +personal/.* "source ~/.mail_config/mutt/personal"
-# folder-hook +nicta/.* "source ~/.mail_config/mutt/nicta"
-
-# alternates lachlan@mccalman.info lachlan.mccalman@nicta.com.au fatbot@gmail.com
-
-# source ~/.mail_config/mutt/macros
-
 
 set nm_default_uri="notmuch:///home/lb/mail"
 set virtual_spoolfile	= yes
+set sendmail="/home/lb/mail/nmsendmail"
+virtual-mailboxes \
+        "Gmail Inbox"     "notmuch://?query=tag:INBOX"\
+        "Starred"   "notmuch://?query=tag:*"\
+        "Sent"      "notmuch://?query=tag:sent"        # sets up queries for virtual folders
 
 # normal folders
 set mbox_type=Maildir
