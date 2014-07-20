@@ -7,8 +7,8 @@ maxsyncaccounts = 1
 localrepository = gmail-local
 remoterepository = gmail-remote
 status_backend = sqlite
-presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
-postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
 autorefresh = 1
 quick = 5
 
@@ -16,8 +16,8 @@ quick = 5
 localrepository = nicta-local
 remoterepository = nicta-remote
 status_backend = sqlite
-presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails"
-postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new"
+presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
 autorefresh = 1
 quick = 5
 

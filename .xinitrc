@@ -11,13 +11,6 @@ fi
 #GPG
 eval $(gpg-agent --daemon) &
 
-# # Start GNOME Keyring
-# eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-# export SSH_AUTH_SOCK
-# export GPG_AGENT_INFO
-# export GNOME_KEYRING_CONTROL
-# export GNOME_KEYRING_PID
-
 #Increase 2D pixmap performance for firefox
 # compton -bfzcCG --backend glx --vsync opengl-swc --paint-on-overlay -D5 -r6 -l-8 -t-8
 compton --config $HOME/.compton.conf -b
@@ -28,7 +21,6 @@ xsetroot -cursor_name left_ptr &
 unclutter -grab -noevents -root &
 urxvtd &
 
-
 #$HOME/environ/rotatingwallpaper &
 feh --bg-fill $HOME/images/wallpapers/vim-shortcuts.png
 SpiderOak &
@@ -36,4 +28,5 @@ dropboxd &
 nm-applet &
 xscreensaver -no-splash &
 xflux -l 33 -g 151
+offlineimap > $HOME/mail/offlineimap.log 2>&1 &
 exec xmonad
