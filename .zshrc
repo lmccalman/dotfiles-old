@@ -84,6 +84,11 @@ alias pacupd='sudo pacman -Sy' # Update and refresh the local package and ABS da
 alias pacinsd='sudo pacman -S --asdeps' # Install given package(s) as dependencies of another package
 alias pacmir='sudo pacman -Syy' # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
+alias standing='xrandr --output DP-1 --off --output DP-2 --auto --output LVDS-0 --off'
+alias sitting='xrandr --output DP-1 --auto --output DP-2 --off --output LVDS-0 --off'
+alias ranging='xrandr --output DP-1 --off --output DP-2 --off --output LVDS-0 --auto'
+alias presenting='xrandr --auto'
+
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
