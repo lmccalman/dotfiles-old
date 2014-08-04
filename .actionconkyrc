@@ -1,12 +1,12 @@
 background yes
 out_to_x no
 out_to_console yes
-update_interval 3
+update_interval 1
 total_run_times 0
 use_spacer none
 
 TEXT
-^fg(\#2efe9a)${downspeed wlp1s0}^fg()  \
-^fg(\#3E5EB5)${wireless_essid wlp1s0}^fg()\
-^fg(\#3E5EB5)(${wireless_link_qual wlp1s0})^fg()  \
-^fg(\#fa5858)${upspeed wlp1s0}^fg()  \
+^fg(\#2efe9a)${downspeed wlp3s0}^fg()  \
+^fg(\#3E5EB5)${wireless_essid wlp3s0}^fg()\
+^fg(\#3E5EB5)(${wireless_link_qual wlp3s0})^fg()  \
+^fg(\#fa5858)${upspeed wlp3s0}^fg()  \
