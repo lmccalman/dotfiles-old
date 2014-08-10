@@ -475,22 +475,22 @@ nnoremap <leader>h :HardTimeToggle
 "use jS and gJ
 
 
-" Sneak
-"replace 'f' with inclusive 1-char Sneak
-nmap f <Plug>Sneak_f
-nmap f <plug>sneak_F
-xmap f <plug>sneak_f
-xmap f <plug>sneak_F
-omap f <plug>sneak_f
-omap f <plug>sneak_F
-"replace 't' with exclusive 1-char Sneak
-nmap t <plug>sneak_t
-nmap t <plug>sneak_T
-xmap t <plug>sneak_t
-xmap t <plug>sneak_T
-omap t <plug>sneak_t
-omap T <Plug>Sneak_T
-let g:sneak#streak = 1
+" " Sneak
+" "replace 'f' with inclusive 1-char Sneak
+" nmap f <Plug>Sneak_f
+" nmap f <plug>sneak_F
+" xmap f <plug>sneak_f
+" xmap f <plug>sneak_F
+" omap f <plug>sneak_f
+" omap f <plug>sneak_F
+" "replace 't' with exclusive 1-char Sneak
+" nmap t <plug>sneak_t
+" nmap t <plug>sneak_T
+" xmap t <plug>sneak_t
+" xmap t <plug>sneak_T
+" omap t <plug>sneak_t
+" omap T <Plug>Sneak_T
+" let g:sneak#streak = 1
 
 " Simplenote
 source ~/.simplenoterc
