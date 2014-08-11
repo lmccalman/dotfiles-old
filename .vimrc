@@ -290,6 +290,12 @@ noremap   <Right>  <NOP>
 noremap! jk <Esc>
 inoremap <Esc> <NOP>
 
+map <C-K> <C-U>
+map <C-J> <C-D>
+imap <C-K> <C-O><C-U>
+imap <C-J> <C-O><C-D>
+set nostartofline
+
 " some craziness to try
 " nnoremap <Space> :
 " nnoremap : <NOP>
@@ -473,7 +479,6 @@ nnoremap <leader>h :HardTimeToggle
 
 "Splitjoin
 "use jS and gJ
-
 
 " " Sneak
 " "replace 'f' with inclusive 1-char Sneak
