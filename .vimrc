@@ -10,7 +10,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " -------
 " to get -- matchit.vim?
 NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'takac/vim-hardtime'
+" NeoBundle 'takac/vim-hardtime'
 NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'Shougo/vimproc.vim'
@@ -50,7 +50,7 @@ NeoBundle 'vim-scripts/argtextobj.vim'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'majutsushi/tagbar'                
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'              
 NeoBundle 'vim-scripts/ini-syntax-definition'
 NeoBundle 'lambdatoast/elm.vim'
@@ -260,7 +260,7 @@ nnoremap k gk
 " Visual Appearance
 "
 " set guifont=Inconsolata\ Medium\ 15
-set guifont=Anonymous\ Pro\ for\ Powerline\ 14
+set guifont=Anonymous\ Pro\ for\ Powerline\ 15
 " set guifont=Anonymous\ Pro\ 15
 " set guifont=Droid\ Sans\ Mono\ 15
 " set guifont=Source\ Code\ Pro\ Medium\ 14
