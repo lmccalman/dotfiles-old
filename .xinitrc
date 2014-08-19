@@ -22,8 +22,7 @@ xsetroot -cursor_name left_ptr &
 unclutter -grab -noevents -root &
 urxvtd &
 
-#$HOME/environ/rotatingwallpaper &
-feh --bg-fill $HOME/images/wallpapers/vim-shortcuts.png
+$HOME/environ/rotatingwallpaper &
 SpiderOak &
 dropboxd &
 nm-applet &
