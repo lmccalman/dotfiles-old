@@ -3,10 +3,10 @@ Xft*lcdfilter:  lcddefault
 Xft*hintstyle:  hintfull
 Xft*hinting: 1
 Xft*antialias: 1
-Xft*dpi: 96
+Xft*dpi: 235
 Xft*rgba: rgb
-
 Xcursor.theme: oxy-terra
+
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
@@ -21,15 +21,15 @@ URxvt.url-select.underline: true
 URxvt.scrollBar: false
 /* URxvt.font: xft:Inconsolata:Medium:size=13,xft:Terminus */
 /* URxvt.boldFont: xft:Inconsolata:Medium:size=13,xft:Terminus */
-URxvt.font: xft:Anonymous\ Pro\ Minus:Regular:size=13,xft:Terminus
-URxvt.boldFont: xft:Anonymous\ Pro\ Minus:Bold:size=13,xft:Terminus
+URxvt.font: xft:Anonymous\ Pro:Regular:size=24,xft:Terminus
+URxvt.boldFont: xft:Anonymous\ Pro:Bold:size=24,xft:Terminus
 /* URxvt.letterSpace: -1 */
 URxvt.inputMethod: ibus
 URxvt.preeditType: OnTheSpot,None
 URxvt.depth: 32
 URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/konsole.svg
 
-URxvt*background: [90]#151515
+URxvt*background: #151515
 *foreground: #888888
 ! black
 *color0: #1C1C1C

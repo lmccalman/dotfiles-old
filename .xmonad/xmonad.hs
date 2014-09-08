@@ -54,10 +54,10 @@ main = do
 
 -- Dzen
 myLogHook h = dynamicLogWithPP $ myDzenPP { ppOutput = hPutStrLn h }
-myDzenStatus = "dzen2 -x '0' -w '1100' -ta 'l' -dock" ++ myDzenStyle
-myDzenAction = "conky -c ~/.actionconkyrc | dzen2 -x '1100' -w '330' -ta 'c' -dock" ++ myDzenStyle
-myDzenConky  = "conky -c ~/.conkyrc | dzen2 -x '1430' -w '394' -ta 'r' -dock" ++ myDzenStyle
-myDzenStyle  = " -h '16' -y '0' -fn terminus -fg '#777777' -bg '#222222'"
+myDzenStatus = "dzen2 -x '0' -w '1900' -ta 'l' -dock" ++ myDzenStyle
+myDzenAction = "conky -c ~/.actionconkyrc | dzen2 -x '1900' -w '600' -ta 'c' -dock" ++ myDzenStyle
+myDzenConky  = "conky -c ~/.conkyrc | dzen2 -x '2500' -w '444' -ta 'r' -dock" ++ myDzenStyle
+myDzenStyle  = " -h '32' -y '0' -fn 'Anonymous Pro-18' -fg '#777777' -bg '#222222'"
 myDzenPP = dzenPP
     { ppCurrent = dzenColor "#3E5EB5" "" . wrap " " " "
     , ppHidden  = dzenColor "#aaaaaa" "" . wrap " " " "

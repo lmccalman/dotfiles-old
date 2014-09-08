@@ -33,7 +33,7 @@ ZSH_THEME="lb"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(git python zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 #Customize!
@@ -89,26 +89,6 @@ alias sitting='xrandr --output DP-1 --auto --output DP-2 --off --output LVDS-0 -
 alias ranging='xrandr --output DP-1 --off --output DP-2 --off --output LVDS-0 --auto'
 alias presenting='xrandr --auto'
 
-# bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# bind P and N for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-
-# bind k and j for VI mode
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-
-zle-keymap-select () {
-  case $KEYMAP in
-    vicmd) print -rn -- $terminfo[cvvis];; # block cursor
-  viins) print -rn -- $terminfo[cnorm];; # less visible cursor
-esac
-}
 
 # coloured output for less
 man() {
@@ -121,12 +101,6 @@ man() {
     LESS_TERMCAP_ue=$(printf "\e[0m") \
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
-}
-
-#Set the title of the window
-precmd()
-{
-  echo -ne "\033]0;${PWD/$HOME/~} (${USER}@${HOST})\007"
 }
 
 export PYTHONPATH=$PYTHONPATH:$HOME/code/geotherml/lib
