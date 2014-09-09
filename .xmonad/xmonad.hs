@@ -1,8 +1,8 @@
 -- Import statements
 import XMonad
 import XMonad.Hooks.ManageDocks    -- for trayer?
+import XMonad.Hooks.EwmhDesktops hiding (fullscreenEventHook)
 import XMonad.Hooks.Place
-import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -34,16 +34,16 @@ main = do
   status <- spawnPipe myDzenStatus
   action <- spawnPipe myDzenAction
   conky <- spawnPipe myDzenConky
-  xmonad $ defaultConfig 
+  xmonad $ ewmh defaultConfig 
     { terminal = myTerminal
     , manageHook = manageSpawn <+> manageDocks <+> myManageHook <+> manageHook defaultConfig
     , layoutHook = myLayoutHook
-    , borderWidth         = 0
+    , borderWidth         = 6
     , workspaces          = myWorkspaces
     , normalBorderColor   = "#000000"
-    , focusedBorderColor  = "#000000"
-    , logHook = myLogHook status <+> fadeWindowsLogHook myFadeHook
-    , handleEventHook = fadeWindowsEventHook <+> fullscreenEventHook
+    , focusedBorderColor  = "#880000"
+    , logHook = myLogHook status 
+    , handleEventHook = fullscreenEventHook
     , modMask             = mod4Mask
     } `additionalKeys`
         [ ((mod4Mask, xK_f), spawn "firefox")
@@ -99,20 +99,3 @@ myManageHook = composeAll
     , className =? "Steam"          --> doFloat
     ]
  
--- Transparancy
-myFadeHook = composeAll
-        [ opaque
-        -- , className =? "Skype" --> transparency 0.2
-        , isUnfocused --> transparency 0.2
-        , className =? "Chromium" <&&> isUnfocused --> transparency 0.1
-        , className =? "URxvt" <&&> isUnfocused --> transparency 0.23
-        , className =? "Skype" <&&> isUnfocused --> transparency 0.3
-        , className =? "MuPDF" <&&> isUnfocused --> transparency 0.1
-        , className =? "Okular" <&&> isUnfocused --> transparency 0.1
-        , className =? "TexMaker" <&&> isUnfocused --> transparency 0.1
-        , className =? "Thunderbird" <&&> isUnfocused --> transparency 0.1
-        , className =? "MPlayer" <&&> isUnfocused --> transparency 0
-        , className =? "Gimp" <&&> isUnfocused --> transparency 0
-        ]
-
-
