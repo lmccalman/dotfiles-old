@@ -33,7 +33,7 @@ ZSH_THEME="lb"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python zsh-syntax-highlighting)
+plugins=(git python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 #Customize!

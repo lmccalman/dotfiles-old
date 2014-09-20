@@ -1,0 +1,147 @@
+# i3 config file (v4)
+
+# modifier = Alt, $sup = Wind0ws key
+set $mod Mod1
+set $sup Mod4
+
+focus_follows_mouse no
+
+font pango:Anonymous Pro, FontAwesome 18
+
+# I really only have 1 screen
+workspace_layout tabbed
+
+# Don't waste pixels
+new_window none
+new_float none
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+c kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+H move left
+bindsym $mod+Shift+J move down
+bindsym $mod+Shift+K move up
+bindsym $mod+Shift+L move right
+
+# split in horizontal orientation
+bindsym $mod+z split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+apostrophe layout stacking
+bindsym $mod+comma layout tabbed
+bindsym $mod+period layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+t floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+t focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1:I
+bindsym $mod+2 workspace 2:II
+bindsym $mod+3 workspace 3:III
+bindsym $mod+4 workspace 4:IV
+bindsym $mod+5 workspace 5:V
+bindsym $mod+6 workspace 6:VI
+bindsym $mod+7 workspace 7:VII
+bindsym $mod+8 workspace 8:VIII
+bindsym $mod+9 workspace 9:IX
+bindsym $mod+0 workspace 10:X
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1:I
+bindsym $mod+Shift+2 move container to workspace 2:II
+bindsym $mod+Shift+3 move container to workspace 3:III
+bindsym $mod+Shift+4 move container to workspace 4:IV
+bindsym $mod+Shift+5 move container to workspace 5:V
+bindsym $mod+Shift+6 move container to workspace 6:VI
+bindsym $mod+Shift+7 move container to workspace 7:VII
+bindsym $mod+Shift+8 move container to workspace 8:VIII
+bindsym $mod+Shift+9 move container to workspace 9:IX
+bindsym $mod+Shift+0 move container to workspace 10:X
+
+# reload the configuration file
+#bindsym $mod+Shift+J reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Q restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Q exec i3-msg exit
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+s mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Tab exec rofi -now
+
+# start gmrun
+bindsym $sup+r exec gmrun
+bindsym $sup+Return exec urxvt
+bindsym $sup+f exec ~/.i3/run_or_raise firefox firefox
+bindsym $sup+v exec ~/.i3/run_or_raise GVIM gvim
+bindsym $sup+g exec ~/.i3/run_or_raise gwenview gwenview
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status --config ~/.i3/i3status.conf
+        font pango:Anonymous Pro, FontAwesome 20
+        position top
+        strip_workspace_numbers yes
+        colors {
+            background #151515
+            statusline #888888
+            separator #151515
+            #border, background, text color
+            focused_workspace  #4c7899 #285577 #E8E8D3
+            active_workspace   #333333 #5f676a #E8E8D3
+            inactive_workspace #333333 #222222 #E8E8D3
+            urgent_workspace   #2f343a #900000 #E8E8D3
+        }
+}
+
+# class                 border  backgr. text    indicator
+client.focused          #4C7899 #285577 #E8E8D3 #2e9ef4
+client.focused_inactive #333333 #5f676a #E8E8D3 #484e50
+client.unfocused        #151515 #151515 #888888 #292d2e
+client.urgent           #CF6A4C #CF6A4C #E8E8D3 #900000
+client.background #151515
+

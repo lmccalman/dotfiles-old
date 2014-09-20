@@ -19,8 +19,6 @@ URxvt.altSendsEscape: true
 URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
 URxvt.url-select.underline: true
 URxvt.scrollBar: false
-/* URxvt.font: xft:Inconsolata:Medium:size=13,xft:Terminus */
-/* URxvt.boldFont: xft:Inconsolata:Medium:size=13,xft:Terminus */
 URxvt.font: xft:Anonymous\ Pro:Regular:size=24,xft:Terminus
 URxvt.boldFont: xft:Anonymous\ Pro:Bold:size=24,xft:Terminus
 /* URxvt.letterSpace: -1 */
@@ -29,29 +27,40 @@ URxvt.preeditType: OnTheSpot,None
 URxvt.depth: 32
 URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/konsole.svg
 
+rofi.background: #151515
+rofi.foreground: #E8E8D3
+rofi.highlightbg: #404040
+rofi.highlightfg: #FFB964
+rofi.bordercolor: #99AD6A
+rofi.font: Anonymous\ Pro 24
+rofi.padding: 3
+rofi.lines: 5
+rofi.borderwidth: 3
+
 URxvt*background: #151515
-*foreground: #888888
+URxvt*foreground: #888888
 ! black
-*color0: #1C1C1C
-*color8: #404040
+URxvt*color0: #1C1C1C
+URxvt*color8: #404040
 ! red
-*color1: #B85335
-*color9: #CF6A4C
+URxvt*color1: #B85335
+URxvt*color9: #CF6A4C
 ! green
-*color2: #799D6A
-*color10: #99AD6A
+URxvt*color2: #799D6A
+URxvt*color10: #99AD6A
 ! yellow
-*color3: #FFB964
-*color11: #FAD07A
+URxvt*color3: #FFB964
+URxvt*color11: #FAD07A
 ! blue
-*color4: #667899
-*color12: #8197BF
+URxvt*color4: #667899
+URxvt*color12: #8197BF
 ! magenta
-*color5: #8787AF
-*color13: #C6B6EE
+URxvt*color5: #8787AF
+URxvt*color13: #C6B6EE
 ! cyan
-*color6: #668799
-*color14: #8FBFDC
+URxvt*color6: #668799
+URxvt*color14: #8FBFDC
 ! white
-*color7: #888888
-*color15: #E8E8D3
+URxvt*color7: #888888
+URxvt*color15: #E8E8D3
+

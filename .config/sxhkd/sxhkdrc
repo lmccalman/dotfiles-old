@@ -2,15 +2,19 @@
 # bspwm hotkeys
 #
 
+# Exit bspwm
 super + alt + Escape
 	bspc quit
 
-super + w
+# Close Window
+super + c
 	bspc window -c
 
+# Toggle Monocole(??)
 super + t
 	bspc desktop -l next
 
+#Balance tree
 super + b
 	bspc desktop -B
 
@@ -84,7 +88,7 @@ super + Return
 	urxvt
 
 super + space
-  gmrun
+	gmrun
 
 # make sxhkd reload its configuration files:
 super + Escape

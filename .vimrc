@@ -497,9 +497,7 @@ nnoremap <leader>h :HardTimeToggle
 " omap T <Plug>Sneak_T
 " let g:sneak#streak = 1
 
-" Simplenote
-source ~/.simplenoterc
-
-let g:metarw_simplenote_email = "lachlan@mccalman.info"
+let g:SimplenoteUsername = "lachlan@mccalman.info"
+let g:SimplenotePassword = system('pass simplenote')
 
 let g:netrw_browsex_viewer= "xdg-open"

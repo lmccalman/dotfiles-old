@@ -26,9 +26,9 @@ nm-applet &
 xscreensaver -no-splash &
 xflux -l 33 -g 151 -k 2700
 offlineimap > $HOME/mail/offlineimap.log 2>&1 &
-## i3
-#exec i3
+# i3
+exec i3
 
-# bspwm
-sxhkd &
-exec bspwm
+# # bspwm
+# sxhkd &
+# exec bspwm
