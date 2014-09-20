@@ -258,12 +258,7 @@ nnoremap j gj
 nnoremap k gk
 
 " Visual Appearance
-"
-" set guifont=Inconsolata\ Medium\ 15
-set guifont=Anonymous\ Pro\ for\ Powerline\ 11
-" set guifont=Anonymous\ Pro\ 15
-" set guifont=Droid\ Sans\ Mono\ 15
-" set guifont=Source\ Code\ Pro\ Medium\ 14
+set guifont=Anonymous\ Pro\ for\ Powerline\ 10
 
 " colorscheme zenburn
 set t_Co=256
