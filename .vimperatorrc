@@ -1,0 +1,19 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+set noautocomplete
+set complete=l
+set focuscontent
+set hintchars=aoeusnth
+set tabnumbers
+set wildmode='list:full'
+set titlestring=Firefox
+set toolbars=none
+source! /home/lb/.vimperatorrc.local
+
+noremap F ;w
+nnoremap j 3j
+nnoremap k 3k
+nnoremap J <C-d>
+nnoremap K <C-u>
+
+" vim: set ft=vimperator:
