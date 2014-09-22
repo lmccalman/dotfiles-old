@@ -10,7 +10,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " -------
 " to get -- matchit.vim?
 NeoBundle 'justinmk/vim-sneak'
-" NeoBundle 'takac/vim-hardtime'
+NeoBundle 'takac/vim-hardtime'
 NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'Shougo/vimproc.vim'
