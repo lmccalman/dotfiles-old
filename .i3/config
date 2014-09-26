@@ -114,9 +114,9 @@ bindsym $mod+Tab exec rofi -now
 # start gmrun
 bindsym $sup+r exec gmrun
 bindsym $sup+Return exec urxvt
-bindsym $sup+f exec ~/.i3/run_or_raise firefox firefox
-bindsym $sup+v exec ~/.i3/run_or_raise GVIM gvim
-bindsym $sup+g exec ~/.i3/run_or_raise gwenview gwenview
+bindsym $sup+f exec firefox
+bindsym $sup+v exec gvim
+bindsym $sup+g exec gwenview
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
