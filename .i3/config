@@ -113,7 +113,7 @@ bindsym $mod+Tab exec rofi -now
 
 # start gmrun
 bindsym $sup+r exec gmrun
-bindsym $sup+Return exec urxvt
+bindsym $sup+Return exec termite
 bindsym $sup+f exec firefox
 bindsym $sup+v exec gvim
 bindsym $sup+g exec gwenview
