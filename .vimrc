@@ -494,5 +494,6 @@ nnoremap <leader>h :HardTimeToggle
 
 let g:SimplenoteUsername = "lachlan@mccalman.info"
 let g:SimplenotePassword = system('pass simplenote')
+let g:SimplenoteVertical=1
 
 let g:netrw_browsex_viewer= "xdg-open"
