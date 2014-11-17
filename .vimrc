@@ -43,6 +43,7 @@ NeoBundle 'Twinside/vim-hoogle'
 
 " Coding
 " ------
+NeoBundle 'JuliaLang/julia-vim'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'          
 NeoBundle 'int3/vim-extradite'
