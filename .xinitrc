@@ -23,9 +23,10 @@ $HOME/environ/rotatingwallpaper &
 SpiderOak &
 dropboxd &
 nm-applet &
-xscreensaver -no-splash &
+# xscreensaver -no-splash &
 xflux -l 33 -g 151 -k 2700
-offlineimap > $HOME/mail/offlineimap.log 2>&1 &
+# offlineimap > $HOME/mail/offlineimap.log 2>&1 &
+insync start
 # i3
 exec i3
 
