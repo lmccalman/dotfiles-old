@@ -42,7 +42,6 @@ setopt extended_glob
 #Aliases
 alias cp="rsync -az --progress"
 alias shutdown="sudo shutdown -P -h now"
-export GREP_COLOR="1;33"                        #light yellow?
 alias grep="grep --color=auto"
 export LESS="-R"   		                          #for colour
 alias df="df -h"
