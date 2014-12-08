@@ -117,6 +117,9 @@ export QT_IM_MODULE=ibus
 export PATH=/opt/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 
+# GREP
+unset GREP_OPTIONS
+
 fortune -e
 #echo "\n"
 #task list
