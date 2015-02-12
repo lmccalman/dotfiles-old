@@ -8,14 +8,6 @@ set hlfind
 set incfind
 "}}}
 
-"{{{ PassKeys
-"set passkeys+='mail\.google\.com':c/jkhnpouelxsfra#`[]z?*nrtgidIU+-=<Tab><Return>
-"set passkeys+='mail\.google\.com/tasks/canvas':<Tab><S-Tab><Return>
-"set passkeys+='google\.com/reader':jkvnpbumoaAXNOVPJK?gehtl<Return>
-"set passkeys+='www\.google\.com/calendar':dwmxajkcnqetp?<Del>s12345<Return>
-set passkeys+='duckduckgo\.com/':\!lo<C-Return>jkh<Esc>\'v/rs1<Return>
-"}}}
-
 "{{{ Shortcuts
 map <C-l> :noh<CR>
 "}}}
