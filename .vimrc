@@ -11,7 +11,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " to get -- matchit.vim?
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'takac/vim-hardtime'
-NeoBundle 'mrtazz/simplenote.vim'
 NeoBundle 'bruno-/vim-vertical-move'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
@@ -31,8 +30,6 @@ NeoBundle 'mbbill/undotree'
 " NeoBundle 'vim-scripts/vimwiki'
 NeoBundle 'godlygeek/tabular'
 
-"Simplenote
-"----------
 
 "Haskell
 "-------
@@ -492,9 +489,5 @@ nnoremap <leader>h :HardTimeToggle
 " omap t <plug>sneak_t
 " omap T <Plug>Sneak_T
 " let g:sneak#streak = 1
-
-let g:SimplenoteUsername = "lachlan@mccalman.info"
-let g:SimplenotePassword = system('pass simplenote')
-let g:SimplenoteVertical=1
 
 let g:netrw_browsex_viewer= "xdg-open"
