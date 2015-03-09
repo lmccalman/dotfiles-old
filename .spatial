@@ -2,7 +2,8 @@
   "name" : "Lachlan McCalman",
 
   "paths" : {
-    "mithlond_db" : "/home/lb/code/spatial-analytics/applications/import"
+    "mithlond_db" : "/home/lb",
+    "data" : "/home/lb/mnt/nicta/Spatialanalytics/data"
   }
 
 }
