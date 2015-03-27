@@ -102,7 +102,7 @@ man() {
     man "$@"
 }
 
-export PYTHONPATH=$PYTHONPATH:$HOME/code/spatial-analytics/yavanna:$HOME/code/spatial-analytics/mithlond
+export PYTHONPATH=$PYTHONPATH:$HOME/code/statbadger/yavanna:$HOME/code/statbadger/mithlond
 export EDITOR=/usr/bin/vim
 export TERM=xterm-256color
 #for ruby gems
