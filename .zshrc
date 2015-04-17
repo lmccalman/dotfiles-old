@@ -120,6 +120,11 @@ export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 # GREP
 unset GREP_OPTIONS
 
+# Virtualenvwrapper
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
 fortune -e
 #echo "\n"
 #task list

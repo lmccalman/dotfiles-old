@@ -56,6 +56,13 @@ if [[ -n ${HOLYDAY} ]]; then
 fi
 }
 
+function virtualenv() {
+    if [[ -n ${VIRTUAL_ENV} ]]; then
+      VSTRING=venv:$(basename ${VIRTUAL_ENV})
+      echo "-${blue_op}${VSTRING}${blue_cp}"
+        fi
+}
+
 function my_time() {
 echo "-${blue_op}`date +%s | sed -e ':a' -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'`${blue_cp}"
 }
@@ -72,7 +79,7 @@ function cabal_sandbox_info() {
 }
 
 
-PROMPT=$'\n┌${user_host}-$(ssh_connection)$(my_git_prompt)$(cabal_sandbox_info)$(my_time)$(holyday)
+PROMPT=$'\n┌${user_host}-$(ssh_connection)$(my_git_prompt)$(virtualenv)$(cabal_sandbox_info)$(my_time)$(holyday)
 └${hist_no}-${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"
