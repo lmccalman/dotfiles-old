@@ -8,16 +8,21 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " General
 " -------
-" to get -- matchit.vim?
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'takac/vim-hardtime'
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'bruno-/vim-vertical-move'
+
+" Unite
+" -----
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-tag'
-"NeoBundle 'osyo-manga/unite-quickfix'
+NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'Shougo/neomru.vim'
+
+""" UP TO HERE
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'tpope/vim-surround'
@@ -27,7 +32,6 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-obsession'
 NeoBundle 'mbbill/undotree'                
-" NeoBundle 'vim-scripts/vimwiki'
 NeoBundle 'godlygeek/tabular'
 
 
@@ -74,6 +78,18 @@ filetype plugin indent on
 NeoBundleCheck
 " end of NeoBundle stuff
 
+" usage -- :<loc>/foo/$t copy lines(?) matching foo
+"copy
+cnoremap $t <cr>:t's<cr> 
+"move
+cnoremap $m <cr>:m's<cr>
+"delete
+cnoremap $d <cr>:d<cr>'s
+" cnoremap $t <CR>:t''<CR>
+" cnoremap $m <CR>:m''<CR>
+" cnoremap $d <CR>:d<CR>
+
+
 set backupdir=~/.tmp,~/tmp,/var/tmp,/tmp
 set undodir=~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.tmp,~/tmp,/var/tmp,/tmp
@@ -91,14 +107,14 @@ map Q <Nop>
 
 let mapleader=","
 
-" Indenting and tabbing
-set tabstop=2
+" indenting and tabbing
+set smarttab "tab width determined by shiftwidth
+set expandtab
 set shiftwidth=2
 set softtabstop=2
-set expandtab
-set smarttab "tab width determined by shiftwidth
+set tabstop=2
 
-" Ensures latex not plaintex chosen when opening a blank .tex file
+" ensures latex not plaintex chosen when opening a blank .tex file
 let g:tex_flavor='latex'
 
 "Default Formatting (ie python)
@@ -201,7 +217,7 @@ nnoremap P P'[v']=
 set formatprg="PARINIT='rTbgqR B=.,?_A_a Q=_s>|' par\ -w79"
 
 " Misc 
-set scrolloff=20
+set scrolloff=9999
 set autoread
 set encoding=utf-8
 set showcmd
@@ -245,6 +261,8 @@ set smartcase
 set gdefault "this means I don't have to type g in a replace
 set incsearch
 set showmatch
+set matchtime=2 "0.2 seconds
+set matchpairs+=<:>  "for html etc
 "set hlsearch
 
 "80 char warning
@@ -410,6 +428,10 @@ let g:airline_powerline_fonts = 1
 " -------------
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
+
 " NeoGHC
 " ------
 let g:necoghc_enable_detailed_browse = 1
@@ -491,3 +513,7 @@ nnoremap <leader>h :HardTimeToggle
 " let g:sneak#streak = 1
 
 let g:netrw_browsex_viewer= "xdg-open"
+
+" vim expand region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
