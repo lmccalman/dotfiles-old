@@ -131,12 +131,13 @@ nnoremap ` '
 let mapleader = ","
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>sw :SudoWrite<CR>
+"nnoremap <Leader>sw :SudoWrite<CR>
 nnoremap <leader>h :HardTimeToggle
 "Ag
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>fp :ProjectRootExe Ag<Space>
-nnoremap <leader>l :CtrlPMixed<CR>
+nnoremap <leader>l :CtrlPBuffer<CR>
+nnoremap <leader>s :CtrlPBuffer<CR><CR> 
 " Change indent continuously
 vmap < <gv
 vmap > >gv
@@ -310,8 +311,8 @@ let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsListSnippets="<c-s-tab>"
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
-let g:ctrlp_cmd = ':CtrlPMixed'
-let g:ctrlp_extensions = ['mixed']
+let g:ctrlp_cmd = ':CtrlPBuffer'
+" let g:ctrlp_extensions = ['mixed']
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
 let g:ctrlp_switch_buffer = 'Et'  "should be default

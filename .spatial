@@ -4,6 +4,12 @@
   "paths" : {
     "mithlond_db" : "/home/lb",
     "data" : "/home/lb/mnt/nicta/Spatialanalytics/data"
+  },
+
+  "mithlond": {
+    "server_address": "localhost",
+    "client_port":8000,
+    "worker_port":8001
   }
 
 }
