@@ -103,6 +103,7 @@ set ttyfast
 set undodir=~/.tmp,~/tmp,/var/tmp,/tmp
 set undofile
 set viminfo^=%
+set virtualedit=block
 set wildmenu
 set wildmode=list:longest
 set wrap
@@ -137,7 +138,7 @@ nnoremap <leader>h :HardTimeToggle
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>fp :ProjectRootExe Ag<Space>
 nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap <leader>s :CtrlPBuffer<CR><CR> 
+nnoremap <leader>s :CtrlPBuffer<CR><CR><CR> 
 " Change indent continuously
 vmap < <gv
 vmap > >gv
