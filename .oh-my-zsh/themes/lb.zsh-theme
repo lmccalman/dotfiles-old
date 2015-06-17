@@ -81,7 +81,7 @@ PROMPT=$'\n┌${user_host}$(ssh_connection)$(my_git_prompt)$(virtualenv)$(cabal_
 RPROMPT="%F{${1:-green}}%~%f"
 
 ZSH_THEME_PROMPT_RETURNCODE_PREFIX="%{$fg_bold[red]%}"
-ZSH_THEME_GIT_PROMPT_PREFIX="${blue_op}%{$fg[yellow]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="-${blue_op}%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[magenta]%}↑"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●"
 ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[red]%}●"
