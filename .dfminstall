@@ -1,5 +1,6 @@
 README.md skip
 bin skip
+.gnupg
 .ssh
 .vim
 .config
