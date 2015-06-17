@@ -1,0 +1,10 @@
+README.md skip
+bin skip
+.ssh
+.vim
+.config
+.ghc
+.git skip
+.oh-my-zsh
+.vim
+.xmonad
