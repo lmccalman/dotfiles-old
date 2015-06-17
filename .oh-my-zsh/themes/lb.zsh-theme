@@ -45,7 +45,7 @@ echo $(current_branch || echo "no branch")
 
 function ssh_connection() {
 if [[ -n $SSH_CONNECTION ]]; then
-  echo "${blue_op}ssh${blue_cp}-"
+  echo "-${blue_op}ssh${blue_cp}"
 fi
 }
 
@@ -75,7 +75,7 @@ function cabal_sandbox_info() {
 }
 
 
-PROMPT=$'\n┌${user_host}-$(ssh_connection)$(my_git_prompt)$(virtualenv)$(cabal_sandbox_info)$(holyday)
+PROMPT=$'\n┌${user_host}$(ssh_connection)$(my_git_prompt)$(virtualenv)$(cabal_sandbox_info)$(holyday)
 └${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"
