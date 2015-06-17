@@ -102,13 +102,7 @@ noremap   <Right>  <NOP>
 inoremap  <Esc>    <NOP>
 
 noremap! jk <Esc>
-nnoremap ; :
-vnoremap ; :
-nnoremap <Space> ;
-nnoremap <Space> ;
-nnoremap ' `
-nnoremap ` '
-
+nnoremap <Space> :
 
 " My leader mappings
 let mapleader = ","
@@ -119,7 +113,9 @@ nnoremap <leader>h :HardTimeToggle
 "Ag
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>fp :ProjectRootExe Ag<Space>
-nnoremap <leader>l :CtrlP<CR>
+"Ctrlp
+nnoremap <leader>l :CtrlPMixed<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>s :b#<CR>
 " Change indent continuously
 vmap < <gv
@@ -133,7 +129,7 @@ nnoremap TT :TagbarToggle<CR>
 
 "disable that goddamn 'Entering Ex mode. Type 'visual' to go to Normal mode.'
 " that I trigger 40x a day.
-map Q <Nop> "No more 
+map Q <Nop> 
 
 " allow the . to execute once for each line of a visual block
 vnoremap . :normal .<CR>
@@ -242,36 +238,42 @@ endif
 
 
 " Plugin options
-let g:LatexBox_latexmk_options = '-pv'
-let g:LatexBox_viewer = 'okular'
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsListSnippets="<c-s-tab>"
-"wtf does this do
-let g:airline#extensions#tabline#enabled = 1 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
 
 
 " CtrlP
+" note, use .agignore to ignore shite here
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" let g:ctrlp_cmd = ':CtrlPMixed'
-" let g:ctrlp_extensions = ['mixed']
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
-" let g:ctrlp_switch_buffer = 'Et'  "should be default
-" ag is fast enough that CtrlP doesn't need to cache
-" let g:ctrlp_use_caching = 0
-
-
+" 10x faster at matching
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_extensions = ['mixed']
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
+let g:ctrlp_switch_buffer = 'Et'  "should be default
 
 let g:hardtime_allow_different_key = 1
 let g:hardtime_default_on = 1
-let g:haskell_tabular = 1
-let g:necoghc_debug = 0
-let g:necoghc_enable_detailed_browse = 1
+
 let g:surround_indent = 1 "auto re-indent
 let g:syntastic_auto_loc_list=0
 let g:tagbar_autoclose = 1
 let g:tagbar_left = 1
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
+"replace 'f' with 1-char Sneak
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+"replace 't' with 1-char Sneak
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
