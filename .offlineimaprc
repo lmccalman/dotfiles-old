@@ -12,15 +12,6 @@ status_backend = sqlite
 autorefresh = 1
 quick = 5
 
-[Account nicta]
-localrepository = nicta-local
-remoterepository = nicta-remote
-status_backend = sqlite
-#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
-#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
-autorefresh = 1
-quick = 5
-
 [Repository gmail-local]
 type = Maildir
 localfolders = ~/mail/gmail
@@ -29,12 +20,6 @@ nametrans = lambda folder: {'AllMail': '[Gmail]/All Mail',
                             'Drafts': '[Gmail]/Drafts',
                             'Chats': '[Gmail]/Chats'
                             }.get(folder, folder)
-
-[Repository nicta-local]
-type = Maildir
-localfolders = ~/mail/nicta
-nametrans = lambda folder: {'Sent': 'Sent Items',
-                            'Archive': 'INBOX/Archive'}.get(folder, folder)
 
 [Repository gmail-remote]
 type = Gmail
@@ -46,14 +31,33 @@ nametrans = lambda folder: {'[Gmail]/All Mail': 'AllMail',
                             '[Gmail]/Drafts': 'Drafts',
                             '[Gmail]/Chats': 'Chats'
                             }.get(folder, folder)
-folderfilter = lambda folder: folder in {'[Gmail]/All Mail', 
-                                         'INBOX',
+#folderfilter = lambda folder: folder in {'[Gmail]/All Mail', 
+#                                         'INBOX',
+#                                         '[Gmail]/Sent Mail',
+#                                         '[Gmail]/Drafts',
+#                                         '[Gmail]/Chats'}
+folderfilter = lambda folder: folder in {'INBOX',
                                          '[Gmail]/Sent Mail',
-                                         '[Gmail]/Drafts',
-                                         '[Gmail]/Chats'}
+                                         '[Gmail]/Drafts'}
 keepalive = 60
 holdconnectionopen = yes
 maxconnections = 3
+
+
+[Account nicta]
+localrepository = nicta-local
+remoterepository = nicta-remote
+status_backend = sqlite
+#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
+#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
+autorefresh = 1
+quick = 5
+
+[Repository nicta-local]
+type = Maildir
+localfolders = ~/mail/nicta
+nametrans = lambda folder: {'Sent': 'Sent Items',
+                            'Archive': 'INBOX/Archive'}.get(folder, folder)
 
 [Repository nicta-remote]
 type = IMAP

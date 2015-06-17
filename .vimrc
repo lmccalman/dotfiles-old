@@ -13,8 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'justinmk/vim-sneak'
 Plugin 'takac/vim-hardtime'
 Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-eunuch' "for :SudoWrite and etc
@@ -33,37 +33,19 @@ Plugin 'scrooloose/syntastic'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'majutsushi/tagbar'                
 Plugin 'Raimondi/delimitMate'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'lervag/vimtex'
 
 " Visual
 " ------
 Plugin 'vim-scripts/Zenburn'
 Plugin 'nanotech/jellybeans.vim'
 
-" Maybe
-" -----
-" Plugin 'JuliaLang/julia-vim'
-" Plugin 'tpope/vim-fugitive'          
-" Plugin 'int3/vim-extradite'
-" Plugin 'LaTeX-Box-Team/LaTeX-Box'              
-" Plugin 'vim-scripts/ini-syntax-definition'
-" Plugin 'lambdatoast/elm.vim'
-
-"Haskell
-"-------
-" Plugin 'travitch/hasksyn'
-" Plugin 'eagletmt/ghcmod-vim'
-" Plugin 'eagletmt/neco-ghc'
-" Plugin 'Twinside/vim-hoogle'
-
-" HTML
-" ----
-"Plugin 'vim-scripts/ragtag.vim'
-
-" Plugin 'jdaddy.vim' for json!
 call vundle#end()
 
 filetype plugin indent on
 syntax on
+
 set autochdir
 set autoread
 set backspace=indent,eol,start "Try not to use backspace!
@@ -73,9 +55,9 @@ set cursorline
 set directory=~/.tmp,~/tmp,/var/tmp,/tmp
 set encoding=utf-8
 set expandtab
+set foldlevel=99
 set formatoptions=cq
 set gdefault "this means I don't have to type g in a replace
-set hidden
 set hidden "can change buffers without sawing
 set hlsearch
 set ignorecase
@@ -137,8 +119,8 @@ nnoremap <leader>h :HardTimeToggle
 "Ag
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>fp :ProjectRootExe Ag<Space>
-nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap <leader>s :CtrlPBuffer<CR><CR><CR> 
+nnoremap <leader>l :CtrlP<CR>
+nnoremap <leader>s :b#<CR>
 " Change indent continuously
 vmap < <gv
 vmap > >gv
@@ -175,48 +157,6 @@ nnoremap k gk
 noremap <leader>p <esc>o<esc>"+]p
 " Yank to system clipboard
 noremap <leader>y "+y
-
-" Type of expression under cursor
-nmap <silent> <leader>ht :GhcModType<CR>
-" Insert type of expression under cursor
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-" GHC errors and warnings
-nmap <silent> <leader>hc :GhcModCheckAsync<CR>
-" Haskell Lint
-nmap <silent> <leader>hl :GhcModLintAsync<CR>
-
-" Hoogle the word under the cursor
-nnoremap <silent> <leader>hh :Hoogle<CR>
-
-" Hoogle and prompt for input
-nnoremap <leader>hH :Hoogle
-
-" Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>hi :HoogleInfo<CR>
-
-" Hoogle for detailed documentation and prompt for input
-nnoremap <leader>hI :HoogleInfo
-
-" Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hz :HoogleClose<CR>
-function! Pointfree()
-  call setline('.', split(system('pointfree '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
-endfunction
-vnoremap <silent> <leader>h. :call Pointfree()<CR>
-
-function! Pointful()
-  call setline('.', split(system('pointful '.shellescape(join(getline(a:firstline, a:lastline), "\n"))), "\n"))
-endfunction
-vnoremap <silent> <leader>h> :call Pointful()<CR>
-
-" usage -- :<loc>/foo/$t copy lines(?) matching foo
-"copy
-"cnoremap $t <cr>:t's<cr> 
-"move
-"cnoremap $m <cr>:m's<cr>
-"delete
-"cnoremap $d <cr>:d<cr>'s
-" cnoremap $t <CR>:t''<CR>
 
 " Automatically open, but do not go to (if there are errors) the quickfix /
 " location list window, or close it when is has become empty.
@@ -268,10 +208,6 @@ augroup ft_cpp
   au FileType cpp setlocal commentstring=//\ %s
 augroup END
 
-" Pretty unicode haskell symbols
-let g:haskell_conceal_wide = 1
-let g:haskell_conceal_enumerations = 1
-
 " Wrap at 65 for mail
 au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
 au BufNewFile,BufRead *.mako set filetype=mako
@@ -310,14 +246,24 @@ let g:LatexBox_latexmk_options = '-pv'
 let g:LatexBox_viewer = 'okular'
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsListSnippets="<c-s-tab>"
-let g:airline#extensions#tabline#enabled = 0
+"wtf does this do
+let g:airline#extensions#tabline#enabled = 1 
 let g:airline_powerline_fonts = 1
-let g:ctrlp_cmd = ':CtrlPBuffer'
+
+
+" CtrlP
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" let g:ctrlp_cmd = ':CtrlPMixed'
 " let g:ctrlp_extensions = ['mixed']
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
-let g:ctrlp_switch_buffer = 'Et'  "should be default
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files'] "see if this is too restrictive
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
+" let g:ctrlp_switch_buffer = 'Et'  "should be default
+" ag is fast enough that CtrlP doesn't need to cache
+" let g:ctrlp_use_caching = 0
+
+
+
 let g:hardtime_allow_different_key = 1
 let g:hardtime_default_on = 1
 let g:haskell_tabular = 1
