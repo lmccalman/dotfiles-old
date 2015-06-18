@@ -27,13 +27,13 @@ Plugin 'SirVer/ultisnips'
 " Coding
 " ------
 Plugin 'tpope/vim-commentary'
-Plugin 'vim-scripts/argtextobj.vim'        
+Plugin 'b4winckler/vim-angry'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'majutsushi/tagbar'                
 Plugin 'Raimondi/delimitMate'
-Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'kana/vim-textobj-indent'
 Plugin 'lervag/vimtex'
 
 " Visual
@@ -277,3 +277,15 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+
+let g:angry_disable_maps = 1
+vmap <silent> af <Plug>AngryOuterPrefix
+omap <silent> af <Plug>AngryOuterPrefix
+vmap <silent> if <Plug>AngryInnerPrefix
+omap <silent> if <Plug>AngryInnerPrefix
+
+vmap <silent> aF <Plug>AngryOuterSuffix
+omap <silent> aF <Plug>AngryOuterSuffix
+vmap <silent> iF <Plug>AngryInnerSuffix
+omap <silent> iF <Plug>AngryInnerSuffix
