@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 " -------
 Plugin 'justinmk/vim-sneak'
 Plugin 'takac/vim-hardtime'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
@@ -33,13 +33,19 @@ Plugin 'scrooloose/syntastic'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'majutsushi/tagbar'                
 Plugin 'Raimondi/delimitMate'
-Plugin 'kana/vim-textobj-indent'
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'lervag/vimtex'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'bitc/vim-hdevtools'
+Plugin 'dag/vim2hs'
 
 " Visual
 " ------
 Plugin 'vim-scripts/Zenburn'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+
 
 call vundle#end()
 
@@ -110,6 +116,9 @@ nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>w :w<CR>
 "nnoremap <Leader>sw :SudoWrite<CR>
 nnoremap <leader>h :HardTimeToggle
+" haskell?
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 "Ag
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>fp :ProjectRootExe Ag<Space>
@@ -191,7 +200,7 @@ augroup END
 
 augroup ft_haskell
   au!
-  au FileType haskell setlocal omnifunc=necoghc#omnifunc
+  " au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
 
 augroup ft_markdown
@@ -289,3 +298,22 @@ vmap <silent> aF <Plug>AngryOuterSuffix
 omap <silent> aF <Plug>AngryOuterSuffix
 vmap <silent> iF <Plug>AngryInnerSuffix
 omap <silent> iF <Plug>AngryInnerSuffix
+
+
+
+" Visuals
+let g:limelight_default_coefficient = 0.5
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 0
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+" let g:limelight_bop = '^\s'
+" let g:limelight_eop = '\ze\n^\s'
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+

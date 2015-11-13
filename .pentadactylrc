@@ -1,6 +1,4 @@
 "{{{ Options
-set complete=l
-set autocomplete=
 set newtab=all
 set hintkeys='aoeusnth'
 set hinttimeout=400

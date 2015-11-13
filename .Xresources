@@ -3,7 +3,7 @@ Xft*lcdfilter:  lcddefault
 Xft*hintstyle:  hintfull
 Xft*hinting: 1
 Xft*antialias: 1
-Xft*dpi: 235
+Xft*dpi: 240
 Xft*rgba: rgb
 Xcursor.theme: oxy-terra
 

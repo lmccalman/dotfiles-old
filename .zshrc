@@ -40,7 +40,7 @@ source $ZSH/oh-my-zsh.sh
 setopt extended_glob
 
 #Aliases
-alias cp="rsync -az --progress"
+# alias cp="rsync -az --progress"
 alias shutdown="sudo shutdown -P -h now"
 alias grep="grep --color=auto"
 export LESS="-R"   		                          #for colour
@@ -83,10 +83,9 @@ alias pacupd='sudo pacman -Sy' # Update and refresh the local package and ABS da
 alias pacinsd='sudo pacman -S --asdeps' # Install given package(s) as dependencies of another package
 alias pacmir='sudo pacman -Syy' # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
-alias standing='xrandr --output DP-1 --off --output DP-2 --auto --output LVDS-0 --off'
-alias sitting='xrandr --output DP-1 --auto --output DP-2 --off --output LVDS-0 --off'
-alias ranging='xrandr --output DP-1 --off --output DP-2 --off --output LVDS-0 --auto'
 alias presenting='xrandr --auto'
+alias atdesk='xrandr --output DisplayPort-1-0 --mode 3840x2160 --pos 0x0 --rotate normal --output eDP-1-0 --off --output VGA-1-0 --off --output HDMI-1-1 --off --output HDMI-1-0 --off'
+alias onthemove='xrandr --output DisplayPort-1-0 --off --output eDP-1-0 --mode 3200x1800 --pos 0x0 --rotate normal --output VGA-1-0 --off --output HDMI-1-1 --off --output HDMI-1-0 --off'
 
 
 # coloured output for less
@@ -102,20 +101,6 @@ man() {
     man "$@"
 }
 
-export PYTHONPATH=$PYTHONPATH:$HOME/code/statbadger:$HOME/code/bdkd-external
-export EDITOR=/usr/bin/vim
-export TERM=xterm-256color
-#for ruby gems
-export PATH=$PATH:/home/lb/.cabal/bin
-#
-#Japanese input
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
-# CUDA
-export PATH=/opt/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 
 # GREP
 unset GREP_OPTIONS
@@ -126,3 +111,13 @@ fortune -e
 
 # OPAM configuration
 . /home/lb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+
+#virtualenv
+source /usr/bin/virtualenvwrapper.sh
+# source /home/lb/.enhancd/zsh/enhancd.zsh
+
+# enhancd
+if [ -f "/home/lb/.enhancd/zsh/enhancd.zsh" ]; then
+    source "/home/lb/.enhancd/zsh/enhancd.zsh"
+fi
