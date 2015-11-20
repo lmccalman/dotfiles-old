@@ -105,10 +105,6 @@ man() {
 # GREP
 unset GREP_OPTIONS
 
-fortune -e
-#echo "\n"
-#task list
-
 # OPAM configuration
 . /home/lb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
@@ -121,3 +117,9 @@ source /usr/bin/virtualenvwrapper.sh
 if [ -f "/home/lb/.enhancd/zsh/enhancd.zsh" ]; then
     source "/home/lb/.enhancd/zsh/enhancd.zsh"
 fi
+
+#fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+fortune -e

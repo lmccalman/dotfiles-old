@@ -5,3 +5,10 @@ source! /home/lb/.vimperatorrc.local
 " vim: set ft=vimperator:
 
 set gui=none,tabs
+set complete=S
+set defsearch="google"
+set hintchars="uhetonas"
+set status="input,location,position,ssl"
+set noscrollbars
+set urlseparator="\\|"
+set visualbell

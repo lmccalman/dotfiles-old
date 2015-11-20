@@ -1,56 +1,55 @@
-" Vundle
-"-------
-set nocompatible 
-filetype off " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+
+" auto-install plug if it doesn't exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+" Plug Plugins
+call plug#begin('~/.vim/bundle')
 
 " General
 " -------
-Plugin 'justinmk/vim-sneak'
-Plugin 'takac/vim-hardtime'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-eunuch' "for :SudoWrite and etc
-Plugin 'tommcdo/vim-lion' "tabularize replacement
-Plugin 'rking/ag.vim'
-Plugin 'dbakker/vim-projectroot'
-Plugin 'bruno-/vim-vertical-move'
-Plugin 'SirVer/ultisnips'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'justinmk/vim-sneak'
+Plug 'takac/vim-hardtime'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch' "for :SudoWrite and etc
+Plug 'tommcdo/vim-lion' "tabularize replacement
+Plug 'rking/ag.vim'
+Plug 'dbakker/vim-projectroot'
+Plug 'bruno-/vim-vertical-move'
+Plug 'SirVer/ultisnips'
 
 " Coding
 " ------
-Plugin 'tpope/vim-commentary'
-Plugin 'b4winckler/vim-angry'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'majutsushi/tagbar'                
-Plugin 'Raimondi/delimitMate'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'lervag/vimtex'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'bitc/vim-hdevtools'
-Plugin 'dag/vim2hs'
+Plug 'tpope/vim-commentary'
+Plug 'b4winckler/vim-angry'
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'majutsushi/tagbar'                
+Plug 'Raimondi/delimitMate'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'lervag/vimtex'
+Plug 'davidhalter/jedi-vim'
+Plug 'bitc/vim-hdevtools'
+Plug 'dag/vim2hs'
 
 " Visual
 " ------
-Plugin 'vim-scripts/Zenburn'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
+Plug 'vim-scripts/Zenburn'
+Plug 'nanotech/jellybeans.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
+call plug#end()
 
-call vundle#end()
-
-filetype plugin indent on
-syntax on
 
 set autochdir
 set autoread
@@ -236,7 +235,16 @@ set grepformat=%f:%l:%c:%m
 " Visual Appearance
 set guifont=Anonymous\ Pro\ for\ Powerline\ 10
 
-set t_Co=256
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if !has('nvim')
+  set t_Co=256
+endif
+
+
 colorscheme jellybeans
 if has('gui_running')
     set guioptions-=T   " Get rid of toolbar "
