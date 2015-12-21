@@ -11,20 +11,21 @@ call plug#begin('~/.vim/bundle')
 
 " General
 " -------
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'kshenoy/vim-signature'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'takac/vim-hardtime'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch' "for :SudoWrite and etc
 Plug 'tommcdo/vim-lion' "tabularize replacement
-Plug 'rking/ag.vim'
+Plug 'gabesoft/vim-ags'
 Plug 'dbakker/vim-projectroot'
 Plug 'bruno-/vim-vertical-move'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Coding
 " ------
@@ -40,6 +41,8 @@ Plug 'lervag/vimtex'
 Plug 'davidhalter/jedi-vim'
 Plug 'bitc/vim-hdevtools'
 Plug 'dag/vim2hs'
+Plug 'tpope/vim-fugitive'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Visual
 " ------
@@ -55,8 +58,10 @@ set autochdir
 set autoread
 set backspace=indent,eol,start "Try not to use backspace!
 set backupdir=~/.tmp,~/tmp,/var/tmp,/tmp
+set clipboard=unnamed,unnamedplus
 set cmdheight=2 "what is this?
 set cursorline
+set colorcolumn=80
 set directory=~/.tmp,~/tmp,/var/tmp,/tmp
 set encoding=utf-8
 set expandtab
@@ -74,6 +79,7 @@ set matchpairs+=<:>  "for html etc
 set matchtime=2 "0.2 seconds
 set modelines=0
 set nostartofline
+set noswapfile
 set number
 set relativenumber
 set ruler
@@ -85,7 +91,7 @@ set smartcase
 set smarttab "tab width determined by shiftwidth
 set softtabstop=2
 set tabstop=2
-set textwidth=79
+set textwidth=0
 set ttyfast
 set undodir=~/.tmp,~/tmp,/var/tmp,/tmp
 set undofile
@@ -112,19 +118,62 @@ nnoremap <Space> :
 " My leader mappings
 let mapleader = ","
 nnoremap <Leader>c :bd<CR>
+nnoremap <expr> <leader>e ':e '.projectroot#guess().'/'
 nnoremap <Leader>w :w<CR>
-"nnoremap <Leader>sw :SudoWrite<CR>
+nnoremap <Leader>sw :SudoWrite<CR>
 nnoremap <leader>h :HardTimeToggle
 " haskell?
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 "Ag
-nnoremap <Leader>f :Ag<Space>
-nnoremap <Leader>fp :ProjectRootExe Ag<Space>
-"Ctrlp
-nnoremap <leader>l :CtrlPMixed<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>/h :Ags<Space>
+nnoremap <Leader>/ :ProjectRootExe :Ags<Space>
+"FZF
+nnoremap <silent> <leader>f :FzfFiles<CR>
+nnoremap <silent> <leader>g :FzfCommits<CR>
+nnoremap <silent> <leader>b :FzfBuffers<CR>
+nnoremap <silent> <leader>l :FzfLines<CR>
+nnoremap <silent> <leader>t :FzfTags<CR>
 nnoremap <leader>s :b#<CR>
+
+" nnoremap <silent> <leader>gs :Gstatus<CR>
+" nnoremap <silent> <leader>gd :Gdiff<CR>
+" nnoremap <silent> <leader>gc :Gcommit<CR>
+" nnoremap <silent> <leader>gb :Gblame<CR>
+" nnoremap <silent> <leader>ge :Gedit<CR>
+" nnoremap <silent> <leader>gE :Gedit<space>
+" nnoremap <silent> <leader>gr :Gread<CR>
+" nnoremap <silent> <leader>gR :Gread<space>
+" nnoremap <silent> <leader>gw :Gwrite<CR>
+" nnoremap <silent> <leader>gW :Gwrite!<CR>
+" nnoremap <silent> <leader>gq :Gwq<CR>
+" nnoremap <silent> <leader>gQ :Gwq!<CR>
+
+" let g:SignatureMarkerTextHL = 'Typedef'
+"   let g:SignatureMap = {
+"     \ 'Leader'             :  "m",
+"     \ 'PlaceNextMark'      :  "m,",
+"     \ 'ToggleMarkAtLine'   :  "m.",
+"     \ 'PurgeMarksAtLine'   :  "m-",
+"     \ 'DeleteMark'         :  "dm",
+"     \ 'PurgeMarks'         :  "m<Space>",
+"     \ 'PurgeMarkers'       :  "m<BS>",
+"     \ 'GotoNextLineAlpha'  :  "",
+"     \ 'GotoPrevLineAlpha'  :  "",
+"     \ 'GotoNextSpotAlpha'  :  "",
+"     \ 'GotoPrevSpotAlpha'  :  "",
+"     \ 'GotoNextLineByPos'  :  "]'",
+"     \ 'GotoPrevLineByPos'  :  "['",
+"     \ 'GotoNextSpotByPos'  :  "]`",
+"     \ 'GotoPrevSpotByPos'  :  "[`",
+"     \ 'GotoNextMarker'     :  "[+",
+"     \ 'GotoPrevMarker'     :  "[-",
+"     \ 'GotoNextMarkerAny'  :  "]=",
+"     \ 'GotoPrevMarkerAny'  :  "[=",
+"     \ 'ListLocalMarks'     :  "m/",
+"     \ 'ListLocalMarkers'   :  "m?"
+"     \ }
+
 " Change indent continuously
 vmap < <gv
 vmap > >gv
@@ -134,6 +183,25 @@ nnoremap ? ?\v
 vnoremap ? ?\v
 nnoremap :s/ :s/\v
 nnoremap TT :TagbarToggle<CR>
+
+
+" Keep search results at the center of screen
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
+
+" Same as normal H/L behavior, but preserves scrolloff
+nnoremap H :call JumpWithScrollOff('H')<CR>
+nnoremap L :call JumpWithScrollOff('L')<CR>
+function! JumpWithScrollOff(key) " {{{
+  set scrolloff=0
+  execute 'normal! ' . a:key
+  set scrolloff=999
+endfunction " }}}
+
 
 "disable that goddamn 'Entering Ex mode. Type 'visual' to go to Normal mode.'
 " that I trigger 40x a day.
@@ -213,7 +281,17 @@ augroup ft_cpp
 augroup END
 
 " Wrap at 65 for mail
-au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
+" au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
+
+" au BufRead /tmp/mutt-* set tw=72
+
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail 
+  autocmd BufRead,BufNewFile *mutt-*              setlocal tw=72 spell formatoptions=tcqj
+augroup END
+
+
 au BufNewFile,BufRead *.mako set filetype=mako
 
 " Return to last edit position when opening files (You want this!)
@@ -261,18 +339,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
 
+" FZF
+let g:fzf_nvim_statusline = 1 " disable statusline overwriting
+let g:fzf_command_prefix = 'Fzf'
 
-" CtrlP
-" note, use .agignore to ignore shite here
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" 10x faster at matching
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_extensions = ['mixed']
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
-let g:ctrlp_switch_buffer = 'Et'  "should be default
-
+" Hardtime
 let g:hardtime_allow_different_key = 1
 let g:hardtime_default_on = 1
+
+let g:list_of_normal_keys = ["h", "j", "k", "l", "w", "b", "e", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["h", "j", "k", "l", "w", "b", "e", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 let g:surround_indent = 1 "auto re-indent
 let g:syntastic_auto_loc_list=0
@@ -307,6 +384,8 @@ omap <silent> aF <Plug>AngryOuterSuffix
 vmap <silent> iF <Plug>AngryInnerSuffix
 omap <silent> iF <Plug>AngryInnerSuffix
 
+"Ags
+let g:ags_enable_async = 1
 
 
 " Visuals
@@ -322,6 +401,29 @@ let g:limelight_paragraph_span = 0
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
+
+
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+" autocmd VimEnter * Goyo
 

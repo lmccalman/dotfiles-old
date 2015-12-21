@@ -1,40 +1,150 @@
-source ~/.mail_config/mutt/colors
 
-set nm_default_uri="notmuch:///home/lb/mail"
-set virtual_spoolfile	= yes
-set sendmail="/home/lb/mail/nmsendmail"
-virtual-mailboxes \
-        "Gmail Inbox"     "notmuch://?query=tag:INBOX"\
-        "Starred"   "notmuch://?query=tag:*"\
-        "Sent"      "notmuch://?query=tag:sent"        # sets up queries for virtual folders
 
-# normal folders
+set pager_context=6
+set read_inc=1000
+# Basic Options --------------------------------------
+set wait_key = no        # shut up, mutt
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+
+
+
+# Folders
 set mbox_type=Maildir
-set folder="~/mail"
-mailboxes =personal =nicta
+set folder = "~/mail"
+source ~/.mutt/mailboxes
+set spoolfile = "+nicta/inbox"
+set record = "+nicta/sent"
+set postponed = "+nicta/drafts"
+# Temp folders
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set tmpdir           = ~/.mutt/temp          # where to keep temp files
 
-# sidebar
-set sidebar_width	= 35
-set sidebar_visible	= yes
-color sidebar_new yellow default
-bind index <left> sidebar-prev
-bind index <right> sidebar-next
-bind index <space> sidebar-open
-bind index <Esc>S sidebar-toggle
+# Notmuch support
+set nm_record = yes
+set nm_record_tags ="-inbox me"
+set nm_default_uri="notmuch:///home/lb/mail"
 
-    # virtual folders
-virtual-mailboxes \
- "inbox    [personal]"                "notmuch://?query=tag:inbox and tag:personal and NOT tag:archive" \
- "inbox    [NICTA]"                "notmuch://?query=tag:inbox and tag:nicta and NOT tag:archive" \
-\
- "archive  [personal]" "notmuch://?query=tag:personal and tag:archive" \
- "archive  [NICTA]" "notmuch://?query=tag:nicta and tag:archive" \
+# MIME
+auto_view text/html                                      # view html automatically
+alternative_order text/plain text/enriched text/html     # save html for last
+set send_charset="us-ascii:utf-8"
 
-macro index A "<modify-labels-then-hide>+archive -inbox\n<sync-mailbox>"
-macro index I "<modify-labels-then-hide>-inbox\n<sync-mailbox>"
+# Visuals
+source ~/.mutt/default.ansi
+# Display sent folder with people sent to not from
+folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %?M?<%M> ?%s"'
+folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %?M?<%M> ?%s"'
 
-# # mark emails for git-am
-# # (e.g. "git am -i -3 $(notmuch search --output=files tag:PATCH)"
-# #
-# macro index P "<modify-labels>PATCH\n"
-# macro index <Esc>P "<modify-labels>-PATCH\n"
+# Status Bar
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Pager
+set check_new = yes
+set beep_new = yes
+set mail_check = 60 
+set timeout = 3
+set use_from = yes # Required for msmtp to know which account to use
+set move=no
+set sort=reverse-threads
+set sort_aux=last-date-received
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Index View Options ---------------------------------
+set date_format = "%d/%m/%y"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Editing
+set editor="nvim"
+# set implicit_autoview
+# auto_view text/html application/x-pgp-message
+
+# Header
+ignore *                                     # ignore all headers
+unignore Date: From: To: Cc: Bcc: Subject:   # show only these
+unhdr_order *                                # some distros order things by default
+hdr_order Date: From: To: Cc: Bcc: Subject:  # and in this order
+
+
+unset reply_self
+set smart_wrap
+set recall=no
+set signature=~/.signature
+set sig_on_top # puts signature above quoted or forwarded text
+set from="lachlan.mccalman@nicta.com.au"
+set realname="Lachlan McCalman"
+
+# Compose View Options -------------------------------
+set envelope_from                    # which from?
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set askbcc
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# Sending Mail
+set sendmail="/usr/bin/msmtp -a nicta"
+set sendmail_wait=0
+
+set query_command = "notmuch address --output=recipients --deduplicate=address date:1Y.. AND from:lachlan.mccalman@nicta.com.au"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+# regexp = (\"?(?P<name>.+)\"?)?\s*<(?P<email>.*@.+?)>
+
+set query_command="$HOME/.mutt/ntmw.sh %s"
+set query_format="%4c %t %-10.24n %a %e"
+
+# Keys
+macro index,pager a "<save-message>=nicta/archive\n<sync-mailbox>\n"
+macro index \CA  "<change-folder> =nicta/archive<enter>"  "go to Archive"
+macro index \CS  "<change-folder> =nicta/sent<enter>"  "go to Sent Items"
+macro index I  "<change-folder> =nicta/inbox<enter>"  "go to Inbox"
+bind pager j next-line
+bind pager k previous-line
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind attach,index gg first-entry
+bind attach,index G last-entry
+bind index <space>  collapse-thread
+bind index R        group-reply
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+# View attachments properly.
+bind attach <return> view-mailcap
+bind compose p postpone-message
+bind index p recall-message

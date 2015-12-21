@@ -1,1 +1,5 @@
-text/html; pandoc -f html -t markdown '%s'; copiousoutput; description=HTML Text; test=type pandoc >/dev/null
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/*; feh -Z '%s'; edit=gimp '%s'; description=Image; test=test -n "$DISPLAY"
+text/calendar; /home/lb/.mutt/mutt-ical.py -i -e "lachlan.mccalman@nicta.com.au" %s
+application/ics; /home/lb/.mutt/mutt-ical.py -i -e "lachlan.mccalman@nicta.com.au" %s
+

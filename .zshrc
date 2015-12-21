@@ -84,9 +84,8 @@ alias pacinsd='sudo pacman -S --asdeps' # Install given package(s) as dependenci
 alias pacmir='sudo pacman -Syy' # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
 alias presenting='xrandr --auto'
-alias atdesk='xrandr --output DisplayPort-1-0 --mode 3840x2160 --pos 0x0 --rotate normal --output eDP-1-0 --off --output VGA-1-0 --off --output HDMI-1-1 --off --output HDMI-1-0 --off'
-alias onthemove='xrandr --output DisplayPort-1-0 --off --output eDP-1-0 --mode 3200x1800 --pos 0x0 --rotate normal --output VGA-1-0 --off --output HDMI-1-1 --off --output HDMI-1-0 --off'
-
+alias onthemove='xrandr --output VIRTUAL1 --off --output eDP1 --mode 3200x1800 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output VGA1 --off'
+alias atdesk='xrandr --output VIRTUAL1 --off --output eDP1 --off --output DP1 --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI1 --off --output VGA1 --off'
 
 # coloured output for less
 man() {
@@ -108,8 +107,8 @@ unset GREP_OPTIONS
 # OPAM configuration
 . /home/lb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-
 #virtualenv
+export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 # source /home/lb/.enhancd/zsh/enhancd.zsh
 
@@ -119,7 +118,8 @@ if [ -f "/home/lb/.enhancd/zsh/enhancd.zsh" ]; then
 fi
 
 #fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export EDITOR=/usr/bin/nvim
 
-fortune -e

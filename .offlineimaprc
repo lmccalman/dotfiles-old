@@ -1,51 +1,14 @@
 [general]
-accounts = gmail, nicta
+accounts = nicta
 pythonfile = ~/.offlineimap.py
 maxsyncaccounts = 2
-
-[Account gmail]
-localrepository = gmail-local
-remoterepository = gmail-remote
-status_backend = sqlite
-#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
-postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new"
-autorefresh = 1
-quick = 5
-
-[Repository gmail-local]
-type = Maildir
-localfolders = ~/mail/gmail
-nametrans = lambda folder: {'inbox': 'INBOX',
-                            'sent': '[Gmail]/Sent Mail',
-                            'drafts': '[Gmail]/Drafts',
-                            'archive':'[Gmail]/All Mail'
-                            }.get(folder, folder)
-
-[Repository gmail-remote]
-type = Gmail
-remoteuser = lachlan@mccalman.info
-remotepasseval = get_password("google")
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-nametrans = lambda folder: {'INBOX':'inbox',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Drafts': 'drafts',
-                            '[Gmail]/All Mail': 'archive'
-                            }.get(folder, folder)
-folderfilter = lambda folder: folder in {'INBOX',
-                                         '[Gmail]/Sent Mail',
-                                         '[Gmail]/Drafts',
-                                         '[Gmail]/All Mail'}
-keepalive = 60
-holdconnectionopen = yes
-maxconnections = 3
-
 
 [Account nicta]
 localrepository = nicta-local
 remoterepository = nicta-remote
 status_backend = sqlite
-#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v -v"
-#postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
+#presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v"
+postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
 autorefresh = 1
 quick = 5
 
@@ -55,7 +18,9 @@ localfolders = ~/mail/nicta
 nametrans = lambda folder: {'sent': 'Sent Items',
                             'inbox': 'INBOX',
                             'drafts': 'Drafts',
-                            'archive':'INBOX/Archive'}.get(folder, folder)
+                            'archive':'Archive',
+                            'spam':'Junk E-Mail',
+                            'trash':'Deleted Items'}.get(folder, folder)
 
 [Repository nicta-remote]
 type = IMAP
@@ -64,16 +29,29 @@ remoteuser = lmccalman
 remotepasseval = get_password("nicta")
 remoteport = 993
 ssl = yes
-cert_fingerprint=bb8bf2c794f37467bd74266ec63ae3daba012734
+cert_fingerprint=8158d4d30db85635867d9b8f0db7f4b177a201cb
 nametrans = lambda folder: {'Sent Items': 'sent',
                             'INBOX': 'inbox',
                             'Drafts': 'drafts',
-                            'INBOX/Archive': 'archive'
+                            'Archive': 'archive',
+                            'Junk E-Mail': 'spam',
+                            'Deleted Items': 'trash'
                             }.get(folder, folder)
 folderfilter = lambda folder: folder in {'INBOX',
                                          'Sent Items',
                                          'Drafts',
-                                         'INBOX/Archive'}
+                                         'Junk E-Mail',
+                                         'Deleted Items',
+                                         'Archive'}
 keepalive = 60
 holdconnectionopen = yes
 maxconnections = 3
+
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
