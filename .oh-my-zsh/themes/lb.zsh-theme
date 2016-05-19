@@ -56,7 +56,7 @@ if [[ -n ${HOLYDAY} ]]; then
 fi
 }
 
-function virtualenv() {
+function virtualenv_print() {
     if [[ -n ${VIRTUAL_ENV} ]]; then
       VSTRING=venv:$(basename ${VIRTUAL_ENV})
       echo "-${blue_op}${VSTRING}${blue_cp}"
@@ -75,7 +75,7 @@ function cabal_sandbox_info() {
 }
 
 
-PROMPT=$'\n┌${user_host}$(ssh_connection)$(my_git_prompt)$(virtualenv)$(cabal_sandbox_info)$(holyday)
+PROMPT=$'\n┌${user_host}$(ssh_connection)$(my_git_prompt)$(virtualenv_print)$(cabal_sandbox_info)$(holyday)
 └${blue_op}${smiley}${blue_cp}-> '
 
 RPROMPT="%F{${1:-green}}%~%f"

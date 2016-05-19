@@ -6,48 +6,27 @@ ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="lb"
+COMPLETION_WAITING_DOTS="true"
 
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+source /usr/bin/virtualenvwrapper.sh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
+
 #Customize!
 setopt extended_glob
 
 #Aliases
-# alias cp="rsync -az --progress"
 alias shutdown="sudo shutdown -P -h now"
 alias grep="grep --color=auto"
 export LESS="-R"   		                          #for colour
 alias df="df -h"
 alias du="du -c -h"
-alias mkdir="mkdir -p"
-alias nano="nano -w"
 alias ping="ping -c 3"
 alias ..="cd .."
 alias feh="feh -."
@@ -87,6 +66,8 @@ alias presenting='xrandr --auto'
 alias onthemove='xrandr --output VIRTUAL1 --off --output eDP1 --mode 3200x1800 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output VGA1 --off'
 alias atdesk='xrandr --output VIRTUAL1 --off --output eDP1 --off --output DP1 --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI1 --off --output VGA1 --off'
 
+alias nvsteam=LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1' primusrun steam 
+
 # coloured output for less
 man() {
   env \
@@ -107,19 +88,12 @@ unset GREP_OPTIONS
 # OPAM configuration
 . /home/lb/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-#virtualenv
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-# source /home/lb/.enhancd/zsh/enhancd.zsh
-
-# enhancd
-if [ -f "/home/lb/.enhancd/zsh/enhancd.zsh" ]; then
-    source "/home/lb/.enhancd/zsh/enhancd.zsh"
-fi
-
 #fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export EDITOR=/usr/bin/nvim
-
+export ICAROOT="/home/lb/progs/citrix"
+export PATH=$PATH:/home/lb/.local/bin
+export TERM=xterm
+export PYTHONPATH=PYTHONPATH:/home/lb/code/statbadger

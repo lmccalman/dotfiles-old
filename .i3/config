@@ -109,7 +109,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+Tab exec rofi -now
+bindsym $mod+Tab exec rofi -show window
 
 # start gmrun
 bindsym $sup+r exec gmrun

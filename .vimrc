@@ -16,7 +16,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'takac/vim-hardtime'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch' "for :SudoWrite and etc
@@ -36,13 +37,17 @@ Plug 'scrooloose/syntastic'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'majutsushi/tagbar'                
 Plug 'Raimondi/delimitMate'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'lervag/vimtex'
 Plug 'davidhalter/jedi-vim'
 Plug 'bitc/vim-hdevtools'
 Plug 'dag/vim2hs'
 Plug 'tpope/vim-fugitive'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tweekmonster/braceless.vim'
+
+"from the haskell 2016 article
+"ghcmod-vim
+"neco-ghc
 
 " Visual
 " ------
@@ -120,7 +125,7 @@ let mapleader = ","
 nnoremap <Leader>c :bd<CR>
 nnoremap <expr> <leader>e ':e '.projectroot#guess().'/'
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>sw :SudoWrite<CR>
+" nnoremap <Leader>sw :SudoWrite<CR>
 nnoremap <leader>h :HardTimeToggle
 " haskell?
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
@@ -239,6 +244,7 @@ autocmd QuickFixCmdPost    l* nested lwindow
 " ini files
 au BufRead,BufNewFile *.gdf setfiletype ini
 au BufRead,BufNewFile *.conf setfiletype ini
+au BufRead,BufNewFile *.dock setfiletype dockerfile
 " ensures latex not plaintex chosen when opening a blank .tex file
 let g:tex_flavor='latex'
 
@@ -265,10 +271,16 @@ augroup ft_python
     au FileType python let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 augroup END
 
+" default text object is P, alse try [[ and ]]
+autocmd FileType python BracelessEnable +indent
+autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold
+
 augroup ft_haskell
   au!
   " au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
+
+au BufRead,BufNewFile *.md :GoyoEnter
 
 augroup ft_markdown
   au!
@@ -333,8 +345,10 @@ endif
 
 
 " Plugin options
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsListSnippets="<c-s-tab>"
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1

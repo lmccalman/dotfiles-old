@@ -3,3 +3,4 @@ image/*; feh -Z '%s'; edit=gimp '%s'; description=Image; test=test -n "$DISPLAY"
 text/calendar; /home/lb/.mutt/mutt-ical.py -i -e "lachlan.mccalman@nicta.com.au" %s
 application/ics; /home/lb/.mutt/mutt-ical.py -i -e "lachlan.mccalman@nicta.com.au" %s
 
+application/x-ica; /home/lb/progs/citrix/wfica.sh %s; x-mozilla-flags=plugin:Citrix ICA Client
