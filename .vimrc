@@ -2,7 +2,7 @@
 " auto-install plug if it doesn't exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -74,13 +74,13 @@ set expandtab
 set foldlevel=99
 set formatoptions=cq
 set gdefault "this means I don't have to type g in a replace
-set hidden "can change buffers without sawing
+set hidden "can change buffers without saving
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw "don't redraw whilst running macros
-set linebreak
+" set linebreak only relevant when wrap on
 set matchpairs+=<:>  "for html etc
 set matchtime=2 "0.2 seconds
 set modelines=0
@@ -105,7 +105,7 @@ set viminfo^=%
 set virtualedit=block
 set wildmenu
 set wildmode=list:longest
-set wrap
+set nowrap
 
 "N00bs beware
 inoremap  <Up>     <NOP>
@@ -120,6 +120,10 @@ inoremap  <Esc>    <NOP>
 
 noremap! jk <Esc>
 nnoremap <Space> :
+
+"disable that goddamn 'Entering Ex mode. Type 'visual' to go to Normal mode.'
+" that I trigger 40x a day.
+map Q <Nop> 
 
 " My leader mappings
 let mapleader = ","
@@ -171,10 +175,6 @@ function! JumpWithScrollOff(key) " {{{
 endfunction " }}}
 
 
-"disable that goddamn 'Entering Ex mode. Type 'visual' to go to Normal mode.'
-" that I trigger 40x a day.
-map Q <Nop> 
-
 " allow the . to execute once for each line of a visual block
 vnoremap . :normal .<CR>
 map <C-K> <C-U>
@@ -205,8 +205,6 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 " Filetype specific changes
 " ini files
-au BufRead,BufNewFile *.gdf setfiletype ini
-au BufRead,BufNewFile *.conf setfiletype ini
 au BufRead,BufNewFile *.dock setfiletype dockerfile
 " ensures latex not plaintex chosen when opening a blank .tex file
 let g:tex_flavor='latex'
@@ -237,13 +235,14 @@ augroup END
 " default text object is P, alse try [[ and ]]
 autocmd FileType python BracelessEnable +indent
 autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold
+ 
+au BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.mako set filetype=mako
 
 augroup ft_haskell
   au!
   " au FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
-
-au BufRead,BufNewFile *.md :GoyoEnter
 
 augroup ft_markdown
   au!
@@ -255,19 +254,11 @@ augroup ft_cpp
   au FileType cpp setlocal commentstring=//\ %s
 augroup END
 
-" Wrap at 65 for mail
-" au BufRead /tmp/mutt-* setlocal textwidth=65 formatoptions=tcq
-
-" au BufRead /tmp/mutt-* set tw=72
-
-augroup filetypedetect
+augroup ft_mail
   " Mail
-  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail 
-  autocmd BufRead,BufNewFile *mutt-*              setlocal tw=72 spell formatoptions=tcqj
+  autocmd BufRead,BufNewFile *mutt-* setfiletype mail 
+  autocmd BufRead,BufNewFile *mutt-* setlocal tw=72 spell formatoptions=tcqj
 augroup END
-
-
-au BufNewFile,BufRead *.mako set filetype=mako
 
 " Return to last edit position when opening files (You want this!)
 augroup last_edit
@@ -297,7 +288,6 @@ if !has('nvim')
   set t_Co=256
 endif
 
-
 colorscheme jellybeans
 if has('gui_running')
     set guioptions-=T   " Get rid of toolbar "
@@ -305,7 +295,6 @@ if has('gui_running')
     set guioptions+=LlRrb
     set guioptions-=LlRrb
 endif
-
 
 " Plugin options
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -322,7 +311,7 @@ let g:fzf_nvim_statusline = 1 " disable statusline overwriting
 let g:fzf_command_prefix = 'Fzf'
 
 " Hardtime
-let g:hardtime_allow_different_key = 1
+let g:hardtime_allow_different_key = 0
 let g:hardtime_default_on = 1
 
 let g:list_of_normal_keys = ["h", "j", "k", "l", "w", "b", "e", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
@@ -350,7 +339,6 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-
 let g:angry_disable_maps = 1
 vmap <silent> af <Plug>AngryOuterPrefix
 omap <silent> af <Plug>AngryOuterPrefix
@@ -364,7 +352,6 @@ omap <silent> iF <Plug>AngryInnerSuffix
 
 "Ags
 let g:ags_enable_async = 1
-
 
 " Visuals
 let g:limelight_default_coefficient = 0.5
