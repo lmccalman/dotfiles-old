@@ -1,20 +1,20 @@
 [general]
-accounts = nicta
+accounts = csiro
 pythonfile = ~/.offlineimap.py
 maxsyncaccounts = 2
 
-[Account nicta]
-localrepository = nicta-local
-remoterepository = nicta-remote
+[Account csiro]
+localrepository = csiro-local
+remoterepository = csiro-remote
 status_backend = sqlite
 #presynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "afew --move-mails -v"
 postsynchook = ionice -c 3 chrt --idle 0 /bin/sh -c "notmuch new && afew --tag --new -v -v"
 autorefresh = 1
 quick = 5
 
-[Repository nicta-local]
+[Repository csiro-local]
 type = Maildir
-localfolders = ~/mail/nicta
+localfolders = ~/mail/csiro
 nametrans = lambda folder: {'sent': 'Sent Items',
                             'inbox': 'INBOX',
                             'drafts': 'Drafts',
@@ -22,14 +22,12 @@ nametrans = lambda folder: {'sent': 'Sent Items',
                             'spam':'Junk E-Mail',
                             'trash':'Deleted Items'}.get(folder, folder)
 
-[Repository nicta-remote]
+[Repository csiro-remote]
 type = IMAP
-remotehost = imap.nicta.com.au
-remoteuser = lmccalman
-remotepasseval = get_password("nicta")
-remoteport = 993
-ssl = yes
-cert_fingerprint=8158d4d30db85635867d9b8f0db7f4b177a201cb
+remotehost = imap.csiro.au
+remoteuser = mcc542
+remotepasseval = get_password("csiro")
+ssl=no
 nametrans = lambda folder: {'Sent Items': 'sent',
                             'INBOX': 'inbox',
                             'Drafts': 'drafts',

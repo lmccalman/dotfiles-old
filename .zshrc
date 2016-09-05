@@ -17,6 +17,7 @@ source /usr/bin/virtualenvwrapper.sh
 plugins=(git python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.git-flow-completion.zsh
 
 #Customize!
 setopt extended_glob

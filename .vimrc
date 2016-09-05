@@ -27,6 +27,7 @@ Plug 'dbakker/vim-projectroot'
 Plug 'bruno-/vim-vertical-move'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'reedes/vim-wordy'
 
 " Coding
 " ------
@@ -124,7 +125,7 @@ nnoremap <Space> :
 let mapleader = ","
 nnoremap <Leader>c :bd<CR>
 nnoremap <expr> <leader>e ':e '.projectroot#guess().'/'
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>w :update<CR>
 " nnoremap <Leader>sw :SudoWrite<CR>
 nnoremap <leader>h :HardTimeToggle
 " haskell?
@@ -140,44 +141,6 @@ nnoremap <silent> <leader>b :FzfBuffers<CR>
 nnoremap <silent> <leader>l :FzfLines<CR>
 nnoremap <silent> <leader>t :FzfTags<CR>
 nnoremap <leader>s :b#<CR>
-
-" nnoremap <silent> <leader>gs :Gstatus<CR>
-" nnoremap <silent> <leader>gd :Gdiff<CR>
-" nnoremap <silent> <leader>gc :Gcommit<CR>
-" nnoremap <silent> <leader>gb :Gblame<CR>
-" nnoremap <silent> <leader>ge :Gedit<CR>
-" nnoremap <silent> <leader>gE :Gedit<space>
-" nnoremap <silent> <leader>gr :Gread<CR>
-" nnoremap <silent> <leader>gR :Gread<space>
-" nnoremap <silent> <leader>gw :Gwrite<CR>
-" nnoremap <silent> <leader>gW :Gwrite!<CR>
-" nnoremap <silent> <leader>gq :Gwq<CR>
-" nnoremap <silent> <leader>gQ :Gwq!<CR>
-
-" let g:SignatureMarkerTextHL = 'Typedef'
-"   let g:SignatureMap = {
-"     \ 'Leader'             :  "m",
-"     \ 'PlaceNextMark'      :  "m,",
-"     \ 'ToggleMarkAtLine'   :  "m.",
-"     \ 'PurgeMarksAtLine'   :  "m-",
-"     \ 'DeleteMark'         :  "dm",
-"     \ 'PurgeMarks'         :  "m<Space>",
-"     \ 'PurgeMarkers'       :  "m<BS>",
-"     \ 'GotoNextLineAlpha'  :  "",
-"     \ 'GotoPrevLineAlpha'  :  "",
-"     \ 'GotoNextSpotAlpha'  :  "",
-"     \ 'GotoPrevSpotAlpha'  :  "",
-"     \ 'GotoNextLineByPos'  :  "]'",
-"     \ 'GotoPrevLineByPos'  :  "['",
-"     \ 'GotoNextSpotByPos'  :  "]`",
-"     \ 'GotoPrevSpotByPos'  :  "[`",
-"     \ 'GotoNextMarker'     :  "[+",
-"     \ 'GotoPrevMarker'     :  "[-",
-"     \ 'GotoNextMarkerAny'  :  "]=",
-"     \ 'GotoPrevMarkerAny'  :  "[=",
-"     \ 'ListLocalMarks'     :  "m/",
-"     \ 'ListLocalMarkers'   :  "m?"
-"     \ }
 
 " Change indent continuously
 vmap < <gv
@@ -348,6 +311,7 @@ endif
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+let g:ultisnips_python_style="numpy"
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
