@@ -14,7 +14,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 source /usr/bin/virtualenvwrapper.sh
 
-plugins=(git python zsh-syntax-highlighting history-substring-search)
+plugins=(vi-mode git python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.git-flow-completion.zsh
