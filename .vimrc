@@ -31,9 +31,10 @@ Plug 'reedes/vim-wordy'
 
 " Coding
 " ------
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'tpope/vim-commentary'
 Plug 'b4winckler/vim-angry'
-Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'majutsushi/tagbar'                
@@ -296,7 +297,11 @@ if has('gui_running')
     set guioptions-=LlRrb
 endif
 
+
 " Plugin options
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
@@ -322,7 +327,6 @@ let g:surround_indent = 1 "auto re-indent
 let g:syntastic_auto_loc_list=0
 let g:tagbar_autoclose = 1
 let g:tagbar_left = 1
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
