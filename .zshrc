@@ -18,6 +18,8 @@ plugins=(vi-mode git python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.git-flow-completion.zsh
+source /opt/google-cloud-sdk/completion.zsh.inc
+
 
 #Customize!
 setopt extended_glob
