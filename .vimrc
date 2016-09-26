@@ -114,24 +114,27 @@ au FocusLost * :echo "Focus lost: saving all buffers" | :wall
 " Remove trailing whitespace in python
 autocmd BufWritePre *.py :%s/\s\+$//e
 " Save cursor, folds etc from last edit
+
 set viewoptions-=options
 set sessionoptions-=options
+set viewoptions-=localoptions
+set sessionoptions-=localoptions
 
 " augroup autosave_buffer
 "  autocmd!
 "  autocmd BufWinLeave *.* mkview
-"  "autocmd BufWinEnter *.* silent loadview
+"  autocmd BufWinEnter *.* silent loadview
 " augroup END
+
 " }}}
 
 " ==== Formatting ==== {{{
 set autoindent
 set formatoptions=tcnjq1
 set linebreak
-set smartindent
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=-1
+set shiftwidth=0
 set shiftround
 set tabstop=4
 set textwidth=79
@@ -251,8 +254,6 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
-
-
 " }}}
 
 " ==== Editing ==== {{{
@@ -296,13 +297,20 @@ let g:surround_indent = 1 "auto re-indent
 " }}}
 
 " ==== Searching ==== {{{
+
 set gdefault "this means I don't have to type g in a replace
 set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
 set ignorecase
 set matchpairs+=<:>  "for html etc
 set smartcase
 set wildmode=list:longest
-set nomagic " escape makes chars special, not non-special
+
+nnoremap / /\M
+vnoremap / /\M
+nnoremap ? ?\M
+vnoremap ? ?\M
+nnoremap :s/ :s/\M
+
 "Ag
 nnoremap <Leader>/h :Ags<Space>
 nnoremap <Leader>/ :ProjectRootExe :Ags<Space>
@@ -355,8 +363,6 @@ let g:gundo_close_on_revert = 1
 " location list window, or close it when is has become empty.
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
-
-
 " }}}
 
 " ==== Filetypes ==== {{{
@@ -377,12 +383,7 @@ augroup ft_tex
 augroup END
 augroup ft_python
     au!
-    au FileType python setlocal autoindent
-    au FileType python setlocal smartindent
     au FileType python setlocal formatoptions=cqr 
-    au FileType python setlocal tabstop=4
-    au FileType python setlocal shiftwidth=4
-    au FileType python setlocal softtabstop=4
     au FileType python let b:delimitMate_expand_inside_quotes = 1
 augroup END
 augroup ft_markdown
