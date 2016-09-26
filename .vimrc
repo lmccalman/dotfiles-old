@@ -1,4 +1,5 @@
 
+
 " ==== Plugins ==== {{{
 
 " auto-install plug if it doesn't exist
@@ -41,12 +42,13 @@ Plug 'lervag/vimtex'
 
 " Snippets and completion
 " -----------------------
-"  pip install --upgrade neovim jedi flake8
+"  pip install --upgrade jedi flake8
 Plug 'raimondi/delimitmate'
+Plug 'davidhalter/jedi-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+Plug 'ervandew/supertab'
+Plug 'hynek/vim-python-pep8-indent'
 
 " Visual
 " ------
@@ -69,6 +71,8 @@ Plug 'sjl/gundo.vim'
 
 call plug#end()
 " }}}
+
+filetype plugin indent on 
 
 " ==== Big Changes ==== {{{
 noremap! jk <Esc>
@@ -112,11 +116,12 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " Save cursor, folds etc from last edit
 set viewoptions-=options
 set sessionoptions-=options
-augroup autosave_buffer
- autocmd!
- autocmd BufWinLeave *.* mkview
- autocmd BufWinEnter *.* silent loadview
-augroup END
+
+" augroup autosave_buffer
+"  autocmd!
+"  autocmd BufWinLeave *.* mkview
+"  "autocmd BufWinEnter *.* silent loadview
+" augroup END
 " }}}
 
 " ==== Formatting ==== {{{
@@ -133,6 +138,7 @@ set textwidth=79
 set virtualedit=block
 set wrap
 "}}}
+
 
 " ==== Display ==== {{{
 set number
@@ -371,7 +377,13 @@ augroup ft_tex
 augroup END
 augroup ft_python
     au!
+    au FileType python setlocal autoindent
+    au FileType python setlocal smartindent
     au FileType python setlocal formatoptions=cqr 
+    au FileType python setlocal tabstop=4
+    au FileType python setlocal shiftwidth=4
+    au FileType python setlocal softtabstop=4
+    au FileType python let b:delimitMate_expand_inside_quotes = 1
 augroup END
 augroup ft_markdown
   au!
@@ -390,13 +402,14 @@ augroup END
 " }}}
 
 " ==== Completion ==== {{{
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources#jedi#show_docstring = 0
-
-" Let <Tab> also do completion
-inoremap <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" :
-\ deoplete#mappings#manual_complete()
+let g:jedi#show_call_signatures = "1"
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>a"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
