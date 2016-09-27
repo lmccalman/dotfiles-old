@@ -1,16 +1,24 @@
 [user]
-	name = Lachlan McCalman\n
-	email = lachlan.mccalman@nicta.com.au
+	name = Lachlan McCalman
+	email = lachlan.mccalman@data61.csiro.au
 
 [diff]
-  tool = meld
+    tool = vimdiff
 
 [merge]
-tool = meld
-conflictstyle = diff3
+	tool = vimdiff
+    conflictstyle = diff3
 
 [difftool]
-  tool = meld
+    path = nvim
+    prompt = false
 
 [push]
 	default = simple
+[github]
+	user = lmccalman
+[ghi]
+	token = 7b1525dc675163786cc1736b83c1aedc178475db
+[mergetool]
+	path = nvim
+    prompt = false

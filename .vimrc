@@ -60,6 +60,7 @@ Plug 'vim-scripts/Zenburn'
 Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'oblitum/rainbow'
 
 " Etc
 " ---
@@ -68,11 +69,14 @@ Plug 'tpope/vim-eunuch' "for :SudoWrite and etc
 Plug 'tpope/vim-repeat' "enables repeats on tpopes plugins
 Plug 'AndrewRadev/splitjoin.vim' "1 line ifs / multiline ifs
 Plug 'sjl/gundo.vim'
+Plug 'chrisbra/vim-diff-enhanced'
 
 call plug#end()
 " }}}
 
+syntax on
 filetype plugin indent on 
+
 
 " ==== Big Changes ==== {{{
 noremap! jk <Esc>
@@ -80,8 +84,18 @@ nnoremap <Space> :
 nnoremap <cr> o<esc>
 let mapleader = ","
 " No Entering Ex mode
-map Q <Nop>  
+" Formatting, TextMate-style
+nnoremap Q gqip
+vnoremap Q gq
 
+
+" }}}
+
+" ==== Diffs ==== {{{
+" started In Diff-Mode set diffexpr (plugin not loaded yet)
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
 " }}}
 
 " ==== Folding ==== {{{
@@ -120,11 +134,10 @@ set sessionoptions-=options
 set viewoptions-=localoptions
 set sessionoptions-=localoptions
 
-" augroup autosave_buffer
-"  autocmd!
-"  autocmd BufWinLeave *.* mkview
-"  autocmd BufWinEnter *.* silent loadview
-" augroup END
+autocmd BufReadPost *
+\ if line("'\"") >= 1 && line("'\"") <= line("$") |
+\   execute "normal! g`\"" |
+\ endif
 
 " }}}
 
@@ -144,6 +157,7 @@ set wrap
 
 
 " ==== Display ==== {{{
+set termguicolors
 set number
 "set relativenumber " off so I use S more
 set title
@@ -160,6 +174,8 @@ set colorcolumn=+1
 
 " Visual Appearance
 set guifont=Anonymous\ Pro\ for\ Powerline\ 10
+
+let g:rainbow_active = 1
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -232,6 +248,13 @@ inoremap  <Esc>    <NOP>
 nnoremap j gj
 nnoremap k gk
 
+" Fix linewise visual selection of various text objects
+nnoremap VV V
+nnoremap Vit vitVkoj
+nnoremap Vat vatV
+nnoremap Vab vabV
+nnoremap VaB vaBV
+
 " Hardtime
 let g:hardtime_allow_different_key = 0
 let g:hardtime_default_on = 1
@@ -294,6 +317,15 @@ omap <silent> iF <Plug>AngryInnerSuffix
 
 let g:surround_indent = 1 "auto re-indent
 
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis
+                 \ | wincmd p | diffthis
+endif
+
+
 " }}}
 
 " ==== Searching ==== {{{
@@ -351,6 +383,11 @@ nnoremap <silent> <leader>b :FzfBuffers<CR>
 " ==== Clipboard and Undo ==== {{{
 set pastetoggle=<leader>p
 set clipboard=unnamedplus
+
+" Select (charwise) the contents of the current line, excluding indentation.
+" Great for pasting Python lines into REPLs.
+nnoremap vv ^vg_
+
 
 nnoremap <F4> :GundoToggle<CR>
 let g:gundo_width = 60

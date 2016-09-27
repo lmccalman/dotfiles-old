@@ -20,6 +20,9 @@ source $ZSH/oh-my-zsh.sh
 source ~/.git-flow-completion.zsh
 source /opt/google-cloud-sdk/completion.zsh.inc
 
+source <(kubectl completion zsh)
+
+export TERM=xterm-256color
 
 #Customize!
 setopt extended_glob
@@ -71,6 +74,10 @@ alias atdesk='xrandr --output VIRTUAL1 --off --output eDP1 --off --output DP1 --
 
 alias nvsteam=LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1' primusrun steam 
 
+#
+alias kubedocker='eval $(minikube docker-env)'
+alias localdocker='eval $(minikube docker-env -u)'
+
 # coloured output for less
 man() {
   env \
@@ -98,5 +105,4 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export EDITOR=/usr/bin/nvim
 export ICAROOT="/home/lb/progs/citrix"
 export PATH=$PATH:/home/lb/.local/bin
-export TERM=xterm
 export PYTHONPATH=PYTHONPATH:/home/lb/code/statbadger
