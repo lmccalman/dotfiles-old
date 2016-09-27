@@ -422,6 +422,7 @@ augroup ft_python
     au!
     au FileType python setlocal formatoptions=cqr 
     au FileType python let b:delimitMate_expand_inside_quotes = 1
+    au FileType python let b:delimitMate_nesting_quotes = ['"']
 augroup END
 augroup ft_markdown
   au!
