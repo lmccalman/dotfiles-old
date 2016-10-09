@@ -7,3 +7,5 @@ plumbum
 sarge
 sh
 pyp (awk/sed replacement)
+
+https://github.com/jarun/imgp
