@@ -47,12 +47,11 @@ Plug 'raimondi/delimitmate'
 Plug 'davidhalter/jedi-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
 Plug 'hynek/vim-python-pep8-indent'
 
 " Visual
 " ------
-Plug 'scrooloose/syntastic' "linting
+" Plug 'scrooloose/syntastic' "linting
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kshenoy/vim-signature' "for displaying marks on the left ruler
@@ -64,6 +63,7 @@ Plug 'oblitum/rainbow'
 
 " Etc
 " ---
+Plug 'neomake/neomake'
 Plug 'dbakker/vim-projectroot'
 Plug 'tpope/vim-eunuch' "for :SudoWrite and etc
 Plug 'tpope/vim-repeat' "enables repeats on tpopes plugins
@@ -148,8 +148,8 @@ set linebreak
 set expandtab
 set softtabstop=-1
 set shiftwidth=0
-set shiftround
-set tabstop=4
+set noshiftround
+set tabstop=2
 set textwidth=79
 set virtualedit=block
 set wrap
@@ -159,7 +159,7 @@ set wrap
 " ==== Display ==== {{{
 set termguicolors
 set number
-"set relativenumber " off so I use S more
+set relativenumber " off so I use S more
 set title
 set ruler
 set scrolloff=9999
@@ -194,7 +194,7 @@ if has('gui_running')
     set guioptions-=LlRrb
 endif
 
-let g:syntastic_auto_loc_list=0
+" let g:syntastic_auto_loc_list=0
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
@@ -277,6 +277,11 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+
+let g:neomake_open_list = 1
+let g:neomake_list_height = 10
+
 " }}}
 
 " ==== Editing ==== {{{
