@@ -14,7 +14,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 source /usr/bin/virtualenvwrapper.sh
 
-plugins=(vi-mode git python zsh-syntax-highlighting history-substring-search)
+plugins=(vi-mode git git-flow-avh python zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.git-flow-completion.zsh
@@ -106,3 +106,5 @@ export EDITOR=/usr/bin/nvim
 export ICAROOT="/home/lb/progs/citrix"
 export PATH=$PATH:/home/lb/.local/bin
 export PYTHONPATH=PYTHONPATH:/home/lb/code/statbadger
+
+source ~/.zshrc.private

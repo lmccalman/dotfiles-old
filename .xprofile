@@ -25,4 +25,5 @@ unclutter -grab -noevents -root &
 $HOME/environ/rotatingwallpaper &
 nm-applet &
 xflux -l 33 -g 151 -k 2700
+enpass &
 # insync start &
